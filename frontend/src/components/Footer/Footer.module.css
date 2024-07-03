@@ -1,0 +1,27 @@
+.Footer{
+    text-align: center;
+    position:absolute;
+    width:100%;
+    bottom:0;
+}
+
+.Socials{
+    background-color: #FFF1E0;
+    height:50px
+}
+
+.CopyrightWrap{
+    background-color: #542F04;
+    height: 20px;
+    color: white;
+    font-size: x-small;
+    position:relative;
+}
+
+.CopyrightWrap p{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    margin:0;
+}
