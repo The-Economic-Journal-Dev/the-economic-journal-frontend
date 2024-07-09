@@ -1,8 +1,9 @@
-import "./Body.css"
+import style from "./Body.module.css"
 
 function Body() {
-    return <div className="Body">
-
+    return <div className={style.Body}>
+        <div className={style.BGRectangle}></div>
+        <div className={style.PostsArea}> </div>
     </div>
 }
 
