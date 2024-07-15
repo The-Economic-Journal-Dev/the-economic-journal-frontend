@@ -21,7 +21,7 @@
 }
 
 .ColumnDivider{
-    min-height: 100%;
+    height: 90%;
     min-width: 1px;
     background-color: #E4D3BE;
 }
@@ -48,10 +48,10 @@
 
 .MainColumnTextWrap h6{
     width: 100%;
+    font-size: 1.3em;
     font-family: 'Times New Roman', Times, serif;
     color:#929292;
     line-height: 1.4;
-
 }
 
 .MainColumnTextWrap h1{
@@ -68,19 +68,109 @@
 }
 
 .SubColumnTextWrap{
-    margin: 2% 0 2% 0;
+    margin: 3% 0 3% 0;
+}
+
+.SubColumnTextWrapFirst{
+    margin: 0 0 3% 0;
 }
 
 .SubColumnTextWrap h4{
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     color: #645236;
+    margin-bottom: 2%;
 }
 
 .SubColumnTextWrap h5{
-    font-size: 1.7rem;
+    font-size: 0.8rem;
+    font-weight: 650;
+    color: #9F0505;
+    margin-bottom: 0;
+}
 
+.SubColumnTextWrap h6{
+    width: 100%;
+    font-size: 0.8em;
+    font-family: 'Times New Roman', Times, serif;
+    color:#929292;
+    line-height: 1.2;
+}
+
+.ContentSeparator{
+    margin-inline: auto;
+    background-color: #E4D3BE;
+    width:70%;
+    height: 1px;
+}
+
+.SectionDivider{
+    width: 65vw;
+    height: 1px;
+    background-color: #E4D3BE;
+    margin-inline:auto;
+    margin-bottom: 1%;
+}
+
+.TrendingWrap{
+    margin-inline:auto;
+    display:flex;
+    align-items: center;
+    padding: 0 2% 2% 2%;
+    flex-direction: column;
+    height: auto;
+    width: 68vw;
+}
+
+.TrendingContentWrap{
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.TrendingPost{
+    width: 30%;
+}
+
+.TrendingPost img{
+    width: 100%;
+}
+
+.TrendingTextWrap{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.TrendingTextWrap h4{
+    font-size: 1.8em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #645236;
+    margin-bottom: 2%;
+}
+
+.TrendingTextWrap h5{
+    font-size: 0.9em;
+    color: #9F0505;
+    margin-bottom: 0;
+}
+
+.TrendingTextWrap h6{
+    width: 100%;
+    font-size: 0.8em;
+    font-family: 'Times New Roman', Times, serif;
+    color:#929292;
+    line-height: 1.2;
+}
+
+.TrendingTitleWrap h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #9F0505;
 }
 
 
