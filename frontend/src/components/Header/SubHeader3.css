@@ -1,19 +1,20 @@
 .HeaderNav {
+    height: 6vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: #fff;
-    border-bottom: 1px solid #E4D3BE;
+    border-bottom: 2px solid #E4D3BE;
     overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 .HeaderNav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
+    width: 70vw;
+    justify-content: space-between;
     margin: 0;
-    padding: 10px 0;
     flex-wrap: nowrap; /* Prevent wrapping */
-    width: fit-content;
 }
 
 .HeaderNav ul span {
@@ -21,11 +22,9 @@
     width: 2px;
     height: 30px; 
     background-color: #E4D3BE;
-    margin: 0 25px;
 }
 
 .HeaderNav ul li {
-    margin: 0 45px;
     flex-shrink: 0; /* Prevent flex items from shrinking */
 }
 

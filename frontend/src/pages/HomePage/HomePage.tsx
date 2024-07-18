@@ -162,7 +162,7 @@ function HomePage() {
           </div>
 
           <div className={style.TrendingPost}>
-            <img
+             <img
               src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
               alt=""
             />
@@ -175,7 +175,7 @@ function HomePage() {
                 aliqua. Tincidunt nunc pulvinar sapien et ligula ullamcorper
                 malesuada.
               </h6>
-            </div>
+             </div> 
           </div>
         </div>
       </div>
