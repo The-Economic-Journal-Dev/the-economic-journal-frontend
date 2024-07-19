@@ -1,31 +1,41 @@
 .HeaderNav {
-    height: 6vh;
     display: flex;
     justify-content: center;
-    align-items: center;
     background-color: #fff;
-    border-bottom: 2px solid #E4D3BE;
+    border-bottom: 1px solid #E4D3BE;
     overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 0 10px; /* Adjust padding to ensure the header fits */
 }
 
 .HeaderNav ul {
     list-style: none;
     display: flex;
-    width: 70vw;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0;
+    padding: 10px 0;
     flex-wrap: nowrap; /* Prevent wrapping */
+    width: 100%; /* Ensure the ul takes the full width */
 }
 
 .HeaderNav ul span {
     display: inline-block;
     width: 2px;
-    height: 30px; 
+    height: 30px;
     background-color: #E4D3BE;
+    margin: 0 25px;
 }
 
 .HeaderNav ul li {
+    margin: 0 10px;
     flex-shrink: 0; /* Prevent flex items from shrinking */
+}
+
+.HeaderNav ul li:first-child {
+    margin-left: 20px; /* Ensure margin for the first item */
+}
+
+.HeaderNav ul li:last-child {
+    margin-right: 20px; /* Ensure margin for the last item */
 }
 
 .HeaderNav ul li a {
@@ -38,4 +48,145 @@
 
 .HeaderNav ul li a:hover {
     color: #d35400;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1125px) {
+    .HeaderNav ul li {
+        margin: 0 8px;
+    }
+
+    .HeaderNav ul span {
+        margin: 0 8px;
+    }
+
+    .HeaderNav ul li a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .HeaderNav ul li {
+        margin: 0 15px;
+    }
+
+    .HeaderNav ul span {
+        margin: 0 8px;
+    }
+
+    .HeaderNav ul li a {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 912px) {
+    .HeaderNav ul li {
+        margin: 0 12px;
+    }
+
+    .HeaderNav ul span {
+        margin: 0 6px;
+    }
+
+    .HeaderNav ul li a {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 820px) {
+    .HeaderNav ul li {
+        margin: 0 6px;
+    }
+
+    .HeaderNav ul span {
+        margin: 0 6px;
+    }
+
+    .HeaderNav ul li a {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .HeaderNav ul li {
+        margin: 0 6px;
+    }
+
+    .HeaderNav ul span {
+        margin: 0 6px;
+    }
+
+    .HeaderNav ul li a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 540px) {
+    .HeaderNav ul li {
+        margin: 0 4px;
+    }
+
+    .HeaderNav ul span {
+        margin: 0 4px;
+    }
+
+    .HeaderNav ul li a {
+        font-size: 0.73rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .HeaderNav ul li {
+        margin: 0 3px;
+    }
+
+    .HeaderNav ul span {
+        margin: 0 3px;
+    }
+
+    .HeaderNav ul li a {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .HeaderNav ul li {
+        margin: 0 2px;
+    }
+
+    .HeaderNav ul span {
+        display: none; /* Hide the span separator on very small screens */
+    }
+
+    .HeaderNav ul li a {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 390px) {
+    .HeaderNav ul li {
+        margin: 0 2px;
+    }
+
+    .HeaderNav ul span {
+        display: none; /* Hide the span separator on very small screens */
+    }
+
+    .HeaderNav ul li a {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .HeaderNav ul li {
+        margin: 1 2px;
+    }
+
+    .HeaderNav ul span {
+        display: none; /* Hide the span separator on very small screens */
+    }
+
+    .HeaderNav ul li a {
+        font-size: 0.58rem;
+    }
 }
