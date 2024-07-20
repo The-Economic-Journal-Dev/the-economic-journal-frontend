@@ -1,0 +1,110 @@
+.PageTitle{
+    width: 100vw;
+    display: flex;
+    font-size: 7vh;
+    color: #645236;
+    font-weight: bold;
+    border-bottom: 1px solid #e4d3be;
+    padding: 3vh 0 0 15vw;
+}
+
+.MainContentBGRectangle{
+    position: absolute;
+    width: 100vw;
+    height: 25vh;
+    background-color: #FFF6EC;
+    z-index: -5;
+    margin-top: 8%;
+}
+
+.MainContentWrap{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh;
+}
+
+.MainContent{
+    width: 70vw;
+    padding: 0 15vw 0 15vw;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+}
+
+.MainContent h1{
+    padding-inline: 4vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.8rem;
+    color: #645236;
+    font-weight: bold;
+}
+
+.MainContent h6{
+    width: 115%;
+    transform: translate(calc(-15%/2));
+    padding: 0;
+    margin:0;
+    font-family: 'Times New Roman', Times, serif;
+    color: #929292;
+    font-size: 1.22rem;
+    font-weight: 100;
+}
+
+.SubPostWrap{
+    height: 33vh;
+    border-top: 1px solid #E4D3BE;
+    padding: 5vh 15vw 5vh 15vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.SubPostContent{
+    width: 63%;
+}
+
+.SubPostContent h2{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: #645236;
+    margin-bottom: 0;
+    font-size: 2em;
+}
+
+.SubPostContent h6{
+    font-family: 'Times New Roman', Times, serif;
+    color:#929292;
+    font-size: 1.2rem;
+    font-weight: 100;
+    margin-bottom: 0;
+}
+
+.SubPostActionBar{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    height: 15%;
+    margin-left: 1vw;
+    justify-content: space-between;
+}
+
+.SubPostActionBar button{
+    width: 3vw;
+    cursor: pointer;
+    background-color: white;
+    border: 0;
+    outline: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.SubPostActionBar button img{
+    height: 100%;
+    aspect-ratio: 1/1;
+
+}
+
