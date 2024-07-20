@@ -1,0 +1,177 @@
+.pageWrap {
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.PostAreaWrap{
+    background-color: white;
+    min-height: 80vh;
+    width: 70vw;
+    padding:2% 1% 2% 1%;
+    display: flex;
+    justify-content: center;
+}
+
+.PostArea{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 99%;
+    min-height: 99%;
+}
+
+.ColumnDivider{
+    height: 90%;
+    min-width: 1px;
+    background-color: #E4D3BE;
+}
+
+.MainColumn{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.MainColumn img{
+    width: 100%;    
+}
+
+.MainColumnTextWrap{
+    flex: 1;
+    margin: 5% 0 0 0;
+}
+
+.MainColumnTextWrap h5{
+    color: #9F0505;
+    font-weight: 600;
+}
+
+.MainColumnTextWrap h6{
+    width: 100%;
+    font-size: 1.3em;
+    font-family: 'Times New Roman', Times, serif;
+    color:#929292;
+    line-height: 1.4;
+}
+
+.MainColumnTextWrap h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #645236;
+}
+
+
+.SubColumn{
+    width:27%;
+    display: flex;
+    flex-direction: column;
+}
+
+.SubColumnTextWrap{
+    margin: 3% 0 3% 0;
+}
+
+.SubColumnTextWrapFirst{
+    margin: 0 0 3% 0;
+}
+
+.SubColumnTextWrap h4{
+    font-size: 1.4rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #645236;
+    margin-bottom: 2%;
+}
+
+.SubColumnTextWrap h5{
+    font-size: 0.8rem;
+    font-weight: 650;
+    color: #9F0505;
+    margin-bottom: 0;
+}
+
+.SubColumnTextWrap h6{
+    width: 100%;
+    font-size: 0.8em;
+    font-family: 'Times New Roman', Times, serif;
+    color:#929292;
+    line-height: 1.2;
+}
+
+.ContentSeparator{
+    margin-inline: auto;
+    background-color: #E4D3BE;
+    width:70%;
+    height: 1px;
+}
+
+.SectionDivider{
+    width: 65vw;
+    height: 1px;
+    background-color: #E4D3BE;
+    margin-inline:auto;
+    margin-bottom: 1%;
+}
+
+.TrendingWrap{
+    margin-inline:auto;
+    display:flex;
+    align-items: center;
+    padding: 0 2% 2% 2%;
+    flex-direction: column;
+    height: auto;
+    width: 68vw;
+}
+
+.TrendingContentWrap{
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.TrendingPost{
+    width: 30%;
+}
+
+.TrendingPost img{
+    width: 100%;
+}
+
+.TrendingTextWrap{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.TrendingTextWrap h4{
+    font-size: 1.8em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #645236;
+    margin-bottom: 2%;
+}
+
+.TrendingTextWrap h5{
+    font-size: 0.9em;
+    color: #9F0505;
+    margin-bottom: 0;
+}
+
+.TrendingTextWrap h6{
+    width: 100%;
+    font-size: 0.8em;
+    font-family: 'Times New Roman', Times, serif;
+    color:#929292;
+    line-height: 1.2;
+}
+
+.TrendingTitleWrap h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #9F0505;
+}
+
+
+
