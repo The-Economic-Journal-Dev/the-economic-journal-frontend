@@ -1,8 +1,7 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import axios, { AxiosError } from "axios";
+import { useState, ChangeEvent, FormEvent } from "react";
+import axios from "axios";
 import SubHeader1 from "../../components/Header/SubHeader1.tsx";
 import SubHeader2 from "../../components/Header/SubHeader2.tsx";
-import Footer from "../../components/Footer/Footer.tsx";
 import style from "./SignIn.module.css";
 
 interface PostData {
