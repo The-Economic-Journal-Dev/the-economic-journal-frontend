@@ -6,21 +6,12 @@ import React, {
   useState,
   ReactNode,
 } from "react";
-import { auth, db } from "../firebase";
-import {
-  User,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { auth } from "../firebase";
+import { User, onAuthStateChanged } from "firebase/auth";
 
 interface AuthContextType {
   currentUser: User | null;
-  signUp: (email: string, password: string, username: string) => Promise<void>;
-  logIn: (email: string, password: string) => Promise<void>;
-  logOut: () => Promise<void>;
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -50,37 +41,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return unsubscribe;
   }, []);
 
-  const signUp = async (email: string, password: string, username: string) => {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCredential.user;
-    await setDoc(doc(db, "users", user.uid), {
-      username,
-      email,
-    });
-  };
-
-  const logIn = (email: string, password: string) => {
-    return signInWithEmailAndPassword(auth, email, password).then();
-  };
-
-  const logOut = () => {
-    return signOut(auth).then();
-  };
-
   const value: AuthContextType = {
     currentUser,
-    signUp,
-    logIn,
-    logOut,
+    loading,
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
 };

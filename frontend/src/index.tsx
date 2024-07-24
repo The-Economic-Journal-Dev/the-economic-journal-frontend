@@ -10,8 +10,8 @@ import Entrepreneur from "./pages/Entrepreneur/Entrepreneur.tsx";
 import Business from "./pages/Business/Business.tsx";
 import Economic from "./pages/Economic/Economic.tsx";
 import ModPage from "./pages/ModPage/ModPage.tsx";
-import Profile from "./pages/User/Profile.tsx";
-import { AuthProvider } from "./context/AuthContext.tsx";
+import Dashboard from "./pages/User/Dashboard.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const router = createBrowserRouter([
   {
@@ -55,8 +55,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/Profile",
-    element: <Profile />,
+    path: "/Dashboard",
+    element: <Dashboard />,
   },
 ]);
 

@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header";
 import style from "./ModPage.module.css";
 
 const WebsiteSelector = ({ onSelectChange }) => {
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     const selectedValue = event.target.value;
     onSelectChange(selectedValue);
   };
@@ -60,7 +60,7 @@ const ModPage = () => {
   const [hasImageDesc, setHasImageDesc] = useState(false);
 
   //Dynamically changing the input boxes to match the post content
-  const dynamicInputs = (pageOption, positionOption) => {
+  const dynamicInputs = (pageOption:string, positionOption:string) => {
     if (pageOption == "HomePage") {
       if (
         [

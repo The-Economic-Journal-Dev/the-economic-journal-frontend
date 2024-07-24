@@ -1,23 +1,75 @@
 import React, { useState, FormEvent } from "react";
-import { useAuth } from "../../context/AuthContext";
 import style from "./SignUp.module.css";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
-  const { signUp } = useAuth();
+  const [userFilledAllInputs, setUserFilledAllInputs] = useState(true);
+  const [confirmPasswordSimilar, setConfirmPasswordSimilar] = useState(true);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const signUp = async (email: string, password: string, username: string) => {
+    return createUserWithEmailAndPassword(auth, email, password).then();
+  };
+
+  const confirmPasswordIsSimilar = () => {
+    if (password && confirmPassword && password != confirmPassword) {
+      setConfirmPasswordSimilar(false);
+      return false;
+    } else {
+      setConfirmPasswordSimilar(true);
+      return true;
+    }
+  };
+
+  const hasUserFilledAllInputs = () => {
+    if (
+      username != "" &&
+      email != "" &&
+      password != "" &&
+      confirmPassword != ""
+    ) {
+      setUserFilledAllInputs(true);
+      return true;
+    } else {
+      setUserFilledAllInputs(false);
+      return false;
+    }
+  };
+
+  const signUpWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {}
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    try {
-      await signUp(email, password, username);
-      // Handle successful sign up (e.g., redirect to dashboard)
-    } catch (error) {
-      console.error(error);
-      // Handle errors (e.g., display error message)
+    //Reset states to remove unecessary error messages
+    setConfirmPasswordSimilar(true);
+    setConfirmPasswordSimilar(true);
+    setError("")
+
+    hasUserFilledAllInputs();
+    confirmPasswordIsSimilar();
+    if (hasUserFilledAllInputs() && confirmPasswordIsSimilar()) {
+      try {
+        await signUp(email, password, username);
+        navigate("/HomePage")
+      } catch (error: any) {
+        if (error.code == "auth/email-already-in-use"){
+            setError("Email is already in use")
+        }
+      }
     }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <h1>
@@ -36,7 +88,7 @@ const SignUp = () => {
       />
       <div className={style.inputHeader}>Email</div>
       <input
-        type="email"
+        type="text"
         placeholder="Email"
         name="email"
         onChange={(e) => setEmail(e.target.value)}
@@ -55,7 +107,17 @@ const SignUp = () => {
         type="password"
         placeholder="Confirm Password"
         name="confirmPassword"
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        value={confirmPassword}
       />
+
+      {!userFilledAllInputs && (
+        <div>Please fill all the necessary information</div>
+      )}
+      {!confirmPasswordSimilar && (
+        <div>Confirmed password doesn't match password</div>
+      )}
+      {error && <div>{error}</div>}
       <div className={style.buttonContainer}>
         <input type="submit" value="Sign Up" className={style.signUpButton} />
       </div>
@@ -66,13 +128,12 @@ const SignUp = () => {
         <div className={style.partialBlackLine}></div>
       </div>
 
-      <a href="">
-        <img
-          src="../../src/assets/google_icon.png"
-          alt=""
-          className={style.googleBtn}
-        />
-      </a>
+      <img
+        src="../../src/assets/google_icon.png"
+        alt=""
+        className={style.googleBtn}
+        onClick={signUpWithGoogle}
+      />
     </form>
   );
 };

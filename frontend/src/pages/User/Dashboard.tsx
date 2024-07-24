@@ -3,10 +3,12 @@ import Header from "../../components/Header/Header";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
-const Profile = () => {
-  console.log(auth?.currentUser?.email)
+const Dashboard = () => {
+
   const navigate = useNavigate();
+
   const logOut = async () => {
     try {
       await signOut(auth);
@@ -17,13 +19,17 @@ const Profile = () => {
     }
   };
 
+
+
   return (
     <>
       <Header />
-      Profile
+      <div>
+        <h1>User: {auth.currentUser?.displayName || auth.currentUser?.email}</h1>
+      </div>
       <button onClick={logOut}>Log Out</button>
     </>
   );
 };
 
-export default Profile;
+export default Dashboard;

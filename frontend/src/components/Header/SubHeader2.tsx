@@ -1,8 +1,12 @@
 import "./SubHeader2.css";
 import logo from "../../../src/assets/house_icon.jpg";
 import { auth } from "../../firebase";
+import { useState } from "react";
 
 function SubHeader2() {
+  const photoURL = auth.currentUser?.photoURL
+  const user = auth.currentUser
+
   return (
     <div className="top-bar">
       <a href="./HomePage">
@@ -19,9 +23,9 @@ function SubHeader2() {
         </div>
       </a>
       <div className="auth-search">
-        {(auth.currentUser == null && <a href="./signIn">Sign in</a>)}
-        {auth.currentUser != null && (
-          <a href="./Profile">
+        {user == null && <a href="./signIn">Sign in</a>}
+        {user != null && (
+          <a href="./Dashboard">
             <img
               src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
               alt=""

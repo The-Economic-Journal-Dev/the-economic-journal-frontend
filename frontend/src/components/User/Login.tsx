@@ -1,21 +1,53 @@
 import React, { useState, FormEvent } from "react";
-import { useAuth } from "../../context/AuthContext";
 import style from "./Login.module.css";
-import { auth } from "../../firebase";
+import { auth, googleProvider } from "../../firebase";
+import { signInWithEmailAndPassword , signInWithPopup} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { logIn } = useAuth();
+  const [userFilledAllInputs, setUserFilledAllInputs] = useState(true);
+  const [wrongCredentials, setWrongCredentials] = useState(false);
+  const { currentUser } = useAuth();
+
+  const navigate = useNavigate();
+  //const { logIn } = useAuth();
+
+  const logIn = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password).then();
+  };
+
+  const hasUserFilledAllInputs = () => {
+    if (email != "" && password != ""){
+      setUserFilledAllInputs(true)
+      return true
+    } else{
+      setUserFilledAllInputs(false)
+      setWrongCredentials(false);
+      return false
+    }
+  };
+
+  const signUpWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate("/HomePage")
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    try {
-      await logIn(email, password);
-      console.log("Login success")
-    } catch (error) {
-      console.log(error)
-      console.log("Login unsuccessful")
+    if (hasUserFilledAllInputs()) {
+      try {
+        await logIn(email, password);
+        navigate("/HomePage");
+      } catch (error) {
+        setWrongCredentials(true);
+      }
     }
   };
   return (
@@ -25,7 +57,7 @@ const Login = () => {
       </h1>
       <div className={style.inputHeader}>Users/Email</div>
       <input
-        type="email"
+        type="text"
         placeholder="Email"
         name="email"
         value={email}
@@ -43,6 +75,11 @@ const Login = () => {
         <a href="#">Forgot password?</a>
       </div>
 
+      {!userFilledAllInputs && (
+        <div>Please fill in all the necessary information</div>
+      )}
+      {wrongCredentials && <div>Wrong email or password</div>}
+
       <div className={style.buttonContainer}>
         <input type="submit" value="Login" className={style.signInButton} />
       </div>
@@ -53,13 +90,12 @@ const Login = () => {
         <div className={style.partialBlackLine}></div>
       </div>
 
-      <a href="">
-        <img
-          src="../../src/assets/google_icon.png"
-          alt=""
-          className={style.googleBtn}
-        />
-      </a>
+      <img
+        src="../../src/assets/google_icon.png"
+        alt=""
+        className={style.googleBtn}
+        onClick={signUpWithGoogle}
+      />
     </form>
   );
 };
