@@ -6,7 +6,7 @@
 .PostAreaWrap{
     background-color: white;
     min-height: 80vh;
-    width: 70vw;
+    width: 80vw;
     padding:2% 1% 2% 1%;
     display: flex;
     justify-content: center;
@@ -173,5 +173,33 @@
     color: #9F0505;
 }
 
+@media (max-width: 768px) {
+    .PostArea {
+        flex-direction: column;
+    }
 
+    .MainColumn, .SubColumn {
+        width: 100%;
+        margin-bottom: 20px; /* Space between column */
+    }
 
+    .ColumnDivider {
+        display: none;
+    }
+
+    .SectionDivider, .ContentSeparator {
+        width: 90%;
+        margin: 10px auto; 
+    }
+
+    .TrendingContentWrap {
+        flex-direction: column;
+    }
+
+    .TrendingPost {
+        width: 100%;
+        margin-bottom: 20px; /* Add some space between trending posts */
+    }
+ 
+    
+}

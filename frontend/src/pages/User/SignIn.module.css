@@ -1,0 +1,172 @@
+.container{
+    position:absolute;
+    flex-direction: row;
+    width:900px;
+    top:58%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    overflow:visible;
+}
+
+.bg{
+    position:absolute;
+    width: 9999px;
+    height:200px;
+    background-color: #fff6ec;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%)
+}
+
+.container .formContainer{
+    display:inline-block;
+    width: 380px;
+    background-color: white;
+}
+
+
+.container #formContainerSignIn {
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translate(0,-50%)
+}
+.container #formContainerSignUp {
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translate(0,-50%)
+}
+
+.container .formContainer form{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    justify-content: space-around;
+    padding: 40px;
+}
+
+
+
+.container .formContainer input:not([type="submit"]){
+   display: flex;
+   justify-content: center;
+   margin: 10px 0 10px 15px;
+   border: none;
+   font-size: 15px;
+   border-bottom: 1px solid black;
+   outline: none;
+}
+
+.container .formContainer h1{
+    display: flex;
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-bottom:30px
+}
+
+.container .formContainer a{
+    display: flex;
+    justify-content: start;
+    margin: 20px;
+}
+
+h1 span {
+    margin-left: 10px;
+    color: #E4BD8F;
+}
+
+h1 span div {
+    color: #9F0505;
+}
+
+
+.forgotPassword {
+    display: inline-flex;
+    justify-content: end;    
+    font-size: 11px;
+    margin: 5px 0 5px 0;
+}
+
+.forgotPassword a{
+    margin:0 !important;
+    text-decoration: none;
+    color: black;
+
+}
+
+.inputHeader{
+    font-size: 10px;
+}
+
+.container .formContainer input[type="submit"]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white; /* Button background color */
+    font-size: 17px; /* Font size */
+    font-weight:bold;
+    text-align: center; /* Center text */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 30px; /* Optional: Rounded corners */
+    width: 150px;
+    height: 35px;
+    margin: 10px 0 10px 0;
+}
+
+.signInButton{
+    color: #E4A250; /* Text color */
+    border: 3px solid #E4A250; /* Optional: Add a border for visibility */
+
+}
+
+.signUpButton{
+    color: #9F0505; /* Text color */
+    border: 3px solid #9F0505; /* Optional: Add a border for visibility */
+
+}
+
+.buttonContainer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Optional: Center vertically if the container has a height */
+}
+
+.line {
+    border: none; /* Remove default border */
+    height: 2px; /* Height of the line */
+    background-color: black; /* Color of the line */
+    flex: 1; /* Allow the line to grow and shrink */
+    margin: 0 10px; /* Space on the sides of the line */
+}
+
+.alternateLogin{
+    align-self: center;
+    text-align:center;
+    margin: 15px 0 0 0
+}
+
+.alternateLogin p{
+    display:inline;
+    vertical-align: middle;
+}
+
+.partialBlackLine{
+    margin:0 15px 0 15px;
+    background-color: black;
+    height: 2px;
+    width:65px;
+    vertical-align: middle;
+    display:inline-block;
+}
+
+.googleBtn{
+    position: absolute;
+    aspect-ratio: 1/1;
+    height: 50px;
+    border:3px solid black;
+    border-radius: 50%;
+    left:50%;
+    transform: translate(-50%);
+}

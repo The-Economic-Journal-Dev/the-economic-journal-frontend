@@ -1,37 +1,41 @@
 .top-bar {
-    position:relative;
+    display: flex;
     border-bottom: 2px solid #E4D3BE;
-    height:80px;
+    height:9vh;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar a{
+    text-decoration: none;
 }
 
 .logo{
     display: flex;
     align-items: center;
-    position: absolute;
-    left:70px;
-    top: 50%;
-    transform: translate(0, -50%);
+    margin-left:5vw;
+    text-decoration: none;
 }
 
 
 .logo img{
     margin-right: 0px;
-    height:30px;
-    width:30px
+    width:4vh;
 }
 
 .logo h1 {
-    font-size: 40px;
+    font-size: 5vh;
     font-weight:bolder;
     margin: 0;
     display: inline-flex;
     align-items: center;
     color: #333; /* Adjust color if necessary */
+    text-decoration: none;
 }
 
 .logo div {
     color: #d35400; 
-    font-size: 15px;
+    font-size: 2vh;
     margin-left: 5%;
 }
 
@@ -39,9 +43,7 @@
     display: flex;
     align-items: center;
     position: absolute;
-    right:70px;
-    top: 50%;
-    transform: translate(0, -50%);
+    right:5vw;
 }
 
 .auth-search a {
@@ -50,6 +52,10 @@
     font-size: 20px;
     margin-right: 10px;
     position: relative;
+}
+
+.auth-search a img{
+    height: 6vh;
 }
 
 .top-bar .separator {
@@ -65,4 +71,14 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+}
+
+@media (max-width: 600px){
+   .logo img{
+    display: none;
+   }
+
+   .logo .separator{
+    display: none;
+   }
 }

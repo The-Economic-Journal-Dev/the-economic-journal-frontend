@@ -121,6 +121,7 @@ const Finance = () => {
         <img
           src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
           alt=""
+          className={style.SubPostPic}
         />
       </div>
 

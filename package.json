@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@tiptap/pm": "^2.5.5",
+    "@tiptap/react": "^2.5.5",
+    "@tiptap/starter-kit": "^2.5.5",
+    "firebase": "^10.12.4",
+    "react-hook-form": "^7.52.1",
+    "react-router-dom": "^6.25.1"
+  }
+}
