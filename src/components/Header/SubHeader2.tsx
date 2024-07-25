@@ -1,10 +1,10 @@
 import "./SubHeader2.css";
 import logo from "../../../src/assets/house_icon.jpg";
 import { auth } from "../../firebase";
-import { useState } from "react";
 
 function SubHeader2() {
-  const photoURL = auth.currentUser?.photoURL
+  // NOTE: UNCOMMENT THIS WHEN YOU NEED TO
+  // const photoURL = auth.currentUser?.photoURL
   const user = auth.currentUser
 
   return (

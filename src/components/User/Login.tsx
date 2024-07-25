@@ -1,16 +1,14 @@
-import React, { useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import style from "./Login.module.css";
 import { auth, googleProvider } from "../../firebase";
 import { signInWithEmailAndPassword , signInWithPopup} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userFilledAllInputs, setUserFilledAllInputs] = useState(true);
   const [wrongCredentials, setWrongCredentials] = useState(false);
-  const { currentUser } = useAuth();
 
   const navigate = useNavigate();
   //const { logIn } = useAuth();

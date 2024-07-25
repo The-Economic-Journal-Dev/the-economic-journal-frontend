@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Header from "../../components/Header/Header";
 import style from "./ModPage.module.css";
 
-const WebsiteSelector = ({ onSelectChange }) => {
-  const handleChange = (event:any) => {
+const WebsiteSelector = ({ onSelectChange }: { onSelectChange: (value: string) => void }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     onSelectChange(selectedValue);
   };
@@ -23,8 +23,8 @@ const WebsiteSelector = ({ onSelectChange }) => {
   );
 };
 
-const PositionSelector = ({ options, onSelectChange }) => {
-  const handleSelectChange = (event) => {
+const PositionSelector = ({ options, onSelectChange }: { options: string[], onSelectChange: (value: string) => void }) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     onSelectChange(selectedValue);
   };
@@ -41,7 +41,11 @@ const PositionSelector = ({ options, onSelectChange }) => {
   );
 };
 
-const PostSelector = ({ onWebsiteChange, options, onPositionChange }) => {
+const PostSelector = ({ onWebsiteChange, options, onPositionChange }: { 
+  onWebsiteChange: (value: string) => void, 
+  options: string[], 
+  onPositionChange: (value: string) => void 
+}) => {
   return (
     <div>
       <WebsiteSelector onSelectChange={onWebsiteChange} />
@@ -55,7 +59,7 @@ const PostSelector = ({ onWebsiteChange, options, onPositionChange }) => {
 const ModPage = () => {
   const [targetPage, setTargetPage] = useState("");
   const [targetPosition, setTargetPosition] = useState("");
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<string[]>([]);
   const [hasImage, setHasImage] = useState(false);
   const [hasImageDesc, setHasImageDesc] = useState(false);
 
@@ -90,12 +94,13 @@ const ModPage = () => {
     }
   };
 
-  const handleWebsiteChange = (option: any) => {
+  const handleWebsiteChange = (option: string) => {
     setTargetPage(option);
+  
     setTargetPosition("");
 
     // Update the options for the second dropdown based on the selected option
-    if (option === "HomePage") {
+    if (targetPosition === "HomePage") {
       setOptions([
         "Main col 1",
         "Main col 2 row 1",
@@ -116,17 +121,17 @@ const ModPage = () => {
       setOptions([]);
     }
 
-    dynamicInputs(option, "")
+    dynamicInputs(targetPosition, "")
   };
 
-  const handlePositionChange = (position) => {
+  const handlePositionChange = (position: string) => {
     setTargetPosition(position);
 
     //Dynamically changing the inputs based on the page and position chose
     dynamicInputs(targetPage, position)
   };
 
-  const form = useForm({
+  useForm({
     mode: "onSubmit",
     defaultValues: {
       Title: "Title",

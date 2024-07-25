@@ -1,9 +1,7 @@
-import style from "./Profile.module.css";
 import Header from "../../components/Header/Header";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
 
 const Dashboard = () => {
 
