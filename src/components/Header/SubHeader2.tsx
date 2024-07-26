@@ -4,6 +4,7 @@ import { auth } from "../../firebase";
 
 function SubHeader2() {
   // NOTE: UNCOMMENT THIS WHEN YOU NEED TO
+  //ok
   // const photoURL = auth.currentUser?.photoURL
   const user = auth.currentUser
 
@@ -25,7 +26,7 @@ function SubHeader2() {
       <div className="auth-search">
         {user == null && <a href="./signIn">Sign in</a>}
         {user != null && (
-          <a href="./Dashboard">
+          <a href="./Profile">
             <img
               src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
               alt=""

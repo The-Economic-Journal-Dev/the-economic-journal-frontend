@@ -4,13 +4,13 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.tsx";
-import SignIn from "./pages/User/SignIn.tsx";
+import SignIn from "./pages/SignIn/SignIn.tsx";
 import Finance from "./pages/Finance/Finance.tsx";
 import Entrepreneur from "./pages/Entrepreneur/Entrepreneur.tsx";
 import Business from "./pages/Business/Business.tsx";
 import Economic from "./pages/Economic/Economic.tsx";
 import ModPage from "./pages/ModPage/ModPage.tsx";
-import Dashboard from "./pages/User/Dashboard.tsx";
+import Profile from "./pages/User/Profile.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const router = createBrowserRouter([
@@ -55,8 +55,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/Dashboard",
-    element: <Dashboard />,
+    path: "/Profile",
+    element: <Profile />,
   },
 ]);
 
