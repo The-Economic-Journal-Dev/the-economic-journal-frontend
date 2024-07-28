@@ -1,7 +1,7 @@
 import SubHeader1 from "../../components/Header/SubHeader1.tsx";
 import SubHeader2 from "../../components/Header/SubHeader2.tsx";
-import Login from "../../components/User/Login.tsx";
-import SignUp from "../../components/User/SignUp.tsx";
+import Login from "./User/Login.tsx";
+import SignUp from "./User/SignUp.tsx";
 import style from "./SignIn.module.css";
 
 function SignIn() {

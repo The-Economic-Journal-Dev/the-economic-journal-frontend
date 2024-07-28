@@ -1,6 +1,8 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer"
 import style from "./Finance.module.css"
+import thumbsUpLogo from "../../../public/thumbs_up.png";
+import commentLogo from "../../../public/comment.png";
 
 const Finance = () => {
   return (
@@ -38,10 +40,10 @@ const Finance = () => {
           </h6>
           <div className={style.SubPostActionBar}>
             <button className={style.LikeButton}>
-              <img src="../../src/assets/thumbs_up.png" alt="" />X
+              <img src={thumbsUpLogo} alt="" />X
             </button>
             <button className={style.CommentButton}>
-              <img src="../../src/assets/comment.png" alt="" />X
+              <img src={commentLogo} alt="" />X
             </button>
             <h6>dd/mm/yyyy</h6>
           </div>
@@ -62,10 +64,10 @@ const Finance = () => {
           </h6>
           <div className={style.SubPostActionBar}>
             <button className={style.LikeButton}>
-              <img src="../../src/assets/thumbs_up.png" alt="" />X
+              <img src={thumbsUpLogo} alt="" />X
             </button>
             <button className={style.CommentButton}>
-              <img src="../../src/assets/comment.png" alt="" />X
+              <img src={commentLogo} alt="" />X
             </button>
             <h6>dd/mm/yyyy</h6>
           </div>
@@ -86,10 +88,10 @@ const Finance = () => {
           </h6>
           <div className={style.SubPostActionBar}>
             <button className={style.LikeButton}>
-              <img src="../../src/assets/thumbs_up.png" alt="" />X
+              <img src={thumbsUpLogo} alt="" />X
             </button>
             <button className={style.CommentButton}>
-              <img src="../../src/assets/comment.png" alt="" />X
+              <img src={commentLogo} alt="" />X
             </button>
             <h6>dd/mm/yyyy</h6>
           </div>
@@ -110,10 +112,10 @@ const Finance = () => {
           </h6>
           <div className={style.SubPostActionBar}>
             <button className={style.LikeButton}>
-              <img src="../../src/assets/thumbs_up.png" alt="" />X
+              <img src={thumbsUpLogo} alt="" />X
             </button>
             <button className={style.CommentButton}>
-              <img src="../../src/assets/comment.png" alt="" />X
+              <img src={commentLogo} alt="" />X
             </button>
             <h6>dd/mm/yyyy</h6>
           </div>

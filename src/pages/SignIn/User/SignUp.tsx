@@ -1,8 +1,10 @@
 import { useState, FormEvent } from "react";
 import style from "./SignUp.module.css";
 import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
-import { auth, googleProvider } from "../../firebase";
+import { auth, googleProvider } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
+import googleLogo from "../../../../public/google_icon.png";
+
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -154,7 +156,7 @@ const SignUp = () => {
       </div>
 
       <img
-        src="../../src/assets/google_icon.png"
+        src={googleLogo}
         alt=""
         className={style.googleBtn}
         onClick={signUpWithGoogle}
