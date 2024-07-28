@@ -54,7 +54,7 @@ const Login = () => {
       <h1>
         Sign <span>in</span>
       </h1>
-      <div className={style.inputHeader}>Users/Email</div>
+      <div className={style.inputHeader}>Email</div>
       <input
         type="text"
         placeholder="Email"

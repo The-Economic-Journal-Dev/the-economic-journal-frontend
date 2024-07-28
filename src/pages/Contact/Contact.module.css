@@ -29,18 +29,21 @@
 
 .socialsWrap{
     max-width: 448px;
+    width: 30vw;
+    max-height: 72px;
     display: flex;
     justify-content: space-between;
 }
 
 .socialsWrap a{
     width: 16%;
-    height:16%;
+    aspect-ratio: 1/1;
 }
 
 .socialsWrap a img{
-    width: 100%;
     aspect-ratio: 1/1;
+    width: 100%;
+    height: auto;
 }
 
 .contact h1 {

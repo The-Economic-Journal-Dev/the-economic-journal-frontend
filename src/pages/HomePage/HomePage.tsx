@@ -29,7 +29,7 @@ function HomePage() {
     fetchPosts();
   });
 
-  
+
 
   return (
     <div className={style.pageWrap}>
@@ -210,7 +210,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div className={style.SectionDivider}></div>
+      {/* <div className={style.SectionDivider}></div> */}
 
       <Footer />
     </div>

@@ -1,19 +1,22 @@
-.topBar {
+.SubHeader2 {
     display: flex;
     border-bottom: 2px solid #E4D3BE;
     height:9vh;
     justify-content: space-between;
     align-items: center;
+    padding-inline: 5vw
 }
 
-.topBar a{
+.SubHeader2 a{
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .logo{
     display: flex;
     align-items: center;
-    margin-left:5vw;
+    justify-content: center;
     text-decoration: none;
 }
 
@@ -42,8 +45,6 @@
 .authSearch {
     display: flex;
     align-items: center;
-    position: absolute;
-    right:5vw;
 }
 
 .authSearch a {
@@ -57,9 +58,10 @@
 .authSearch a img{
     height: 6vh;
     width: 6vh;
+    border-radius: 50%;
 }
 
-.topBar .separator {
+.SubHeader2 .separator {
     display: inline-block;
     width: 2px;
     height: 30px; 

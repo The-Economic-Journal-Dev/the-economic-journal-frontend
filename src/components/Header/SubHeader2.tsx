@@ -5,11 +5,11 @@ import { auth } from "../../firebase";
 function SubHeader2() {
   // NOTE: UNCOMMENT THIS WHEN YOU NEED TO
   //ok
-  // const photoURL = auth.currentUser?.photoURL
+  const photoURL = auth.currentUser?.photoURL
   const user = auth.currentUser
 
   return (
-    <div className={style.topBar}>
+    <div className={style.SubHeader2}>
       <a href="./HomePage">
         <div className={style.logo}>
           <img src={houseLogo} alt="Logo" />
@@ -25,10 +25,19 @@ function SubHeader2() {
       </a>
       <div className={style.authSearch}>
         {user == null && <a href="./signIn">Sign in</a>}
-        {user != null && (
+        {user != null && !photoURL &&(
           <a href="./Profile">
             <img
               src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
+              alt=""
+            />
+          </a>
+        )}
+
+        {user != null && photoURL && (
+          <a href="./Profile">
+            <img
+              src={photoURL}
               alt=""
             />
           </a>

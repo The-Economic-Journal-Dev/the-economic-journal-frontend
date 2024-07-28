@@ -6,9 +6,20 @@
     flex-direction: column;
 }
 
-.Socials{
+.SocialsWrap{
     background-color: #FFF1E0;
     height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Socials{
+    height: 60%;
+}
+
+.Socials a{
+    height: 100%;
 }
 
 .CopyrightWrap{

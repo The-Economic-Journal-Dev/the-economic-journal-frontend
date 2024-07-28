@@ -31,7 +31,7 @@ function getCurrentYear():number {
 
 function SubHeader1() {
     return (
-        <div className={style.TopHeaderDiv}>
+        <div className={style.SubHeader1}>
         <h6 className={style.TopHeaderText1}>The Economic Journal - {getCurrentMonth()} {getCurrentYear()}</h6>
         <h6 className={style.TopHeaderText2}>Finance, economic, business and entrepreneurship blogs</h6>
       </div>
