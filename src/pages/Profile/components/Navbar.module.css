@@ -1,0 +1,14 @@
+.sidebar{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-inline:auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar button{
+    background: none;
+    border: none;
+    margin-bottom: 20px;
+    font-size: larger;
+}
