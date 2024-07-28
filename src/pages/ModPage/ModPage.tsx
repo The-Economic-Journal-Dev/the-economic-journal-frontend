@@ -1,11 +1,15 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import ReactQuill from "react-quill";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useQuill } from "react-quilljs";
 import "react-quill/dist/quill.snow.css";
 import Header from "../../components/Header/Header";
 import style from "./ModPage.module.css";
+import { auth } from "../../firebase";
 
-const WebsiteSelector = ({ onSelectChange }: { onSelectChange: (value: string) => void }) => {
+const WebsiteSelector = ({
+  onSelectChange,
+}: {
+  onSelectChange: (value: string) => void;
+}) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     onSelectChange(selectedValue);
@@ -23,7 +27,13 @@ const WebsiteSelector = ({ onSelectChange }: { onSelectChange: (value: string) =
   );
 };
 
-const PositionSelector = ({ options, onSelectChange }: { options: string[], onSelectChange: (value: string) => void }) => {
+const PositionSelector = ({
+  options,
+  onSelectChange,
+}: {
+  options: string[];
+  onSelectChange: (value: string) => void;
+}) => {
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     onSelectChange(selectedValue);
@@ -41,10 +51,14 @@ const PositionSelector = ({ options, onSelectChange }: { options: string[], onSe
   );
 };
 
-const PostSelector = ({ onWebsiteChange, options, onPositionChange }: { 
-  onWebsiteChange: (value: string) => void, 
-  options: string[], 
-  onPositionChange: (value: string) => void 
+const PostSelector = ({
+  onWebsiteChange,
+  options,
+  onPositionChange,
+}: {
+  onWebsiteChange: (value: string) => void;
+  options: string[];
+  onPositionChange: (value: string) => void;
 }) => {
   return (
     <div>
@@ -54,17 +68,34 @@ const PostSelector = ({ onWebsiteChange, options, onPositionChange }: {
   );
 };
 
-
-
 const ModPage = () => {
   const [targetPage, setTargetPage] = useState("");
   const [targetPosition, setTargetPosition] = useState("");
   const [options, setOptions] = useState<string[]>([]);
   const [hasImage, setHasImage] = useState(false);
-  const [hasImageDesc, setHasImageDesc] = useState(false);
+  const [inputData, setInputData] = useState({
+    title: "",
+    summary: "",
+    metaTitle: "",
+    articleBody: "",
+  });
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [error, setError] = useState("");
+  const { quill, quillRef } = useQuill();
+
+  useEffect(() => {
+    if (quill) {
+      quill.on("text-change", () => {
+        setInputData((prevState) => ({
+          ...prevState,
+          ["articleBody"]: quill.root.innerHTML,
+        }));
+      })
+    }
+  })
 
   //Dynamically changing the input boxes to match the post content
-  const dynamicInputs = (pageOption:string, positionOption:string) => {
+  const dynamicInputs = (pageOption: string, positionOption: string) => {
     if (pageOption == "HomePage") {
       if (
         [
@@ -77,30 +108,25 @@ const ModPage = () => {
         ].includes(positionOption)
       ) {
         setHasImage(true);
-        setHasImageDesc(true);
-
       } else {
         setHasImage(false);
-        setHasImageDesc(true);
       }
     } else if (
       ["Finance", "Economic", "Business", "Entrepreneur"].includes(pageOption)
     ) {
       setHasImage(true);
-      setHasImageDesc(false);
     } else {
       setHasImage(false);
-      setHasImageDesc(false);
     }
   };
 
   const handleWebsiteChange = (option: string) => {
     setTargetPage(option);
-  
+
     setTargetPosition("");
 
     // Update the options for the second dropdown based on the selected option
-    if (targetPosition === "HomePage") {
+    if (option === "HomePage") {
       setOptions([
         "Main col 1",
         "Main col 2 row 1",
@@ -121,27 +147,81 @@ const ModPage = () => {
       setOptions([]);
     }
 
-    dynamicInputs(targetPosition, "")
+    dynamicInputs(targetPage, "");
   };
 
   const handlePositionChange = (position: string) => {
-    setTargetPosition(position);
 
     //Dynamically changing the inputs based on the page and position chose
-    dynamicInputs(targetPage, position)
+    dynamicInputs(targetPage, position);
+
+    const positionIndex = options.indexOf(position) //Getting the custom index of position on the page to send to API
+    setTargetPosition((positionIndex + 1).toString())
   };
 
-  useForm({
-    mode: "onSubmit",
-    defaultValues: {
-      Title: "Title",
-    },
-  });
+  //Collect form data
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setInputData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleImageInput = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setImageFile(event.target.files[0])
+    }
+  }
+
+  //Send data to API
+
+  const postData = async(myPostData : FormData) => {
+    const url = "";
+    const token = await auth.currentUser?.getIdToken()
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        body: myPostData
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  //Handle Submit
+  const handleSubmit = (e : FormEvent) => {
+    e.preventDefault()
+
+    const formData = new FormData();
+    formData.append("title", inputData.title)
+    formData.append("summary", inputData.summary);
+    formData.append("metaTitle", inputData.metaTitle);
+    formData.append("articleBody", inputData.articleBody);
+    formData.append("category", targetPage.toLowerCase())
+    formData.append("position", targetPosition)
+    if (hasImage) {
+      if (imageFile) {
+        formData.append("image", imageFile)
+
+        //Add any other verifications around the post data
+        postData(formData)
+
+      } else {
+        setError("No Image selected")
+      }
+    }
+  }
+
 
   return (
     <main>
       <Header />
-      <form action="" className={style.modForm}>
+      <form onSubmit={handleSubmit} className={style.modForm}>
         <PostSelector
           onWebsiteChange={handleWebsiteChange}
           options={options}
@@ -149,24 +229,40 @@ const ModPage = () => {
         />
 
         <label htmlFor="title">Title</label>
-        <input type="text" name="title" />
+        <input
+          type="text"
+          name="title"
+          value={inputData.title}
+          onChange={handleInput}
+        />
 
-        <label htmlFor="content">Content</label>
-        <ReactQuill />
+        <label htmlFor="summary">Summary</label>
+        <input
+          type="text"
+          name="summary"
+          value={inputData.summary}
+          onChange={handleInput}
+        />
+
+        <label htmlFor="metaTitle">Meta Title</label>
+        <input
+          type="text"
+          name="metaTitle"
+          value={inputData.metaTitle}
+          onChange={handleInput}
+        />
+
+        <label htmlFor="articleBody">Content</label>
+        <div ref={quillRef}></div>
 
         {hasImage && (
           <>
             <label htmlFor="Image">Image</label>
-            <input type="file" name="image" accept="image/*"></input>
+            <input type="file" name="image" accept="image/*" onChange={handleImageInput}></input>
           </>
         )}
 
-        {hasImageDesc && (
-          <>
-            <label htmlFor="ImageDesc">Image description</label>
-            <input type="text" name="ImageDesc"></input>
-          </>
-        )}
+        {error != "" && (<h5 style={{color: "red"}}>{error}</h5>)}
 
         <button type="submit">Post</button>
       </form>
