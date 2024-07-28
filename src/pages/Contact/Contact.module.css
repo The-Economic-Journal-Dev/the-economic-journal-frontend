@@ -27,9 +27,8 @@
 }
 
 .socialsWrap {
-  width: 448px;
-  max-height: 72px;
-  width: 40%;
+  width: 30%;
+
   display: flex;
   justify-content: space-between;
 }

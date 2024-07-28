@@ -3,7 +3,7 @@
     flex-direction: column; /* Arrange elements in a column */
     align-items: flex-start; /* Align children to the start of the flex container */
     background-color: #fff;
-    border-bottom: 1px solid #E4D3BE;
+    border-bottom: 2px solid #E4D3BE;
     padding: 0 10px;
 }
 

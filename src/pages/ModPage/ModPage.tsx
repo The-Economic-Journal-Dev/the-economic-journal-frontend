@@ -177,7 +177,7 @@ const ModPage = () => {
   //Send data to API
 
   const postData = async(myPostData : FormData) => {
-    const url = "";
+    const url = "https://api.derpdevstuffs.org/posts";
     const token = await auth.currentUser?.getIdToken()
 
     try {
@@ -206,14 +206,13 @@ const ModPage = () => {
     formData.append("position", targetPosition)
     if (hasImage) {
       if (imageFile) {
-        formData.append("image", imageFile)
-
-        //Add any other verifications around the post data
-        postData(formData)
-
+        formData.append("imageFile", imageFile)
       } else {
         setError("No Image selected")
       }
+    } else {
+      console.log(inputData)
+      postData(formData)
     }
   }
 
