@@ -10,7 +10,7 @@ import Entrepreneur from "./pages/Entrepreneur/Entrepreneur.tsx";
 import Business from "./pages/Business/Business.tsx";
 import Economic from "./pages/Economic/Economic.tsx";
 import ModPage from "./pages/ModPage/ModPage.tsx";
-import Profile from "./pages/User/Profile.tsx";
+import Profile from "./pages/Profile/Profile.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
