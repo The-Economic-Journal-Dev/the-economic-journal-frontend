@@ -10,7 +10,7 @@
 
 .bg{
     position:absolute;
-    width: 9999px;
+    width: 100vw;
     height:200px;
     background-color: #fff6ec;
     top:50%;
