@@ -1,4 +1,4 @@
-import "./SubHeader1.css"
+import style from "./SubHeader1.module.css"
 
 function getCurrentMonth(): string {
   const months = [
@@ -31,9 +31,9 @@ function getCurrentYear():number {
 
 function SubHeader1() {
     return (
-        <div className="TopHeaderDiv">
-        <h6 className="TopHeaderText1">The Economic Journal - {getCurrentMonth()} {getCurrentYear()}</h6>
-        <h6 className="TopHeaderText2">Finance, economic, business and entrepreneurship blogs</h6>
+        <div className={style.TopHeaderDiv}>
+        <h6 className={style.TopHeaderText1}>The Economic Journal - {getCurrentMonth()} {getCurrentYear()}</h6>
+        <h6 className={style.TopHeaderText2}>Finance, economic, business and entrepreneurship blogs</h6>
       </div>
     )
 }

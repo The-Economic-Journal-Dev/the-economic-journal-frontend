@@ -1,4 +1,4 @@
-.top-bar {
+.topBar {
     display: flex;
     border-bottom: 2px solid #E4D3BE;
     height:9vh;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.top-bar a{
+.topBar a{
     text-decoration: none;
 }
 
@@ -39,14 +39,14 @@
     margin-left: 5%;
 }
 
-.auth-search {
+.authSearch {
     display: flex;
     align-items: center;
     position: absolute;
     right:5vw;
 }
 
-.auth-search a {
+.authSearch a {
     text-decoration: none;
     color: #333;
     font-size: 20px;
@@ -54,12 +54,12 @@
     position: relative;
 }
 
-.auth-search a img{
+.authSearch a img{
     height: 6vh;
     width: 6vh;
 }
 
-.top-bar .separator {
+.topBar .separator {
     display: inline-block;
     width: 2px;
     height: 30px; 
@@ -67,7 +67,7 @@
     margin:0 20px;
 }
 
-.search-btn {
+.searchBTN {
     background: none;
     border: none;
     font-size: 20px;

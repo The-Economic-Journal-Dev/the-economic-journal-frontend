@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SubHeader3.css";
+import style from "./SubHeader3.module.css";
 
 function SubHeader3() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -9,8 +9,8 @@ function SubHeader3() {
     };
 
     return (
-        <nav className="HeaderNav">
-            <button className="menuToggle" onClick={toggleMenu}>
+        <nav className={style.HeaderNav}>
+            <button className={style.menuToggle} onClick={toggleMenu}>
                 ☰
             </button>
             <ul className={`menu ${menuOpen ? "open" : ""}`}>
@@ -18,7 +18,7 @@ function SubHeader3() {
                 <li><a href="/Economic">Economic</a></li>
                 <li><a href="/Business">Business</a></li>
                 <li><a href="/Entrepreneur">Entrepreneurship</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/Contact">Contact</a></li>
                 <li><a href="/ModPage">ModPage</a></li>
             </ul>
         </nav>
