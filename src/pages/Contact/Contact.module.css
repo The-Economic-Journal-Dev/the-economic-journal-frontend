@@ -1,67 +1,171 @@
-.contactWrap{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contactWrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.BGRectangle{
-    position: absolute;
-    z-index: -5;
-    width: 100vw;
-    height: 30vh;
-    background-color: #FFF6EC;
+.BGRectangle {
+  position: absolute;
+  z-index: -5;
+  width: 100vw;
+  height: 30vh;
+  background-color: #fff6ec;
 }
 
-.contact{
-    width: 70vw;
-    height: 70vh;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border: 2px solid black;
-    padding: 2%;
+.contact {
+  width: 70vw;
+  aspect-ratio: 16/9;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid black;
+  padding: 2%;
 }
 
-.socialsWrap{
-    max-width: 448px;
-    width: 30vw;
-    max-height: 72px;
-    display: flex;
-    justify-content: space-between;
+.socialsWrap {
+  width: 448px;
+  max-height: 72px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.socialsWrap a{
-    width: 16%;
-    aspect-ratio: 1/1;
+.socialsWrap a {
+  width: 16%;
+  aspect-ratio: 1/1;
 }
 
-.socialsWrap a img{
-    aspect-ratio: 1/1;
-    width: 100%;
-    height: auto;
+.socialsWrap a img {
+  aspect-ratio: 1/1;
+  width: 100%;
+  height: auto;
 }
 
 .contact h1 {
-    font-size: 7vh;
-    font-weight: bolder;
-    margin: 0
+  font-size: 3rem;
+  font-weight: bolder;
+  margin: 0;
 }
 
-.contact div h5{
-    font-size: 4vh;
+.contact div h5 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.6vw;
+  margin: 0;
+}
+
+.contact div h6 {
+  font-size: 1.5rem;
+  font-weight: 200;
+  letter-spacing: 0.6vw;
+  margin: 0;
+}
+
+@media (max-width: 1320px) {
+  .contactWrap {
+    height: 100vh;
+  }
+  .contact {
+    width: 100vw;
+  }
+
+  .BGRectangle {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact h1 {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin: 0;
+  }
+
+  .contact div h5 {
+    font-size: 1.7rem;
     font-weight: 300;
     letter-spacing: 0.6vw;
-    margin: 0
-}
+    margin: 0;
+  }
 
-.contact div h6{
-    font-size: 3vh;
+  .contact div h6 {
+    font-size: 1.2rem;
     font-weight: 200;
     letter-spacing: 0.6vw;
-    margin: 0
+    margin: 0;
+  }
 }
+
+@media (max-width: 670px) {
+  .contact h1 {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin: 0;
+  }
+
+  .contact div h5 {
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.6vw;
+    margin: 0;
+  }
+
+  .contact div h6 {
+    font-size: 0.9rem;
+    font-weight: 200;
+    letter-spacing: 0.6vw;
+    margin: 0;
+  }
+
+  .socialsWrap {
+}
+}
+
+@media (max-width: 560px) {
+  .contact h1 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin: 0;
+  }
+
+  .contact div h5 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.6vw;
+    margin: 0;
+  }
+
+  .contact div h6 {
+    font-size: 0.6rem;
+    font-weight: 200;
+    letter-spacing: 0.6vw;
+    margin: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .contact h1 {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    margin: 0;
+  }
+
+  .contact div h5 {
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.6vw;
+    margin: 0;
+  }
+
+  .contact div h6 {
+    font-size: 0.5rem;
+    font-weight: 200;
+    letter-spacing: 0.6vw;
+    margin: 0;
+  }
+}
+
