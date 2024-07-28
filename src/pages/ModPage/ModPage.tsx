@@ -177,7 +177,7 @@ const ModPage = () => {
   //Send data to API
 
   const postData = async(myPostData : FormData) => {
-    const url = "https://api.derpdevstuffs.org/posts";
+    const url = "https://api.derpdevstuffs.org/articles";
     const token = await auth.currentUser?.getIdToken()
 
     try {
@@ -187,9 +187,20 @@ const ModPage = () => {
           Authorization: "Bearer " + token
         },
         body: myPostData
-      })
+      });
+      
+      //Log the response status and body for debugging
+      const responseBody = await response.json();
+      console.log('Status:', response.status);
+      console.log('Response:', responseBody);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
     } catch (error) {
       console.log(error)
+      throw error;
     }
   }
 
@@ -207,11 +218,11 @@ const ModPage = () => {
     if (hasImage) {
       if (imageFile) {
         formData.append("imageFile", imageFile)
+        postData(formData)
       } else {
         setError("No Image selected")
       }
     } else {
-      console.log(inputData)
       postData(formData)
     }
   }
