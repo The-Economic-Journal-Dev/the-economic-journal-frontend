@@ -166,11 +166,25 @@
     line-height: 1.2;
 }
 
+.TrendingTitleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
 .TrendingTitleWrap h1{
     font-family: 'Times New Roman', Times, serif;
     font-size: 2rem;
     font-weight: 600;
     color: #9F0505;
+    margin: 0;
+}
+
+.TrendingTitleWrap .TrendingTextDecoration{
+    position: absolute;
+    z-index: -5;
+    width: 45%;
 }
 
 @media (max-width: 768px) {
@@ -200,6 +214,10 @@
         width: 100%;
         margin-bottom: 20px; /* Add some space between trending posts */
     }
+
+    .TrendingTitleWrap img{
+        display: none;
+}
  
     
 }

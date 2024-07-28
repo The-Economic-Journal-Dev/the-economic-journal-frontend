@@ -4,6 +4,7 @@ import Body from "../../components/Body/Body.tsx";
 import style from "./HomePage.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
+import { TrendingTitleDecoration } from "./components/TrendingTitleDecoration.tsx";
 
 interface apiDataType {
   title: string;
@@ -151,9 +152,9 @@ function HomePage() {
 
       <div className={style.TrendingWrap}>
         <div className={style.TrendingTitleWrap}>
-          <div className={style.TrendingTitleSides}></div>
+          <TrendingTitleDecoration />
           <h1>Trending</h1>
-          <div className={style.TrendingTitleSides}></div>
+          <TrendingTitleDecoration />
         </div>
 
         <div className={style.TrendingContentWrap}>
