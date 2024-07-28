@@ -1,5 +1,5 @@
 import style from "./SubHeader2.module.css"
-import logo from "../../../src/assets/house_icon.jpg";
+import houseLogo from "../../../public/house_icon.jpg";
 import { auth } from "../../firebase";
 
 function SubHeader2() {
@@ -12,7 +12,7 @@ function SubHeader2() {
     <div className={style.topBar}>
       <a href="./HomePage">
         <div className={style.logo}>
-          <img src={logo} alt="Logo" />
+          <img src={houseLogo} alt="Logo" />
           <span className={style.separator}></span>
           <h1>
             THE
