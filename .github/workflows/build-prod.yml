@@ -24,7 +24,7 @@ jobs:
     - name: Checkout deployment repository
       uses: actions/checkout@v3
       with:
-        repository: The-Economic-Journal-Dev/cf-pagess
+        repository: The-Economic-Journal-Dev/cf-pages
         token: ${{ secrets.PAT }}
         path: cf-pages
 
