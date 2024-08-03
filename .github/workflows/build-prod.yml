@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: The-Economic-Journal-Dev/cf-pagess
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAT }}
         path: cf-pages
 
     - name: Copy files to deployment repository
@@ -42,4 +42,4 @@ jobs:
         git commit -m "Deploy updated site"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT }}
