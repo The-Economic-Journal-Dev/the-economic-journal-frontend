@@ -1,0 +1,45 @@
+name: Deploy to CF Pages
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your source branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        repository: The-Economic-Journal-Dev/the-economic-journal-frontend  # Replace with your repo name
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Checkout deployment repository
+      uses: actions/checkout@v3
+      with:
+        repository: The-Economic-Journal-Dev/cf-pages
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: cf-pages
+
+    - name: Copy files to deployment repository
+      run: |
+        cp -r dist/* cf-pages/
+      working-directory: ${{ github.workspace }}
+
+    - name: Commit and push changes
+      run: |
+        cd cf-pages
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Deploy updated site"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
