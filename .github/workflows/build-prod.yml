@@ -39,8 +39,8 @@ jobs:
         cp -rf dist cf-pages/
       working-directory: ${{ github.workspace }}
 
-    - name: Display directory structure
-      run: tree -L 3
+    - name: Display cf-pages directory structure
+      run: tree -L 3 cf-pages
 
     - name: Commit and push changes
       run: |
