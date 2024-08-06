@@ -39,8 +39,18 @@ jobs:
         cp -rf dist cf-pages/
       working-directory: ${{ github.workspace }}
 
-    - name: Display directory structure
-      run: tree -L 3
+    - name: Check for file changes
+      run: |
+        cd cf-pages
+        git diff --stat
+
+    - name: List untracked files
+      run: |
+        cd cf-pages
+        git ls-files --others --exclude-standard
+
+    - name: Display cf-pages directory structure
+      run: tree -L 3 cf-pages
 
     - name: Commit and push changes
       run: |
