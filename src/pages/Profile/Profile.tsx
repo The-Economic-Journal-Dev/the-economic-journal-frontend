@@ -22,7 +22,7 @@ const Profile = () => {
     try {
       await signOut(auth);
       console.log("logged out");
-      navigate("/HomePage");
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }

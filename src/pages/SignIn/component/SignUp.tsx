@@ -88,7 +88,7 @@ const SignUp = () => {
     if (hasUserFilledAllInputs() && confirmPasswordIsSimilar()) {
       try {
         await signUp(email, password, username);
-        navigate("/HomePage")
+        navigate("/home")
       } catch (error: any) {
         if (error.code == "auth/email-already-in-use"){
             setError("Email is already in use")
