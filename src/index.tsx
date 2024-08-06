@@ -13,57 +13,53 @@ import ModPage from "./pages/ModPage/ModPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
+import NotFound from "./pages/Errors/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
   },
-
   {
     path: "/HomePage",
     element: <HomePage />,
   },
-
   {
     path: "/SignIn",
     element: <SignIn />,
   },
-
   {
     path: "/Finance",
     element: <Finance />,
   },
-
   {
     path: "/Entrepreneur",
     element: <Entrepreneur />,
   },
-
   {
     path: "/Business",
     element: <Business />,
   },
-
   {
     path: "/Economic",
     element: <Economic />,
   },
-
   {
     path: "/ModPage",
     element: <ModPage />,
   },
-
   {
     path: "/Profile",
     element: <Profile />,
   },
-
   {
     path: "/Contact",
     element: <Contact />
   },
+  {
+    path: "*",
+    element: <NotFound />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
