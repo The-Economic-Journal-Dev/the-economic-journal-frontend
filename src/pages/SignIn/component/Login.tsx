@@ -32,7 +32,7 @@ const Login = () => {
   const signUpWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate("/HomePage")
+      navigate("/home")
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +43,7 @@ const Login = () => {
     if (hasUserFilledAllInputs()) {
       try {
         await logIn(email, password);
-        navigate("/HomePage");
+        navigate("/home");
       } catch (error) {
         setWrongCredentials(true);
       }

@@ -13,7 +13,7 @@ interface apiDataType {
   articleBody: string;
   position: string;
   category: string;
-  image: string;
+  imageUrl: string;
 }
 
 function HomePage() {

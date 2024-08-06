@@ -1,9 +1,9 @@
-name: Deploy to CF Pages
+name: Deploy to CF Pages in Production
 
 on:
   push:
     branches:
-      - main  # Adjust this to your source branch
+      - prod  # Adjust this to your source branch
 
 jobs:
   build-and-deploy:
@@ -30,7 +30,9 @@ jobs:
 
     - name: Copy files to deployment repository
       run: |
-        cp -r dist/* cf-pages/
+        rm -rf cf-pages/dist/
+        mkdir -p cf-pages/dist/
+        cp -r dist/* cf-pages/dist/
       working-directory: ${{ github.workspace }}
 
     - name: Commit and push changes
