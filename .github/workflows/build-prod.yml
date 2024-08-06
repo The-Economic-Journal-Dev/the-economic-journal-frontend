@@ -36,7 +36,7 @@ jobs:
       run: |
         mkdir -p cf-pages/dist
         rm -rf cf-pages/dist/* || true
-        cp -rf dist/* cf-pages/dist/
+        cp -rf dist cf-pages/
       working-directory: ${{ github.workspace }}
 
     - name: Display directory structure
