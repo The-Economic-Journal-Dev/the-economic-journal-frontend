@@ -40,7 +40,7 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Display directory structure
-      run: tree -L 2
+      run: tree -L 3
 
     - name: Commit and push changes
       run: |
