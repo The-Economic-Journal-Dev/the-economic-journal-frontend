@@ -10,7 +10,7 @@ function SubHeader2() {
 
   return (
     <div className={style.SubHeader2}>
-      <a href="./HomePage">
+      <a href="./home">
         <div className={style.logo}>
           <img src={houseLogo} alt="Logo" />
           <span className={style.separator}></span>
