@@ -32,8 +32,10 @@ jobs:
     - name: Copy files to deployment repository
       run: |
         rm -rf cf-pages/dist/
-        mkdir -p cf-pages/dist/
-        cp -r dist/* cf-pages/dist/
+        mkdir -p cf-pages/dist
+        cp -rf dist/* cf-pages/dist/
+        echo "Files copied to cf-pages/dist:"
+        ls -la cf-pages/
       working-directory: ${{ github.workspace }}
 
     - name: Commit and push changes
