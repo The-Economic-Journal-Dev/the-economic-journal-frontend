@@ -34,7 +34,6 @@ function HomePage() {
 
   return (
     <div className={style.pageWrap}>
-      <Header />
       <Body>
         <div className={style.PostAreaWrap}>
           <div className={style.PostArea}>
@@ -213,7 +212,6 @@ function HomePage() {
 
       {/* <div className={style.SectionDivider}></div> */}
 
-      <Footer />
     </div>
   );
 }

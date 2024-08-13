@@ -1,22 +1,81 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import style from "./Article.module.css";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Interweave } from "interweave";
+
+// TypeScript interface to define the schema fields for Article
+interface IArticleData  {
+  authorUid: string;
+  title: string;
+  metaTitle: string;
+  datePublished: Date;
+  lastUpdated: Date;
+  imageUrl?: string;
+  summary?: string;
+  articleBody: string;
+  category: "Finance" | "Economic" | "Business" | "Entrepreneurship";
+  likesCount: number;
+}
 
 const ArticlePage = () => {
+  const { metaTitle } = useParams<{ metaTitle: string }>();
+  const [articleData, setArticleData] = useState<any>(null); // Adjust type as needed
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [lastDate, setLastDate] = useState<string>("");
+
+  useEffect(() => {
+  // Fetch the article data from the API
+  const fetchArticleData = async () => {
+    try {
+      const response = await fetch(`https://api.derpdevstuffs.org/articles/${metaTitle}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const result = await response.json();
+      setArticleData(result.article);
+      updateLastDate(result.article);
+    } catch (error) {
+      setError('Failed to load article');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateLastDate = (articleData: IArticleData) => {
+    if (articleData.lastUpdated > articleData.datePublished) {
+      setLastDate("Last Updated: " + new Date(articleData.lastUpdated).toLocaleDateString());
+    } else {
+      setLastDate("Date Published: " + new Date(articleData.datePublished).toLocaleDateString());
+    }
+  };
+
+  fetchArticleData();
+}, [metaTitle]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <div>
-      <Header />
       <div className={style.MainContentWrap}>
         <div className={style.MetaData}>
-          <p className={style.Section}>Economic Section</p>
-          <p className={style.Name}>-NAME-</p>
+          <p className={style.Section}>{articleData.category} Section</p>
+          <p className={style.Name}>- NAME -</p>
         </div>
-        <h1 className={style.Title}>Lorem ipsum dolor sit amet, consectetur</h1>
+        <h1 className={style.Title}>{articleData.title}</h1>
         <div className={style.ImageContainer}>
           <img
-            src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
-            alt="Main Content"
+            src={articleData.imageUrl}
+            alt={articleData.title} // Use article title for alt text
             className={style.MainImage}
+            loading="lazy" // Lazy load images for better performance
+             referrerPolicy="no-referrer"
           />
           <p className={style.ImageSource}>image source</p>
         </div>
@@ -24,123 +83,12 @@ const ArticlePage = () => {
         <div className={style.TextWithSidebar}>
           <div className={style.MainText}>
             <div className={style.ArticleInfo}>
-              <p>date uploaded/date updated</p>
-              <h1>TITLE</h1>
+              <p>{lastDate}</p>
+              <h1>{articleData.title}</h1>
               <strong>by -AUTHOR-</strong>
             </div>
             <p className={style.ArticleContent}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tristique accumsan odio vitae
-                        tincidunt. Suspendisse
-                        nunc sem, fermentum luctus varius sed, placerat aliquam turpis. Quisque tempus venenatis nunc et
-                        elementum. Mauris
-                        cursus dapibus dictum. Integer lacinia ipsum at eleifend blandit. Quisque neque erat, ultricies
-                        vel
-                        dignissim ac,
-                        placerat convallis dolor. Phasellus faucibus bibendum libero, sed vehicula tellus consectetur
-                        nec.
-                        Sed diam eros,
-                        elementum et lacus sed, vehicula dignissim libero. Orci varius natoque penatibus et magnis dis
-                        parturient montes,
-                        nascetur ridiculus mus. Mauris vitae magna feugiat, volutpat enim in, ullamcorper mi. Praesent
-                        faucibus urna augue, quis
-                        scelerisque sem mattis quis. Ut pulvinar diam vitae lectus sodales, ac condimentum ex feugiat.
-                        Praesent vel pellentesque
-                        mi, a ullamcorper nunc.
-
-                        Integer in mauris scelerisque, posuere lectus eget, vestibulum mi. In tincidunt tincidunt
-                        mollis. In
-                        quis magna mollis,
-                        accumsan sapien quis, malesuada lacus. Cras aliquet dignissim elit. Cras lectus nisi, consequat
-                        in
-                        enim at, bibendum
-                        placerat sem. Nulla rutrum odio ut facilisis tempus. Vestibulum ac risus vel sem tempus
-                        ullamcorper
-                        vel sed lacus.
-                        Praesent vel odio ornare, lobortis quam tempus, tempor est. Fusce iaculis, libero quis
-                        consectetur
-                        facilisis, ipsum
-                        neque dictum magna, in tristique sapien odio luctus eros. Fusce nec rhoncus erat. Aenean et
-                        massa
-                        leo. Aenean ultricies,
-                        nisl et mollis aliquam, nisi dolor mattis leo, vel euismod sem ex sodales lacus. Nam ex lorem,
-                        bibendum non arcu sit
-                        amet, sollicitudin venenatis quam. Proin laoreet tortor in consectetur tristique. Nam nec augue
-                        eget
-                        risus aliquet
-                        sagittis.
-
-                        Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam convallis quam magna, eget
-                        consequat ante
-                        sollicitudin vitae. Cras et quam ac risus efficitur pulvinar. Morbi a libero magna. Nullam
-                        faucibus
-                        iaculis ullamcorper.
-                        Sed vel dolor malesuada, tincidunt ipsum vel, dignissim diam. Ut massa nulla, dapibus id
-                        vehicula
-                        et, semper auctor
-                        mauris. Maecenas in ornare urna, id vestibulum erat. Donec tincidunt efficitur magna non semper.
-                        Integer euismod maximus
-                        felis, ultricies luctus turpis. Curabitur posuere sit amet est egestas pretium. Donec tristique
-                        sem
-                        nec magna fermentum
-                        laoreet. Aliquam erat volutpat. Aliquam gravida turpis sollicitudin, mollis neque in, maximus
-                        dolor.
-                        Donec dictum
-                        hendrerit sem sed lobortis.
-
-                        Maecenas hendrerit lorem arcu, a rhoncus mi finibus sed. Maecenas imperdiet in mauris id
-                        convallis.
-                        Cras vestibulum nec
-                        mi eget euismod. Suspendisse lectus orci, interdum et sagittis vel, sollicitudin vel felis. Ut
-                        interdum, eros vel
-                        egestas condimentum, libero erat semper lorem, nec dictum nibh libero at velit. Duis finibus
-                        enim
-                        lacus, et blandit ante
-                        pulvinar vitae. Donec eleifend massa id fringilla pulvinar. Pellentesque imperdiet purus lorem,
-                        quis
-                        eleifend elit
-                        aliquam cursus. In eget turpis egestas, aliquam nisl sed, cursus mi. Sed a nulla eu arcu
-                        accumsan
-                        tempor et id dolor.
-                        Curabitur nec orci sit amet nunc tristique vehicula. Ut in fermentum nisi.
-
-                        Pellentesque maximus ex in nulla lobortis ultrices. Morbi accumsan congue ipsum eu tempor.
-                        Aenean at
-                        magna convallis,
-                        luctus metus a, fringilla nunc. Nulla sagittis consequat massa at porttitor. Ut non varius
-                        velit.
-                        Maecenas nunc velit,
-                        ultricies mattis fermentum vitae, vestibulum sed mi. Praesent in est a turpis mattis accumsan ac
-                        ut
-                        felis. In vel ex
-                        quis ante pretium feugiat. Mauris augue velit, placerat a lectus sed, auctor molestie quam. In
-                        sodales metus nec purus
-                        consequat mattis. Pellentesque ornare, massa ac convallis porttitor, justo ligula fermentum
-                        nibh,
-                        eget cursus augue
-                        neque at erat. Sed mollis, est a pulvinar vestibulum, orci massa malesuada arcu, rhoncus
-                        malesuada
-                        purus nibh sed nisl.
-                        Praesent posuere purus ut nulla auctor laoreet ac a dolor. Donec et iaculis neque. Orci varius
-                        natoque penatibus et
-                        magnis dis parturient montes, nascetur ridiculus mus.
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tristique accumsan odio vitae
-                        tincidunt. Suspendisse
-                        nunc sem, fermentum luctus varius sed, placerat aliquam turpis. Quisque tempus venenatis nunc et
-                        elementum. Mauris
-                        cursus dapibus dictum. Integer lacinia ipsum at eleifend blandit. Quisque neque erat, ultricies
-                        vel
-                        dignissim ac,
-                        placerat convallis dolor. Phasellus faucibus bibendum libero, sed vehicula tellus consectetur
-                        nec.
-                        Sed diam eros,
-                        elementum et lacus sed, vehicula dignissim libero. Orci varius natoque penatibus et magnis dis
-                        parturient montes,
-                        nascetur ridiculus mus. Mauris vitae magna feugiat, volutpat enim in, ullamcorper mi. Praesent
-                        faucibus urna augue, quis
-                        scelerisque sem mattis quis. Ut pulvinar diam vitae lectus sodales, ac condimentum ex feugiat.
-                        Praesent vel pellentesque
-                        mi, a ullamcorper nunc.
+              <Interweave content={articleData.articleBody} />
             </p>
           </div>
 
@@ -157,7 +105,6 @@ const ArticlePage = () => {
           </aside>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import Header from "../../components/Header/Header";
+
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,6 @@ const Profile = () => {
 
   return (
     <main>
-      <Header />
       <section className={style.pageWrap}>
         <Navbar
           options={options}
