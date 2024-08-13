@@ -230,7 +230,6 @@ const ModPage = () => {
 
   return (
     <main>
-      <Header />
       <form onSubmit={handleSubmit} className={style.modForm}>
         <PostSelector
           onWebsiteChange={handleWebsiteChange}
