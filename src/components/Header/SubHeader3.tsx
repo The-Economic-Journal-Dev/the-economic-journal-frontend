@@ -13,13 +13,14 @@ function SubHeader3() {
             <button className={style.menuToggle} onClick={toggleMenu}>
                 ☰
             </button>
-            <ul className={`menu ${menuOpen ? "open" : ""}`}>
+            <ul className={`${style.menu} ${menuOpen ? style.open : ""}`}>
                 <li><a href="/finance">Finance</a></li>
                 <li><a href="/economic">Economic</a></li>
                 <li><a href="/business">Business</a></li>
                 <li><a href="/entrepreneur">Entrepreneurship</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/modpage">ModPage</a></li>
+                <li><a href="/article">Article</a></li>
             </ul>
         </nav>
     );

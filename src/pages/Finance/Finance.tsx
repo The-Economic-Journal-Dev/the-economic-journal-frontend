@@ -1,4 +1,4 @@
-import Header from "../../components/Header/Header";
+
 import Footer from "../../components/Footer/Footer"
 import style from "./Finance.module.css"
 import thumbsUpLogo from "../../../public/thumbs_up.png";
@@ -7,7 +7,6 @@ import commentLogo from "../../../public/comment.png";
 const Finance = () => {
   return (
     <div>
-      <Header />
       <div className={style.PageTitle}>Finance</div>
       <div className={style.MainContentWrap}>
         <div className={style.MainContentBGRectangle} />
@@ -126,8 +125,6 @@ const Finance = () => {
           className={style.SubPostPic}
         />
       </div>
-
-      <Footer />
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+
+
 import style from "./Economic.module.css";
 import thumbsUpLogo from "../../../public/thumbs_up.png"
 import commentLogo from "../../../public/comment.png";
@@ -8,7 +8,6 @@ import commentLogo from "../../../public/comment.png";
 const Economic = () => {
   return (
     <div>
-      <Header />
       <div className={style.PageTitle}>Economic</div>
       <div className={style.MainContentWrap}>
         <div className={style.MainContentBGRectangle} />
@@ -127,7 +126,6 @@ const Economic = () => {
         />
       </div>
 
-      <Footer />
     </div>
   );
 };
