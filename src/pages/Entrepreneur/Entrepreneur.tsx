@@ -1,5 +1,5 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+
+
 import style from "./Entrepreneur.module.css";
 import thumbsUpLogo from "../../../public/thumbs_up.png";
 import commentLogo from "../../../public/comment.png";
@@ -7,7 +7,6 @@ import commentLogo from "../../../public/comment.png";
 const Entrepreneur = () => {
   return (
     <div>
-      <Header />
       <div className={style.PageTitle}>Entrepreneur</div>
       <div className={style.MainContentWrap}>
         <div className={style.MainContentBGRectangle} />
@@ -125,8 +124,6 @@ const Entrepreneur = () => {
           alt=""
         />
       </div>
-
-      <Footer />
     </div>
   );
 };

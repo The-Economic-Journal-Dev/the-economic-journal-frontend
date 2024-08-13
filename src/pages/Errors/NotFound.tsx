@@ -13,8 +13,6 @@ const NotFound: React.FC = () => {
   <Soft404 />
       
 
-      <div className={style.pageWrap}>
-        <Header />
         <Body>
           <div className={style.contentWrap}>
             <div className={style.NotFoundContent}>
@@ -25,9 +23,7 @@ const NotFound: React.FC = () => {
           </div>
         </Body>
         <div className={style.footerWrapper}>
-          <Footer />
         </div>
-      </div>
     </>
   );
 };
