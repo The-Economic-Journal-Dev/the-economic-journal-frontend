@@ -14,6 +14,8 @@ import Profile from "./pages/Profile/Profile.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 import NotFound from "./pages/Errors/NotFound.tsx";
+import ArticlePage from "./pages/Article/Article";
+import Article from "./pages/Article/Article";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />
+  },
+  {
+    path: "/article",
+    element: <Article/>
   },
   {
     path: "*",
