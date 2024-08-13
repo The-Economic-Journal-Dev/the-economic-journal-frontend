@@ -20,6 +20,7 @@ function SubHeader3() {
                 <li><a href="/entrepreneur">Entrepreneurship</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/modpage">ModPage</a></li>
+                <li><a href="/article">Article</a></li>
             </ul>
         </nav>
     );
