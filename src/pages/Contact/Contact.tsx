@@ -1,6 +1,6 @@
 import { email, phoneNumber } from "../../globalInfo";
 import { YoutubeButton, FacebookButton, InstagramButton, LinkedInButton, TikTokButton} from "../../components/Socials/SocialMediaButtons"
-import Header from "../../components/Header/Header";
+
 import style from "./Contact.module.css";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,6 @@ const Contact = () => {
 
   return (
     <>
-      <Header />
       <section className={style.contactWrap}>
         <div className={style.BGRectangle} />
         <div className={style.contact}>

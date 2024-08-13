@@ -1,5 +1,5 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+
+
 import style from "./Business.module.css";
 import thumbsUpLogo from "../../../public/thumbs_up.png";
 import commentLogo from "../../../public/comment.png";
@@ -7,7 +7,6 @@ import commentLogo from "../../../public/comment.png";
 const Business = () => {
   return (
     <div>
-      <Header />
       <div className={style.PageTitle}>Business</div>
       <div className={style.MainContentWrap}>
         <div className={style.MainContentBGRectangle} />
@@ -125,8 +124,6 @@ const Business = () => {
           alt=""
         />
       </div>
-
-      <Footer />
     </div>
   );
 };

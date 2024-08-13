@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.tsx";
 import SignIn from "./pages/SignIn/SignIn.tsx";
 import Finance from "./pages/Finance/Finance.tsx";
@@ -13,57 +13,67 @@ import ModPage from "./pages/ModPage/ModPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
+import NotFound from "./pages/Errors/NotFound.tsx";
+import ArticlePage from "./pages/Article/Article";
+import Article from "./pages/Article/Article";
+import Layout from "./components/Layout/Layout.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage />,
+    path: '/',
+    element: <Layout />, // Layout component wraps all nested routes
+    children: [
+      {
+        path: '',
+        element: <HomePage />,
+      },
+      {
+        path: 'home',
+        element: <HomePage />,
+      },
+      {
+        path: 'signin',
+        element: <SignIn />,
+      },
+      {
+        path: 'finance',
+        element: <Finance />,
+      },
+      {
+        path: 'entrepreneur',
+        element: <Entrepreneur />,
+      },
+      {
+        path: 'business',
+        element: <Business />,
+      },
+      {
+        path: 'economic',
+        element: <Economic />,
+      },
+      {
+        path: 'modpage',
+        element: <ModPage />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
+      },
+      {
+        path: 'contact',
+        element: <Contact />,
+      },
+      {
+        path: 'articles/:metaTitle',
+        element: <Article />,
+      },
+      {
+    path: '*',
+    element: <NotFound />,
   },
-
-  {
-    path: "/HomePage",
-    element: <HomePage />,
+    ],
   },
-
-  {
-    path: "/SignIn",
-    element: <SignIn />,
-  },
-
-  {
-    path: "/Finance",
-    element: <Finance />,
-  },
-
-  {
-    path: "/Entrepreneur",
-    element: <Entrepreneur />,
-  },
-
-  {
-    path: "/Business",
-    element: <Business />,
-  },
-
-  {
-    path: "/Economic",
-    element: <Economic />,
-  },
-
-  {
-    path: "/ModPage",
-    element: <ModPage />,
-  },
-
-  {
-    path: "/Profile",
-    element: <Profile />,
-  },
-
-  {
-    path: "/Contact",
-    element: <Contact />
-  },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

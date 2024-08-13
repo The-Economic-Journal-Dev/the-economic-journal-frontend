@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "react-quill/dist/quill.snow.css";
-import Header from "../../components/Header/Header";
+
 import style from "./ModPage.module.css";
 import { auth } from "../../firebase";
 
