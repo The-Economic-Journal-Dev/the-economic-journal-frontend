@@ -24,7 +24,7 @@ function SubHeader2() {
         </div>
       </a>
       <div className={style.authSearch}>
-        {user == null && <a href="./signIn">Sign in</a>}
+        {user == null && <a href="./signin">Sign in</a>}
         {user != null && !photoURL &&(
           <a href="./Profile">
             <img
