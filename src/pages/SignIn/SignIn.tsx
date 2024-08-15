@@ -2,7 +2,8 @@ import Body from "../../components/Body/Body.tsx";
 import Login from "./component/Login.tsx";
 import SignUp from "./component/SignUp.tsx";
 import style from "./SignIn.module.css";
-
+import Body from "../../components/Body/Body.tsx";
+import { TrendingTitleDecoration } from "../HomePage/components/TrendingTitleDecoration.tsx";
 function SignIn() {
   return (
       
