@@ -1,27 +1,33 @@
-.container{
-    position:absolute;
-    flex-direction: row;
-    width:900px;
-    top:58%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    overflow:visible;
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center align the items */
+  width: 100%;
+  max-width: 800px; /* Limit max width for the container */
+  padding: 20px;
 }
 
-.bg{
-    position:absolute;
-    width: 100vw;
-    height:200px;
-    background-color: #fff6ec;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%)
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('your-image-url.jpg'); /* Example background image */
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Ensure background is behind other elements */
 }
 
-.container .formContainer{
-    display:inline-block;
-    width: 380px;
-    background-color: white;
+.container .formContainer {
+  width: 100%;
+  max-width: 400px; /* Set a max width for the form containers */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 20px;
 }
 
 
@@ -200,3 +206,17 @@ h1 span div {
     }
     
   }
+
+
+  .pageWrap {
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh; /* Full height of the viewport */
+  background-color: #f0f0f0; /* Example background color */
+}
+
+
+
+
+
