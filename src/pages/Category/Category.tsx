@@ -55,15 +55,15 @@ const CategoryPage = ({ category }: { category: String }) => {
   return (
     <div>
       <div className={style.PageTitle}>{toTitleCase(category)}</div>
-      <MainBox isLoading={loading} article={articleData[0]}/>
+      <MainBox isLoading={loading} article={articleData[0] || {}}/>
 
-      <SubBox isLoading={loading} article={articleData[1]}/>
+      <SubBox isLoading={loading} article={articleData[1] || {}}/>
 
-      <SubBox isLoading={loading} article={articleData[2]}/>
+      <SubBox isLoading={loading} article={articleData[2] || {}}/>
 
-      <SubBox isLoading={loading} article={articleData[3]}/>
+      <SubBox isLoading={loading} article={articleData[3] || {}}/>
 
-      <SubBox isLoading={loading} article={articleData[4]}/>
+      <SubBox isLoading={loading} article={articleData[4] || {}}/>
     </div>
   );
 };

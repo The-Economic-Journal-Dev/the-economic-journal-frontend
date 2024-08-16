@@ -25,7 +25,9 @@ interface IArticleData  {
   likesCount: number;
 }
 
-function cropText(input: string): string {
+function cropText(input: string) {
+    if (!input ) return undefined;
+
   const maxLength = 256;
   if (input.length > maxLength) {
     return input.slice(0, maxLength) + '...';
@@ -41,22 +43,24 @@ function cropText(input: string): string {
  * @returns {JSX.Element} The SubBox component.
  */
 function SubBox({ isLoading, article }: SubBoxProps) {
-  const [authorName, setAuthorName] = useState<string>("");
+   const [authorName, setAuthorName] = useState<string>("");
 
   useEffect(() => {
-    // Function to fetch the user's name by UID
-    const fetchUserName = async () => {
-      try {
-        const user = await fetch(`https://api.derpdevstuffs.org/users/${article.authorUid}`);
-        setAuthorName((user as any).displayName || "Unknown Author");
-      } catch (error) {
-        console.error("Error fetching user name:", error);
-        setAuthorName("Unknown Author");
-      }
-    };
+    if (article?.authorUid) {
+      const fetchUserName = async () => {
+        try {
+          const response = await fetch(`https://api.derpdevstuffs.org/users/${article.authorUid}`);
+          const user = await response.json();
+          setAuthorName(user.displayName || "Unknown Author");
+        } catch (error) {
+          console.error("Error fetching user name:", error);
+          setAuthorName("Unknown Author");
+        }
+      };
 
-    fetchUserName();
-  }, [article.authorUid]);
+      fetchUserName();
+    }
+  }, [article?.authorUid]);
 
   return (
     <div className={style.SubPostWrap}>
@@ -75,19 +79,19 @@ function SubBox({ isLoading, article }: SubBoxProps) {
           </>
         ) : (
           <>
-            <h2>{article.title}</h2>
-            <h6 style={{ fontStyle: "italic", fontWeight: "bold" }}>{authorName}</h6>
+            <h2>{article.title || "No Title"}</h2>
+            <h6 style={{ fontStyle: "italic", fontWeight: "bold" }}>{authorName || "Unknown Author"}</h6>
             <h6>
-              {article.summary? cropText(article.summary): cropText(article.articleText)}
+              {(article.summary? cropText(article.summary): cropText(article.articleText)) || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere egestas dui fermentum lobortis. Donec id consectetur odio, non consectetur lorem. Etiam nec ante sodales arcu vestibulum blandit. Suspendisse leo diam, cursus eu leo a, imperdiet congue ipsum. Quisque fermentum felis mauris, semper lacinia ipsum fringilla pellentesque. Aliquam lacinia fermentum dui rutrum semper. Maecenas id nulla sapien."}
             </h6>
             <div className={style.SubPostActionBar}>
               <button className={style.LikeButton}>
-                <img src={thumbsUpLogo} alt="" />{article.likesCount}
+                <img src={thumbsUpLogo} alt="" />{article.likesCount || 0}
               </button>
               <button className={style.CommentButton}>
                 <img src={commentLogo} alt="" />X
               </button>
-              <h6>{new Date(article.lastUpdated).toISOString().slice(0, 10).replace(/-/g,"/")}</h6>
+              <h6>{article.datePublished? new Date(article.lastUpdated).toISOString().slice(0, 10).replace(/-/g,"/"): "YYYY/MM/DD"}</h6>
             </div>
           </>
         )}
@@ -96,7 +100,7 @@ function SubBox({ isLoading, article }: SubBoxProps) {
         <div className={`${style.skeleton} ${style.skeletonImg}`} />
       ) : (
         <img
-          src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
+          src={article.imageUrl || "https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"}
           alt=""
           loading="lazy"
           referrerPolicy="no-referrer"
