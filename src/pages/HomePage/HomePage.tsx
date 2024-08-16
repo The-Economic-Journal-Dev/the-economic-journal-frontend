@@ -40,8 +40,6 @@ function HomePage() {
     fetchPosts();
   }, []);
 
-
-
   return (
     <div className={style.pageWrap}>
       <Body>

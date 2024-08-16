@@ -34,19 +34,19 @@ const router = createBrowserRouter([
       },
       {
         path: 'finance',
-        element: <CategoryPage title="finance" />,
+        element: <CategoryPage category="finance" />,
       },
       {
         path: 'entrepreneur',
-        element: <CategoryPage title="entrepreneur" />,
+        element: <CategoryPage category="entrepreneur" />,
       },
       {
         path: 'business',
-        element: <CategoryPage title="business" />,
+        element: <CategoryPage category="business" />,
       },
       {
         path: 'economic',
-        element: <CategoryPage title="economic" />,
+        element: <CategoryPage category="economic" />,
       },
       {
         path: 'modpage',
