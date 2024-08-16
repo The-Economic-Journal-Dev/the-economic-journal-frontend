@@ -16,6 +16,7 @@
     width: 100%; /* Ensures the image fits within the container */
     height: auto; /* Keeps the aspect ratio intact */
     object-fit: cover; /* Ensures the image covers the entire container without stretching */
+    object-position: center;
     border-radius: 8px; /* Match the border radius */
 }
 

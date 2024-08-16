@@ -40,6 +40,7 @@
   height: auto; /* Maintains aspect ratio */
   max-height: 645px; /* Optional: Sets a max height to prevent excessive scaling */
   object-fit: cover; /* Ensures the image covers the container without stretching */
+  object-position: center;
   margin: 0 auto; /* Centers the image horizontally */
 }
 
