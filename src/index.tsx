@@ -5,10 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.tsx";
 import SignIn from "./pages/SignIn/SignIn.tsx";
-import Finance from "./pages/Finance/Finance.tsx";
-import Entrepreneur from "./pages/Entrepreneur/Entrepreneur.tsx";
-import Business from "./pages/Business/Business.tsx";
-import Economic from "./pages/Economic/Economic.tsx";
+import CategoryPage from "./pages/Category/Category.tsx";
 import ModPage from "./pages/ModPage/ModPage.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
@@ -37,19 +34,19 @@ const router = createBrowserRouter([
       },
       {
         path: 'finance',
-        element: <Finance />,
+        element: <CategoryPage category="finance" />,
       },
       {
         path: 'entrepreneur',
-        element: <Entrepreneur />,
+        element: <CategoryPage category="entrepreneur" />,
       },
       {
         path: 'business',
-        element: <Business />,
+        element: <CategoryPage category="business" />,
       },
       {
         path: 'economic',
-        element: <Economic />,
+        element: <CategoryPage category="economic" />,
       },
       {
         path: 'modpage',
