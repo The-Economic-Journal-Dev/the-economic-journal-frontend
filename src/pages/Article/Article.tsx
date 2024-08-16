@@ -23,6 +23,7 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [lastDate, setLastDate] = useState<string>("");
+  const [authorName, setAuthorName] = useState<string>("");
 
   useEffect(() => {
   // Fetch the article data from the API
@@ -34,6 +35,8 @@ const ArticlePage = () => {
       }
       const result = await response.json();
       setArticleData(result.article);
+      
+      fetchUserName(result.article);
       updateLastDate(result.article);
     } catch (error) {
       setError('Failed to load article');
@@ -49,6 +52,17 @@ const ArticlePage = () => {
       setLastDate("Date Published: " + new Date(articleData.datePublished).toLocaleDateString());
     }
   };
+
+  const fetchUserName = async (article: IArticleData) => {
+        try {
+          const response = await fetch(`https://api.derpdevstuffs.org/users/${article.authorUid}`);
+          const user = await response.json();
+          setAuthorName(user.displayName || "Unknown Author");
+        } catch (error) {
+          console.error("Error fetching user name:", error);
+          setAuthorName("Unknown Author");
+        }
+    };
 
   fetchArticleData();
 }, [metaTitle]);
@@ -66,18 +80,18 @@ const ArticlePage = () => {
       <div className={style.MainContentWrap}>
         <div className={style.MetaData}>
           <p className={style.Section}>{articleData.category} Section</p>
-          <p className={style.Name}>- NAME -</p>
+          <p className={style.Name}></p>
         </div>
         <h1 className={style.Title}>{articleData.title}</h1>
         <div className={style.ImageContainer}>
           <img
             src={articleData.imageUrl}
-            alt={articleData.title} // Use article title for alt text
+            alt="" // Use article title for alt text
             className={style.MainImage}
             loading="lazy" // Lazy load images for better performance
              referrerPolicy="no-referrer"
           />
-          <p className={style.ImageSource}>image source</p>
+          <p className={style.ImageSource}>{articleData.imageUrl? "image source": ""}</p>
         </div>
 
         <div className={style.TextWithSidebar}>
@@ -85,7 +99,7 @@ const ArticlePage = () => {
             <div className={style.ArticleInfo}>
               <p>{lastDate}</p>
               <h1>{articleData.title}</h1>
-              <strong>by -AUTHOR-</strong>
+              <strong>by -{authorName}-</strong>
             </div>
             <p className={style.ArticleContent}>
               <Interweave content={articleData.articleBody} />
