@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import style from "./MainColumn.module.css"
 import { useState, useEffect } from "react";
 
@@ -51,6 +52,7 @@ function MainColumn({ article }: { article: IArticleData | null }) {
   }
 
   return (
+    
     <div className={style.MainColumn}>
       <img
         src={article.imageUrl}
