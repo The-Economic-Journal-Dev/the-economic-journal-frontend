@@ -1,0 +1,178 @@
+.SubPostWrap{
+    height: 33vh;
+    border-top: 1px solid #E4D3BE;
+    padding: 5vh 15vw 5vh 15vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.SubPostContent {
+    width: 100%;
+}
+
+.SubPostContent h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: #645236;
+    margin-bottom: 0;
+    font-size: 2em;
+}
+
+.SubPostContent h6 {
+    font-family: 'Times New Roman', Times, serif;
+    color: #929292;
+    font-size: 1.2rem;
+    font-weight: 100;
+    margin-bottom: 0;
+    width: 83%;
+}
+
+.SubPostActionBar {
+    display: flex;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.SubPostActionBar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 0;
+    outline: 0;
+    margin: 0 0.5vw;
+    cursor: pointer;
+}
+
+.SubPostActionBar button img {
+    height: 1.2rem; 
+    width: 1.2rem; 
+    margin-right: 0.2rem; 
+}
+
+.SubPostActionBar h6 {
+    font-size: 1.2rem; 
+    margin: 0 0.5vw; 
+}
+
+/* Skeleton Styles */
+.skeleton {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -150%;
+    height: 100%;
+    width: 150%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -150%;
+    }
+    50% {
+        left: 0%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+.skeletonH2 {
+    width: 60%;
+    height: 2em;
+    margin-bottom: 1vh;
+}
+
+.skeletonAuthor {
+    width: 30%;
+    height: 1.2rem;
+    margin-bottom: 1vh;
+}
+
+.skeletonH6 {
+    width: 80%;
+    height: 1.2rem;
+    margin-bottom: 1vh;
+}
+
+.skeletonActionBar {
+    display: flex;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.skeletonButton {
+    width: 2.5rem;
+    height: 2rem;
+    margin: 0 0.5vw;
+}
+
+.skeletonDate {
+    width: 6rem;
+    height: 1.2rem;
+    margin: 0 0.5vw;
+}
+
+.skeletonImg {
+    height: 22vh;
+    width: 25vw;
+}
+
+@media (max-width: 1024px){
+    .SubPostWrap{
+    height: 33vh;
+    border-top: 1px solid #E4D3BE;
+    padding: 5vh 5vw 5vh 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .SubPostWrap img{
+        height:80%
+    }
+
+    .skeletonImg {
+        height: 80%;
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .SubPostWrap {
+        padding: 5vh 5vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .SubPostContent {
+        width: 100%; 
+    }
+
+    .SubPostActionBar {
+        justify-content: center; 
+        margin-top: 2vh;
+    }
+
+    .SubPostWrap img {
+        width: 100%;
+        margin-top: 2%;
+        margin-inline:auto;
+    }
+
+    .skeletonImg {
+        width: 100%;
+        margin-top: 2%;
+    }
+}
