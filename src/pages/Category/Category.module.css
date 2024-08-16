@@ -1,0 +1,16 @@
+.PageTitle {
+    width: 100vw;
+    display: flex;
+    font-size: 7vh;
+    color: #645236;
+    font-weight: bold;
+    border-bottom: 1px solid #e4d3be;
+    padding: 3vh 0 0 15vw;
+}
+
+@media (max-width: 768px) {
+    .PageTitle {
+        padding: 3vh 0 0 5vw; 
+        font-size: 5vh;
+    }
+}

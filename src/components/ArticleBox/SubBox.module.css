@@ -1,0 +1,96 @@
+.SubPostWrap{
+    height: 33vh;
+    border-top: 1px solid #E4D3BE;
+    padding: 5vh 15vw 5vh 15vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.SubPostContent {
+    width: 100%;
+}
+
+.SubPostContent h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: #645236;
+    margin-bottom: 0;
+    font-size: 2em;
+}
+
+.SubPostContent h6 {
+    font-family: 'Times New Roman', Times, serif;
+    color: #929292;
+    font-size: 1.2rem;
+    font-weight: 100;
+    margin-bottom: 0;
+    width: 83%;
+}
+
+.SubPostActionBar {
+    display: flex;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.SubPostActionBar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 0;
+    outline: 0;
+    margin: 0 0.5vw;
+    cursor: pointer;
+}
+
+.SubPostActionBar button img {
+    height: 1.2rem; 
+    width: 1.2rem; 
+    margin-right: 0.2rem; 
+}
+
+.SubPostActionBar h6 {
+    font-size: 1.2rem; 
+    margin: 0 0.5vw; 
+}
+
+@media (max-width: 1024px){
+    .SubPostWrap{
+    height: 33vh;
+    border-top: 1px solid #E4D3BE;
+    padding: 5vh 5vw 5vh 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .SubPostWrap img{
+        height:80%
+    }
+
+}
+
+@media (max-width: 768px) {
+    .SubPostWrap {
+        padding: 5vh 5vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .SubPostContent {
+        width: 100%; 
+    }
+
+    .SubPostActionBar {
+        justify-content: center; 
+        margin-top: 2vh;
+    }
+
+    .SubPostWrap img {
+        width: 100%;
+        margin-top: 2%;
+        margin-inline:auto;
+    }
+}
