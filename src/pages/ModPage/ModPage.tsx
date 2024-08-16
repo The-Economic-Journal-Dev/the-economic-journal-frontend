@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "react-quill/dist/quill.snow.css";
+import Soft404 from "../../components/Head/soft-404";
 
 import style from "./ModPage.module.css";
 import { auth } from "../../firebase";
@@ -229,6 +230,7 @@ const ModPage = () => {
 
 
   return (
+    <><Soft404/>
     <main>
       <form onSubmit={handleSubmit} className={style.modForm}>
         <PostSelector
@@ -276,6 +278,8 @@ const ModPage = () => {
         <button type="submit">Post</button>
       </form>
     </main>
+    </>
+    
   );
 };
 
