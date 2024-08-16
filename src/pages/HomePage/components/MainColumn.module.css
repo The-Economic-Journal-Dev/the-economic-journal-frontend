@@ -9,9 +9,10 @@
 }
 
 .MainColumn img {
-    width: 100%;    
-    height: auto; /* Maintain aspect ratio */
+    height: 100%;
+    width: 30vw;   
     object-fit: cover; /* Ensure image covers the container without distortion */
+    object-position: center;
     border-bottom: 1px solid #dcdcdc; /* Add a subtle divider between image and text */
 }
 
