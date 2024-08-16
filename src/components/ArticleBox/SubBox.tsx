@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./SubBox.module.css";
 import thumbsUpLogo from "../../../public/thumbs_up.png";
 import commentLogo from "../../../public/comment.png";
-import { auth } from "../../firebase";
+import { Link } from "react-router-dom";
 
 type SubBoxProps = {
   isLoading: boolean;
@@ -63,7 +63,7 @@ function SubBox({ isLoading, article }: SubBoxProps) {
   }, [article?.authorUid]);
 
   return (
-    <div className={style.SubPostWrap}>
+    <Link to={article ? `/articles/${article.metaTitle}` : "#"} className={style.SubPostWrap}>
       <div className={style.SubPostContent}>
         {isLoading ? (
           <>
@@ -102,11 +102,14 @@ function SubBox({ isLoading, article }: SubBoxProps) {
         <img
           src={article.imageUrl || "https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"}
           alt=""
+          width="320"
+          height="240"
           loading="lazy"
           referrerPolicy="no-referrer"
+          className={style.SubBoxImage}
         />
       )}
-    </div>
+    </Link>
   );
 }
 

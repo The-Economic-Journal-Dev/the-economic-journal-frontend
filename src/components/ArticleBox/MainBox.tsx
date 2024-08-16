@@ -1,4 +1,5 @@
 import style from "./MainBox.module.css";
+import { Link } from "react-router-dom";
 
 type MainBoxProps = {
   isLoading: boolean;
@@ -32,6 +33,10 @@ function cropText(input: string) {
 
 function MainBox({ isLoading, article }: MainBoxProps) {
   return (
+    <Link 
+      to={article.metaTitle ? `/articles/${article.metaTitle}` : "./"} 
+      className={style.MainContentLink} 
+    >
     <div className={style.MainContentWrap}>
       <div className={style.MainContentBGRectangle} />
       <div className={style.MainContent}>
@@ -45,6 +50,7 @@ function MainBox({ isLoading, article }: MainBoxProps) {
             alt=""
             loading="lazy"
             referrerPolicy="no-referrer"
+            className={style.MainContentImage}
           />
         )}
 
@@ -67,6 +73,7 @@ function MainBox({ isLoading, article }: MainBoxProps) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
 
