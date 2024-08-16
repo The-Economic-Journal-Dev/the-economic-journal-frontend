@@ -44,7 +44,11 @@ function MainColumn({ article }: { article: IArticleData | null }) {
   }, [article]);
 
   if (isLoading) {
-    return <div className={style.MainColumn}>Loading...</div>;
+    return (
+      <div className={style.MainColumn}>
+        <div className={style.Loader}></div>
+      </div>
+    );
   }
 
   if (!article) {

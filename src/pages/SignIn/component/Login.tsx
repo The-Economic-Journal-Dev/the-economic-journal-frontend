@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [userFilledAllInputs, setUserFilledAllInputs] = useState(true);
   const [wrongCredentials, setWrongCredentials] = useState(false);
+  const [username, setUsername] = useState("");
 
   const navigate = useNavigate();
   //const { logIn } = useAuth();
@@ -61,6 +62,14 @@ const Login = () => {
         name="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+      />
+      <div className={style.inputHeader}>Name</div>
+      <input
+        type="text"
+        placeholder="Name"
+        name="username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <div className={style.inputHeader}>Password</div>
       <input
