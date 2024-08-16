@@ -1,8 +1,5 @@
 
 import React from 'react';
-
-import Header from "../../components/Header/Header.tsx";
-import Footer from "../../components/Footer/Footer.tsx";
 import Body from "../../components/Body/Body.tsx";
 import style from "./NotFound.module.css";
 import Soft404 from '../../components/Head/soft-404.tsx';
