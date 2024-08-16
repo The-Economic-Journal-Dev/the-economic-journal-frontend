@@ -83,8 +83,6 @@ function HomePage() {
       <div className={style.TrendingWrap}>
         <div className={style.TrendingTitleWrap}>
           <TrendingTitleDecoration />
-          <h1>Trending</h1>
-          <TrendingTitleDecoration />
         </div>
 
         <div className={style.TrendingContentWrap}>
