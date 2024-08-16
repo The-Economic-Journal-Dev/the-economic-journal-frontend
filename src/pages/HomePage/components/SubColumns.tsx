@@ -1,4 +1,4 @@
-import style from "./SubColumns.module.css"
+import style from "./SubColumns.module.css";
 import { useState, useEffect } from "react";
 
 function cropText(input: string = ""): string {
@@ -43,7 +43,11 @@ function SubColumnWithImage({ article }: { article: IArticleData | null }) {
   }, [article]);
 
   if (isLoading) {
-    return <div className={style.SubColumnTextWrap}>Loading...</div>;
+    return (
+      <div className={style.SubColumnTextWrap}>
+        <div className={style.Loader}></div>
+      </div>
+    );
   }
 
   if (!article) {
@@ -52,12 +56,9 @@ function SubColumnWithImage({ article }: { article: IArticleData | null }) {
 
   return (
     <>
-      <img
-        src={article.imageUrl}
-        alt=""
-        loading="lazy"
-        referrerPolicy="no-referrer"
-      />
+      <div className={style.SubColumnImage}>
+        <img src={article.imageUrl} alt="" loading="lazy" referrerPolicy="no-referrer" />
+      </div>
       <div className={style.SubColumnTextWrap}>
         <h5>{lastDate}</h5>
         <h4>{article.title}</h4>
@@ -66,7 +67,7 @@ function SubColumnWithImage({ article }: { article: IArticleData | null }) {
         </h6>
       </div>
     </>
-  )
+  );
 }
 
 function SubColumn({ article }: { article: IArticleData | null }) {
@@ -89,7 +90,11 @@ function SubColumn({ article }: { article: IArticleData | null }) {
   }, [article]);
 
   if (isLoading) {
-    return <div className={style.SubColumnTextWrap}>Loading...</div>;
+    return (
+      <div className={style.SubColumnTextWrap}>
+        <div className={style.Loader}></div>
+      </div>
+    );
   }
 
   if (!article) {
@@ -97,16 +102,14 @@ function SubColumn({ article }: { article: IArticleData | null }) {
   }
 
   return (
-    <>
-      <div className={style.SubColumnTextWrap}>
-        <h5>{lastDate}</h5>
-        <h4>{article.title}</h4>
-        <h6>
-          {article.summary ? article.summary : cropText(article.articleText || '')}
-        </h6>
-      </div>
-    </>
-  )
+    <div className={style.SubColumnTextWrap}>
+      <h5>{lastDate}</h5>
+      <h4>{article.title}</h4>
+      <h6>
+        {article.summary ? article.summary : cropText(article.articleText || '')}
+      </h6>
+    </div>
+  );
 }
 
 export { SubColumnWithImage, SubColumn };
