@@ -1,5 +1,4 @@
 import style from "./Navbar.module.css";
-style;
 
 const Navbar = ({ options, optionPressed, optionChose }: any) => {
   return (

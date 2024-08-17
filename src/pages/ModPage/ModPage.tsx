@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "react-quill/dist/quill.snow.css";
+import Soft404 from "../../components/Head/soft-404";
 import Post from "./Components/Post";
 import OptionSelector from "./Components/OptionSelector";
 import style from "./ModPage.module.css";
@@ -18,6 +19,7 @@ const ModPage = () => {
 
   return (
     <main className={style.modForm}>
+      <Soft404/>
       <OptionSelector options={options}
           optionChose={optionChose}
           optionPressed={optionPressed}/>
@@ -30,6 +32,7 @@ const ModPage = () => {
           <Delete />
         )}
     </main>
+    
   );
 }
 

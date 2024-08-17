@@ -2,6 +2,7 @@ import style from "./Article.module.css";
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Interweave } from "interweave";
+import { auth } from "../../firebase";
 
 // TypeScript interface to define the schema fields for Article
 interface IArticleData  {
@@ -23,6 +24,9 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [lastDate, setLastDate] = useState<string>("");
+  const [authorName, setAuthorName] = useState<string>("");
+  const [likes, setLikes] = useState<number>(0);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
 
   useEffect(() => {
   // Fetch the article data from the API
@@ -34,6 +38,8 @@ const ArticlePage = () => {
       }
       const result = await response.json();
       setArticleData(result.article);
+      setLikes(result.article.likesCount);
+      fetchUserName(result.article);
       updateLastDate(result.article);
     } catch (error) {
       setError('Failed to load article');
@@ -50,8 +56,39 @@ const ArticlePage = () => {
     }
   };
 
+  const fetchUserName = async (article: IArticleData) => {
+        try {
+          const response = await fetch(`https://api.derpdevstuffs.org/users/${article.authorUid}`);
+          const user = await response.json();
+          setAuthorName(user.displayName || "Unknown Author");
+        } catch (error) {
+          console.error("Error fetching user name:", error);
+          setAuthorName("Unknown Author");
+        }
+    };
+
   fetchArticleData();
 }, [metaTitle]);
+
+  const handleLikeUnlike = async () => {
+    try {
+      const method = isLiked ? 'DELETE' : 'POST';
+      const response = await fetch(`https://api.derpdevstuffs.org/articles/${articleData.metaTitle}/like`, {
+        method: method
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to ${isLiked ? 'unlike' : 'like'} the article`);
+      }
+
+      const updatedArticle = await response.json();
+      setLikes(updatedArticle.likesCount);
+      setIsLiked(!isLiked);
+    } catch (error) {
+      console.error(`Error ${isLiked ? 'unliking' : 'liking'} the article:`, error);
+      // Optionally, you can set an error state or show a notification to the user
+    }
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -66,18 +103,18 @@ const ArticlePage = () => {
       <div className={style.MainContentWrap}>
         <div className={style.MetaData}>
           <p className={style.Section}>{articleData.category} Section</p>
-          <p className={style.Name}>- NAME -</p>
+          <p className={style.Name}></p>
         </div>
         <h1 className={style.Title}>{articleData.title}</h1>
         <div className={style.ImageContainer}>
           <img
             src={articleData.imageUrl}
-            alt={articleData.title} // Use article title for alt text
+            alt="" // Use article title for alt text
             className={style.MainImage}
             loading="lazy" // Lazy load images for better performance
              referrerPolicy="no-referrer"
           />
-          <p className={style.ImageSource}>image source</p>
+          <p className={style.ImageSource}>{articleData.imageUrl? "image source": ""}</p>
         </div>
 
         <div className={style.TextWithSidebar}>
@@ -85,7 +122,13 @@ const ArticlePage = () => {
             <div className={style.ArticleInfo}>
               <p>{lastDate}</p>
               <h1>{articleData.title}</h1>
-              <strong>by -AUTHOR-</strong>
+              <strong>by -{authorName}-</strong>
+              <button 
+                onClick={handleLikeUnlike} 
+                className={`${style.LikeButton} ${isLiked ? style.Liked : ''}`}
+              >
+                {isLiked ? 'Unlike' : 'Like'} ({likes})
+              </button>
             </div>
             <p className={style.ArticleContent}>
               <Interweave content={articleData.articleBody} />

@@ -10,7 +10,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   //Navbar options, for switching between profile pages
-  const options = ["Account", "Option 2", "Option 3"];
+  const options = ["Account"];
   const [optionChose, setOptionChose] = useState("Account");
 
   const optionPressed = (option: string) => {
