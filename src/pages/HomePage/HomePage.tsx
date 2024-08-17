@@ -5,6 +5,7 @@ import { useState } from "react";
 import { TrendingTitleDecoration } from "./components/TrendingTitleDecoration.tsx";
 import MainColumn from "./components/MainColumn.tsx"
 import { SubColumn, SubColumnWithImage } from "./components/SubColumns.tsx";
+import { auth } from "../../firebase.tsx";
 
 // TypeScript interface to define the schema fields for Article
 interface IArticleData  {
@@ -30,7 +31,7 @@ function HomePage() {
       try {
         const response = await fetch(url);
         const posts = (await response.json()).articles as IArticleData[];
-        console.log(posts[0]);
+
         setAPIData(posts);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -45,34 +46,34 @@ function HomePage() {
       <Body>
         <div className={style.PostAreaWrap}>
           <div className={style.PostArea}>
-            <MainColumn article={apiData[0]}/>
+            <MainColumn article={apiData[0] || ""}/>
 
             <span className={style.ColumnDivider}></span>
 
             <div className={style.SubColumn}>
-              <SubColumnWithImage article={apiData.length > 1 ? apiData[1] : null} />
+              <SubColumnWithImage article={apiData[1] || ""} />
 
-              <div className={style.ContentSeparator}></div>
+              {/* <div className={style.ContentSeparator}></div> */}
 
-              <SubColumn article={apiData.length > 2 ? apiData[2] : null} />
+              <SubColumn article={apiData[2] || ""} />
 
-              <div className={style.ContentSeparator}></div>
+              {/* <div className={style.ContentSeparator}></div> */}
 
-              <SubColumn article={apiData.length > 3 ? apiData[3] : null} />
+              <SubColumn article={apiData[3] || ""} />
             </div>
 
             <span className={style.ColumnDivider}></span>
 
             <div className={style.SubColumn}>
-              <SubColumn article={apiData.length > 4 ? apiData[4] : null} />
+              <SubColumn article={apiData[4] || ""} />
 
-              <div className={style.ContentSeparator}></div>
+              {/* <div className={style.ContentSeparator}></div> */}
 
-              <SubColumn article={apiData.length > 5 ? apiData[5] : null} />
+              <SubColumn article={apiData[5] || ""} />
 
-              <div className={style.ContentSeparator}></div>
+              {/* <div className={style.ContentSeparator}></div> */}
 
-              <SubColumnWithImage article={apiData.length > 6 ? apiData[6] : null} />
+              <SubColumnWithImage article={apiData[6] || ""} />
             </div>
           </div>
         </div>
