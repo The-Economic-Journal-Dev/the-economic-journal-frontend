@@ -13,11 +13,6 @@
   color: inherit; /* Inherit text color */
 }
 
-.MainContentLink:hover {
-  opacity: 0.9;
-  transform: scale(1.01);
-}
-
 .MainContentWrap {
   display: flex;
   justify-content: center;

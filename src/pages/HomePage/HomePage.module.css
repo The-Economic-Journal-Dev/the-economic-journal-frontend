@@ -1,130 +1,153 @@
-/* General Layout */
 .pageWrap {
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f9f9f9; /* Light background for contrast */
-    font-family: 'Roboto', sans-serif; /* Modern font */
 }
-
-.PostAreaWrap {
-    background-color: #ffffff;
+.SubColumn{
+    width:27%;
+    display: flex;
+    flex-direction: column;
+}
+.PostAreaWrap{
+    background-color: white;
     min-height: 80vh;
-    width: 85vw;
-    padding: 3% 2%;
+    width: 80vw;
+    padding:2% 1% 2% 1%;
     display: flex;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Modern shadow effect */
-    border-radius: 8px; /* Rounded corners */
 }
 
-.PostArea {
+.PostArea{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    min-width: 100%;
-    gap: 20px; /* Add gap between columns */
+    min-width: 99%;
+    min-height: 99%;
 }
 
-.ColumnDivider {
+.ColumnDivider{
     height: 90%;
-    width: 1px;
-    background-color: #dcdcdc; /* Softer divider color */
+    min-width: 1px;
+    background-color: #E4D3BE;
 }
 
-.ContentSeparator {
+.ContentSeparator{
     margin-inline: auto;
-    background-color: #e0e0e0;
-    width: 70%;
-    height: 2px;
+    background-color: #E4D3BE;
+    width:60%;
+    height: 1px;
 }
 
-.SectionDivider {
+.SectionDivider{
     width: 65vw;
-    height: 2px;
-    background-color: #dcdcdc;
-    margin: 2% auto;
+    height: 1px;
+    background-color: #E4D3BE;
+    margin-inline:auto;
+    margin-bottom: 1%;
 }
 
-/* Trending Section */
-.TrendingWrap {
-    margin: 3% auto;
-    display: flex;
+.TrendingWrap{
+    margin-inline:auto;
+    display:flex;
     align-items: center;
-    padding: 2%;
+    padding: 0 2% 2% 2%;
     flex-direction: column;
-    width: 80vw;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Modern shadow effect */
+    height: auto;
+    width: 68vw;
 }
 
-.TrendingContentWrap {
-    padding-top: 5vh;
-    width: 100%;
+.TrendingContentWrap{
+    width: 98%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    gap: 2%;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.TrendingPost {
+.TrendingPost{
     width: 30%;
-    transition: transform 0.3s ease; /* Smooth hover effect */
 }
 
-.TrendingPost img {
+.TrendingPost img{
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.TrendingPost:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-}
-
-.TrendingTextWrap {
+.TrendingTextWrap{
     text-align: center;
     margin-top: 5%;
 }
 
-.TrendingTextWrap h4 {
-    font-size: 1.6em;
-    font-weight: 700;
-    color: #333333;
+.TrendingTextWrap h4{
+    font-size: 1.8em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #645236;
     margin-bottom: 2%;
 }
 
-.TrendingTextWrap h5 {
-    font-size: 1em;
-    color: #cc0000;
+.TrendingTextWrap h5{
+    font-size: 0.9em;
+    color: #9F0505;
     margin-bottom: 0;
-    text-transform: uppercase;
 }
 
-.TrendingTextWrap h6 {
+.TrendingTextWrap h6{
     width: 100%;
-    font-size: 0.85em;
-    color: #666666;
-    line-height: 1.4;
+    font-size: 0.8em;
+    font-family: 'Times New Roman', Times, serif;
+    color:#929292;
+    line-height: 1.2;
 }
 
-/* Responsive Design */
+.TrendingTitleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+.TrendingTitleWrap h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #9F0505;
+    margin: 0;
+}
+
+.TrendingTitleWrap .TrendingTextDecoration{
+    position: absolute;
+    z-index: -5;
+    width: 45%;
+}
+
 @media (max-width: 768px) {
     .PostArea {
         flex-direction: column;
-        gap: 20px; /* Add space between stacked columns */
+    }
+
+    .MainColumn, .SubColumn {
+        width: 100%;
+        margin-bottom: 20px; /* Space between column */
+    }
+
+    .ColumnDivider {
+        display: none;
+    }
+
+    .SectionDivider, .ContentSeparator {
+        width: 90%;
+        margin: 10px auto; 
     }
 
     .TrendingContentWrap {
         flex-direction: column;
-        gap: 20px;
     }
 
     .TrendingPost {
         width: 100%;
+        margin-bottom: 20px; /* Add some space between trending posts */
     }
 
-    .ColumnDivider{
-        height:1px ;
-    }
+    .TrendingTitleWrap img{
+        display: none;
+}
 }
