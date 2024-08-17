@@ -1,0 +1,13 @@
+.modForm{
+    height: 100%;
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
+    flex-direction: column;
+}
+
+.postSelector{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
