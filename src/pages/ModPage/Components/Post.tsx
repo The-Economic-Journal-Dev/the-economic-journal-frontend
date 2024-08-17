@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "react-quill/dist/quill.snow.css";
-
 import style from "./Post.module.css";
 import { auth } from "../../../firebase";
 
@@ -18,7 +17,6 @@ const WebsiteSelector = ({
   return (
     <select onChange={handleChange}>
       <option value="">Select page</option>
-      <option value="HomePage">Home Page</option>
       <option value="Finance">Finance</option>
       <option value="Economic">Economic</option>
       <option value="Business">Business</option>
@@ -32,7 +30,7 @@ const PositionSelector = ({
   onSelectChange,
 }: {
   options: string[];
-  onSelectChange: (value: string) => void;
+  onSelectChange: (value: string | number) => void;
 }) => {
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -58,7 +56,7 @@ export const PostSelector = ({
 }: {
   onWebsiteChange: (value: string) => void;
   options: string[];
-  onPositionChange: (value: string) => void;
+  onPositionChange: (value: string | number) => void;
 }) => {
   return (
     <div className={style.postSelector}>
@@ -71,7 +69,7 @@ export const PostSelector = ({
 function toTitleCase(str: String) {
   return str.replace(
     /\w\S*/g,
-    text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+    (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
   );
 }
 
@@ -89,7 +87,7 @@ const Post = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState("");
   const { quill, quillRef } = useQuill();
-  const [posted, setPosted] = useState(false)
+  const [posted, setPosted] = useState(false);
 
   useEffect(() => {
     if (quill) {
@@ -98,28 +96,13 @@ const Post = () => {
           ...prevState,
           ["articleBody"]: quill.root.innerHTML,
         }));
-      })
+      });
     }
-  })
+  });
 
   //Dynamically changing the input boxes to match the post content
   const dynamicInputs = (pageOption: string, positionOption: string) => {
-    if (pageOption == "HomePage") {
-      if (
-        [
-          "Main col 1",
-          "Main col 2 row 1",
-          "Main col 3 row 3",
-          "Trending 1",
-          "Trending 2",
-          "Trending 3",
-        ].includes(positionOption)
-      ) {
-        setHasImage(true);
-      } else {
-        setHasImage(false);
-      }
-    } else if (
+    if (
       ["Finance", "Economic", "Business", "Entrepreneur"].includes(pageOption)
     ) {
       setHasImage(true);
@@ -159,12 +142,11 @@ const Post = () => {
   };
 
   const handlePositionChange = (position: string) => {
-
     //Dynamically changing the inputs based on the page and position chose
     dynamicInputs(targetPage, position);
 
-    const positionIndex = options.indexOf(position) //Getting the custom index of position on the page to send to API
-    setTargetPosition((positionIndex + 1).toString())
+    const positionIndex = options.indexOf(position); //Getting the custom index of position on the page to send to API
+    setTargetPosition((positionIndex + 1).toString());
   };
 
   //Collect form data
@@ -172,76 +154,74 @@ const Post = () => {
     const { name, value } = event.target;
     setInputData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleImageInput = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      setImageFile(event.target.files[0])
+      setImageFile(event.target.files[0]);
     }
-  }
+  };
 
   //Send data to API
 
-  const postData = async(myPostData : FormData) => {
+  const postData = async (myPostData: FormData) => {
     const url = "https://api.derpdevstuffs.org/articles";
-    const token = await auth.currentUser?.getIdToken()
+    const token = await auth.currentUser?.getIdToken();
 
     try {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          Authorization: "Bearer " + token
+          Authorization: "Bearer " + token,
         },
-        body: myPostData
+        body: myPostData,
       });
-      
+
       //Log the response status and body for debugging
       const responseBody = await response.json();
-      console.log(response)
+      console.log(response);
 
-      console.log('Status:', response.status);
-      console.log('Response:', responseBody);
+      console.log("Status:", response.status);
+      console.log("Response:", responseBody);
 
       if (responseBody.success) {
-        setPosted(true)
-        setError("")
+        setPosted(true);
+        setError("");
       }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       throw error;
     }
-  }
+  };
 
   //Handle Submit
-  const handleSubmit = (e : FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", inputData.title)
+    formData.append("title", inputData.title);
     formData.append("summary", inputData.summary);
     formData.append("metaTitle", inputData.metaTitle);
     formData.append("articleBody", inputData.articleBody);
-    formData.append("category", toTitleCase(targetPage))
-    formData.append("position", targetPosition)
+    formData.append("category", toTitleCase(targetPage));
+    formData.append("position", targetPosition);
     if (hasImage) {
       if (imageFile) {
-        formData.append("image", imageFile)
-        postData(formData)
+        formData.append("image", imageFile);
+        postData(formData);
       } else {
-        setError("No Image selected")
+        setError("No Image selected");
       }
     } else {
-      postData(formData)
+      postData(formData);
     }
-  }
-
+  };
 
   return (
     <>
@@ -282,12 +262,17 @@ const Post = () => {
         {hasImage && (
           <>
             <label htmlFor="Image">Image</label>
-            <input type="file" name="image" accept="image/*" onChange={handleImageInput}></input>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageInput}
+            ></input>
           </>
         )}
 
-        {error != "" && (<h5 style={{color: "red"}}>{error}</h5>)}
-        {posted && (<h5 style={{color: "green"}}>Posted Successfully</h5>)}
+        {error != "" && <h5 style={{ color: "red" }}>{error}</h5>}
+        {posted && <h5 style={{ color: "green" }}>Posted Successfully</h5>}
 
         <button type="submit">Post</button>
       </form>
