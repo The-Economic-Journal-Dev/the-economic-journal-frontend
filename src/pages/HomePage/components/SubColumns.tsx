@@ -2,14 +2,22 @@ import style from "./SubColumns.module.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Crops text to a specified maximum length.
+ * @param {string} input - The input text to crop.
+ * @returns {string} - The cropped text with ellipsis if necessary.
+ */
 function cropText(input: string = ""): string {
   const maxLength = 256;
   if (input.length > maxLength) {
-    return input.slice(0, maxLength) + '...';
+    return input.slice(0, maxLength) + "...";
   }
   return input;
 }
 
+/**
+ * Represents article data structure.
+ */
 interface IArticleData {
   authorUid: string;
   title: string;
@@ -24,7 +32,12 @@ interface IArticleData {
   articleText?: string;
 }
 
-function SubColumnWithImage({ article }: { article: IArticleData | null }) {
+/**
+ * SubColumnWithImage component displays article content with an image or a skeleton loading screen while loading.
+ * @param {{ article: IArticleData | null }} props - The component props.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function SubColumnWithImage({ article }: { article: IArticleData | null }): JSX.Element {
   const [lastDate, setLastDate] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -43,35 +56,41 @@ function SubColumnWithImage({ article }: { article: IArticleData | null }) {
     }
   }, [article]);
 
-  if (isLoading) {
-    return (
-      <div className={style.SubColumnTextWrap}>
-        <div className={style.Loader}></div>
-      </div>
-    );
-  }
-
-  if (!article) {
-    return <div className={style.SubColumnTextWrap}>No article available</div>;
-  }
-
   return (
-    <Link to={article.metaTitle ? `/articles/${article.metaTitle}` : "./"}>
-      <div className={style.SubColumnImage}>
-        <img src={article.imageUrl} alt="" loading="lazy" referrerPolicy="no-referrer" />
-      </div>
-      <div className={style.SubColumnTextWrap}>
-        <h5>{lastDate}</h5>
-        <h4>{article.title}</h4>
-        <h6>
-          {article.summary ? article.summary : cropText(article.articleText || '')}
-        </h6>
-      </div>
+    <Link to={article?.metaTitle ? `/articles/${article.metaTitle}` : "./" } className={style.SubColumnTextWrap}>
+      {isLoading ? (
+        <div className={style.Skeleton}>
+          <div className={style.SkeletonImage} />
+          <div className={style.SkeletonTextWrap}>
+            <div className={style.SkeletonDate} />
+            <div className={style.SkeletonTitle} />
+            <div className={style.SkeletonSummary} />
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className={style.SubColumnImage}>
+            <img src={article?.imageUrl || "https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"} alt="" loading="lazy" referrerPolicy="no-referrer" className={style.SubColumnImage}/>
+          </div>
+          <div className={style.SubColumnTextWrap}>
+            <h5>{lastDate || "YYYY/MM/DD"}</h5>
+            <h4>{article?.title || "No Title"}</h4>
+            <h6>
+              {article ? article.summary : cropText(article!.articleText || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
+            </h6>
+          </div>
+        </>
+      )}
     </Link>
   );
 }
 
-function SubColumn({ article }: { article: IArticleData | null }) {
+/**
+ * SubColumn component displays article content or a skeleton loading screen while loading.
+ * @param {{ article: IArticleData | null }} props - The component props.
+ * @returns {JSX.Element} - The rendered component.
+ */
+function SubColumn({ article }: { article: IArticleData | null }): JSX.Element {
   const [lastDate, setLastDate] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -90,25 +109,23 @@ function SubColumn({ article }: { article: IArticleData | null }) {
     }
   }, [article]);
 
-  if (isLoading) {
-    return (
-      <div className={style.SubColumnTextWrap}>
-        <div className={style.Loader}></div>
-      </div>
-    );
-  }
-
-  if (!article) {
-    return <div className={style.SubColumnTextWrap}>No article available</div>;
-  }
-
   return (
-    <Link to={article.metaTitle ? `/articles/${article.metaTitle}` : "./"} className={style.SubColumnTextWrap}>
-      <h5>{lastDate}</h5>
-      <h4>{article.title}</h4>
-      <h6>
-        {article.summary ? article.summary : cropText(article.articleText || '')}
-      </h6>
+    <Link to={article?.metaTitle ? `/articles/${article.metaTitle}` : "./"} className={style.SubColumnTextWrap}>
+      {isLoading ? (
+        <div className={style.SkeletonTextWrap}>
+          <div className={style.SkeletonDate} />
+          <div className={style.SkeletonTitle} />
+          <div className={style.SkeletonSummary} />
+        </div>
+      ) : article ? (
+        <>
+          <h5>{lastDate}</h5>
+          <h4>{article.title}</h4>
+          <h6>{article.summary || cropText(article.articleText || '')}</h6>
+        </>
+      ) : (
+        <div>No article available</div>
+      )}
     </Link>
   );
 }

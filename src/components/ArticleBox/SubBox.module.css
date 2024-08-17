@@ -9,11 +9,6 @@
   align-items: center; /* Ensure content is centered vertically */
 }
 
-.SubPostWrap:hover {
-  opacity: 0.9;
-  transform: scale(1.01);
-}
-
 .SubPostContent {
     width: 100%;
 }
