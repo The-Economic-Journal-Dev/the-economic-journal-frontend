@@ -19,6 +19,7 @@ const ModPage = () => {
 
   return (
     <main className={style.modForm}>
+      <Soft404/>
       <OptionSelector options={options}
           optionChose={optionChose}
           optionPressed={optionPressed}/>
@@ -31,7 +32,6 @@ const ModPage = () => {
           <Delete />
         )}
     </main>
-    </>
     
   );
 }
