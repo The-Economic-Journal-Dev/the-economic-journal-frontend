@@ -93,7 +93,7 @@ const Delete = () => {
     }
   };
 
-  const handlePositionChange = (position: number) => {
+  const handlePositionChange = (position: number | string) => {
     const positionIndex = options.indexOf(position.toString());
     setTargetPosition(positionIndex + 1);
     getMetaData(positionIndex + 1, targetPage);

@@ -141,11 +141,11 @@ const Post = () => {
     dynamicInputs(targetPage, "");
   };
 
-  const handlePositionChange = (position: string) => {
+  const handlePositionChange = (position: string | number) => {
     //Dynamically changing the inputs based on the page and position chose
-    dynamicInputs(targetPage, position);
+    dynamicInputs(targetPage, position.toString());
 
-    const positionIndex = options.indexOf(position); //Getting the custom index of position on the page to send to API
+    const positionIndex = options.indexOf(position.toString()); //Getting the custom index of position on the page to send to API
     setTargetPosition((positionIndex + 1).toString());
   };
 
