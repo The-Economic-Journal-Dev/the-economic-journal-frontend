@@ -105,10 +105,10 @@ const SignUp = () => {
           <div>up</div>
         </span>
       </h1>
-      <div className={style.inputHeader}>Username</div>
+      <div className={style.inputHeader}>Name</div>
       <input
         type="text"
-        placeholder="Username"
+        placeholder="Name"
         name="username"
         onChange={(e) => setUsername(e.target.value)}
         value={username}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import style from "./MainColumn.module.css"
 import { useState, useEffect } from "react";
 
@@ -43,7 +44,11 @@ function MainColumn({ article }: { article: IArticleData | null }) {
   }, [article]);
 
   if (isLoading) {
-    return <div className={style.MainColumn}>Loading...</div>;
+    return (
+      <div className={style.MainColumn}>
+        <div className={style.Loader}></div>
+      </div>
+    );
   }
 
   if (!article) {
@@ -51,7 +56,8 @@ function MainColumn({ article }: { article: IArticleData | null }) {
   }
 
   return (
-    <div className={style.MainColumn}>
+    
+    <Link to={article.metaTitle ? `/articles/${article.metaTitle}` : "./"} className={style.MainColumn}>
       <img
         src={article.imageUrl}
         alt=""
@@ -65,7 +71,7 @@ function MainColumn({ article }: { article: IArticleData | null }) {
           {article.summary ? article.summary : cropText(article.articleText || '')}
         </h6>
       </div>
-    </div>
+    </Link>
   );
 }
 

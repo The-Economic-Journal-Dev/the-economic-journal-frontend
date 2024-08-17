@@ -1,14 +1,14 @@
-import style from "./Navbar.module.css";
+import style from "./OptionSelector.module.css";
 
-const Navbar = ({ options, optionPressed, optionChose }: any) => {
+const OptionSelector = ({ options, optionPressed, optionChose }: any) => {
   return (
-    <nav className={style.sidebar}>
+    <nav className={style.optionSelector}>
       {options.map((option: string) => (
         <button
+        key={option}
           onClick={() => optionPressed(option)}
           style={{
             fontWeight: optionChose == option ? "bolder" : "normal",
-            textDecoration: optionChose == option ? "underline" : "none",
           }}
         >
           {option}
@@ -18,4 +18,4 @@ const Navbar = ({ options, optionPressed, optionChose }: any) => {
   );
 };
 
-export default Navbar;
+export default OptionSelector;

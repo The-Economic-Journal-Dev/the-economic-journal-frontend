@@ -1,33 +1,90 @@
-.MainColumn{
-    width: 40%;
+.MainColumn {
+    width: 300%; /* Use full width */
     display: flex;
     flex-direction: column;
+    background-color: #ffffff; /* White background to make it stand out */
+    border-radius: 8px; /* Smooth corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Ensure no content overflows the container */
 }
 
-.MainColumn img{
-    width: 100%;    
+.MainColumn img {
+    height: 100%;
+    width: 30vw;   
+    object-fit: cover; /* Ensure image covers the container without distortion */
+    object-position: center;
+    border-bottom: 1px solid #dcdcdc; /* Add a subtle divider between image and text */
 }
 
-.MainColumnTextWrap{
-    flex: 1;
-    margin: 5% 0 0 0;
+.MainColumnTextWrap {
+    padding: 20px; /* Add padding for better text spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the start of the container */
+    height: auto; /* Allow text wrap to grow based on content size */
 }
 
-.MainColumnTextWrap h5{
-    color: #9F0505;
+.MainColumnTextWrap h5,
+.MainColumnTextWrap h1,
+.MainColumnTextWrap h6 {
+    margin-bottom: 10px; /* Add margin below each element */
+}
+
+.MainColumnTextWrap h5 {
+    color: #9F0505; /* Highlighted date color */
     font-weight: 600;
+    font-size: 0.9em; /* Slightly smaller font for the date */
 }
 
-.MainColumnTextWrap h6{
-    width: 100%;
-    font-size: 1.3em;
-    font-family: 'Times New Roman', Times, serif;
-    color:#929292;
-    line-height: 1.4;
-}
-
-.MainColumnTextWrap h1{
+.MainColumnTextWrap h1 {
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    color: #645236;
+    color: #333333; /* Darker color for better contrast */
+    font-size: 1.8em; /* Make the title more prominent */
+    line-height: 1.2; /* Tighten line-height for a cleaner look */
 }
+
+.MainColumnTextWrap h6 {
+    width: 100%;
+    font-size: 1.1em; /* Slightly smaller font for summary */
+    font-family: 'Times New Roman', Times, serif;
+    color: #666666; /* Softer color for summary text */
+    line-height: 1.6; /* Increase line-height for better readability */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .MainColumn {
+        max-width: 100%; /* Allow the main column to use full width on smaller screens */
+        margin-bottom: 20px; /* Add margin to space out content */
+        height:600px;
+    }
+    
+
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.Loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Takes full height of the parent container */
+}
+
+.Loader::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1); /* Light border color */
+    border-top: 4px solid #333333; /* Darker color for the spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Smooth continuous spin */
+}
+

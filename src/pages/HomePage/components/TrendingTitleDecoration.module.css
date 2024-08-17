@@ -1,20 +1,29 @@
-.TrendingTitleDecoration{
-    display:flex;
-    flex-direction: row;
+.TrendingTitleDecoration {
+    display: flex;
     align-items: center;
     justify-content: center;
     margin-inline: 6%;
 }
 
-.middleLine{
-    width: 200px;
+.middleLine {
+    width: 200px; /* Adjust width if necessary */
     height: 3px;
     background-color: #9F0505;
+    margin: 0 10px; /* Spacing between the lines and the text */
+    position: relative; /* Allows for positioning of text */
 }
 
-.diagonalSquare{
+.diagonalSquare {
     height: 3px;
     width: 3px;
     outline: 3px solid #9F0505;
     transform: rotate(45deg);
+}
+
+/* Additional styling for the text */
+.TrendingTitleDecoration h1 {
+    margin: 0;
+    font-size: 1.8em; /* Adjust font size if needed */
+    color: #9F0505; /* Same color as the lines for consistency */
+    text-align: center;
 }

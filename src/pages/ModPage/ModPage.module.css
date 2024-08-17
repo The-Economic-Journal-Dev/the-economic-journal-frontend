@@ -1,6 +1,12 @@
-.modForm{
-    display: flex;
-    width: fit-content;
-    margin-inline: auto;
-    flex-direction: column;
+.modForm {
+  min-height: 90vh;
+  margin: 5vh 0 5vh 0;
+  width: 700px;
+  margin-inline: auto;
+}
+
+.postSelector {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
