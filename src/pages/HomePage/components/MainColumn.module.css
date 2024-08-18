@@ -9,12 +9,15 @@
 
 .MainColumn img {
   width: 100%;
-  height: 64.5%;
+  height: auto; /* Change to auto for responsiveness */
+  max-height: 400px; /* Optional max height */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
 }
 
 .MainColumnTextWrap {
   flex: 1;
   margin: 5% 0 0 0;
+  text-align: center; /* Center text for smaller screens */
 }
 
 .MainColumnTextWrap h5 {
@@ -83,4 +86,24 @@
 .SkeletonSummary {
   width: 100%;
   height: 70%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .MainColumn {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .MainColumnTextWrap h1 {
+    font-size: 1.5em; /* Adjust font size for smaller screens */
+  }
+
+  .MainColumnTextWrap h6 {
+    font-size: 1.1em; /* Adjust font size for readability on smaller screens */
+  }
+
+  .SkeletonImage {
+    height: 50%; /* Adjust skeleton image height for smaller screens */
+  }
 }
