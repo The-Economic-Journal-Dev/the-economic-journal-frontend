@@ -105,7 +105,7 @@ const Delete = () => {
     currentTargetPage: string
   ) => {
     if (positionIndex) {
-      const url = `https://api.derpdevstuffs.org/articles?category=${toTitleCase(
+      const url = `https://api.theeconomicjournal.org/articles?category=${toTitleCase(
         currentTargetPage
       )}`;
 
@@ -150,7 +150,7 @@ const Delete = () => {
       return;
     }
 
-    const url = `https://api.derpdevstuffs.org/articles/${targetArticle.metaTitle}`;
+    const url = `https://api.theeconomicjournal.org/articles/${targetArticle.metaTitle}`;
     const token = await auth.currentUser?.getIdToken();
 
     try {

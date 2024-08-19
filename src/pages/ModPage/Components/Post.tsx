@@ -167,7 +167,7 @@ const Post = () => {
   //Send data to API
 
   const postData = async (myPostData: FormData) => {
-    const url = "https://api.derpdevstuffs.org/articles";
+    const url = "https://api.theeconomicjournal.org/articles";
     const token = await auth.currentUser?.getIdToken();
 
     try {
