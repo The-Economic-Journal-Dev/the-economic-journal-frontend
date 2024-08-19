@@ -32,7 +32,7 @@ const ArticlePage = () => {
   // Fetch the article data from the API
   const fetchArticleData = async () => {
     try {
-      const response = await fetch(`https://api.derpdevstuffs.org/articles/${metaTitle}`);
+      const response = await fetch(`https://api.theeconomicjournal.org/articles/${metaTitle}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -58,7 +58,7 @@ const ArticlePage = () => {
 
   const fetchUserName = async (article: IArticleData) => {
         try {
-          const response = await fetch(`https://api.derpdevstuffs.org/users/${article.authorUid}`);
+          const response = await fetch(`https://api.theeconomicjournal.org/users/${article.authorUid}`);
           const user = await response.json();
           setAuthorName(user.displayName || "Unknown Author");
         } catch (error) {
@@ -73,7 +73,7 @@ const ArticlePage = () => {
   const handleLikeUnlike = async () => {
     try {
       const method = isLiked ? 'DELETE' : 'POST';
-      const response = await fetch(`https://api.derpdevstuffs.org/articles/${articleData.metaTitle}/like`, {
+      const response = await fetch(`https://api.theeconomicjournal.org/articles/${articleData.metaTitle}/like`, {
         method: method
       });
 

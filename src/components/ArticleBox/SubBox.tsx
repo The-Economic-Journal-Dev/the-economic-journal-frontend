@@ -49,7 +49,7 @@ function SubBox({ isLoading, article }: SubBoxProps) {
     if (article?.authorUid) {
       const fetchUserName = async () => {
         try {
-          const response = await fetch(`https://api.derpdevstuffs.org/users/${article.authorUid}`);
+          const response = await fetch(`https://api.theeconomicjournal.org/users/${article.authorUid}`);
           const user = await response.json();
           setAuthorName(user.displayName || "Unknown Author");
         } catch (error) {
