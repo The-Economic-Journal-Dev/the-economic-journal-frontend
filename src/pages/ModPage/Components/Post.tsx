@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useQuill } from "react-quilljs";
+import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import style from "./Post.module.css";
 import { auth } from "../../../firebase";
@@ -86,19 +86,14 @@ const Post = () => {
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState("");
-  const { quill, quillRef } = useQuill();
   const [posted, setPosted] = useState(false);
 
-  useEffect(() => {
-    if (quill) {
-      quill.on("text-change", () => {
-        setInputData((prevState) => ({
-          ...prevState,
-          ["articleBody"]: quill.root.innerHTML,
-        }));
-      });
-    }
-  });
+  const handleQuillChange = (value: string) => {
+    setInputData((prevState) => ({
+      ...prevState,
+      articleBody: value, // Update the articleBody field
+    }));
+  };
 
   //Dynamically changing the input boxes to match the post content
   const dynamicInputs = (pageOption: string, positionOption: string) => {
@@ -257,7 +252,14 @@ const Post = () => {
         />
 
         <label htmlFor="articleBody">Content</label>
-        <div ref={quillRef}></div>
+        <div className={style.quillContainer}>
+          <ReactQuill
+          theme="snow"
+          value={inputData.articleBody}
+          onChange={handleQuillChange}
+          />
+        </div>
+        
 
         {hasImage && (
           <>
