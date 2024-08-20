@@ -1,183 +1,176 @@
-
 /* Desktop and larger screens */
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Full width of the viewport */
-    height: 100vh; /* Full height of the viewport */
-    overflow: visible;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  overflow: visible;
 }
 
 .bg {
-    position: fixed;
-    width: 100vw;
-    height: 200px;
-    background-color: #fff6ec;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1; /* Ensure background is behind the form */
+  position: fixed;
+  width: 100vw;
+  height: 200px;
+  background-color: #fff6ec;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1; /* Ensure background is behind the form */
 }
 
 .formContainer {
-    display: inline-block;
-    width: 380px;
-    background-color: white;
-    margin: 0 20px; /* Add some margin between the two forms */
-    padding: 40px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-
-
+  display: inline-block;
+  width: 380px;
+  background-color: white;
+  margin: 0 20px; /* Add some margin between the two forms */
+  padding: 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .formContainer form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .formContainer input:not([type="submit"]) {
-    margin: 10px 0 10px 15px;
-    border: none;
-    font-size: 15px;
-    border-bottom: 1px solid black;
-    outline: none;
+  margin: 10px 0 10px 15px;
+  border: none;
+  font-size: 15px;
+  border-bottom: 1px solid black;
+  outline: none;
 }
 
 .formContainer h1 {
-    font-size: xx-large;
-    font-weight: bolder;
-    margin-bottom: 30px;
+  font-size: xx-large;
+  font-weight: bolder;
+  margin-bottom: 30px;
 }
 
 .formContainer a {
-    justify-content: start;
-    margin: 20px;
+  justify-content: start;
+  margin: 20px;
 }
 
 h1 span {
-    margin-left: 10px;
-    color: #E4BD8F;
+  margin-left: 10px;
+  color: #e4bd8f;
 }
 
 h1 span div {
-    color: #9F0505;
+  color: #9f0505;
 }
 
 .forgotPassword {
-    justify-content: end;    
-    font-size: 11px;
-    margin: 5px 0 5px 0;
+  justify-content: end;
+  font-size: 11px;
+  margin: 5px 0 5px 0;
 }
 
 .forgotPassword a {
-    margin: 0 !important;
-    text-decoration: none;
-    color: black;
+  margin: 0 !important;
+  text-decoration: none;
+  color: black;
 }
 
 .inputHeader {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .formContainer input[type="submit"] {
-    background-color: white;
-    font-size: 17px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 30px;
-    width: 150px;
-    height: 35px;
-    margin: 10px 0 10px 0;
+  background-color: white;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 30px;
+  width: 150px;
+  height: 35px;
+  margin: 10px 0 10px 0;
 }
 
 .signInButton {
-    color: #E4A250;
-    border: 3px solid #E4A250;
+  color: #e4a250;
+  border: 3px solid #e4a250;
 }
 
 .signUpButton {
-    color: #9F0505;
-    border: 3px solid #9F0505;
+  color: #9f0505;
+  border: 3px solid #9f0505;
 }
 
 .buttonContainer {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .line {
-    border: none;
-    height: 2px;
-    background-color: black;
-    flex: 1;
-    margin: 0 10px;
+  border: none;
+  height: 2px;
+  background-color: black;
+  flex: 1;
+  margin: 0 10px;
 }
 
 .alternateLogin {
-    align-self: center;
-    text-align: center;
-    margin: 15px 0 0 0;
+  align-self: center;
+  text-align: center;
+  margin: 15px 0 0 0;
 }
 
 .alternateLogin p {
-    display: inline;
-    vertical-align: middle;
+  display: inline;
+  vertical-align: middle;
 }
 
 .partialBlackLine {
-    margin: 0 15px 0 15px;
-    background-color: black;
-    height: 2px;
-    width: 65px;
-    vertical-align: middle;
-    display: inline-block;
+  margin: 0 15px 0 15px;
+  background-color: black;
+  height: 2px;
+  width: 65px;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .googleBtn {
-    aspect-ratio: 1/1;
-    height: 50px;
-    border: 3px solid black;
-    border-radius: 50%;
-    margin-top: 20px;
+  aspect-ratio: 1/1;
+  height: 50px;
+  border: 3px solid black;
+  border-radius: 50%;
+  margin-top: 20px;
 }
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: auto; /* Allow height to adjust based on content */
-    }
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Allow height to adjust based on content */
+  }
 
-    .formContainer {
-        width: 90%; /* Make form width more flexible on smaller screens */
-        margin: 20px 0; /* Add space between the forms */
-        padding: 20px; /* Reduce padding for a more compact view */
-    }
+  .formContainer {
+    width: 90%; /* Make form width more flexible on smaller screens */
+    margin: 20px 0; /* Add space between the forms */
+    padding: 20px; /* Reduce padding for a more compact view */
+  }
 
-    .bg {
-        height: 100px; /* Reduce the height of the background */
-        top: initial; /* Remove top positioning to allow natural flow */
-        bottom: 0; /* Pin to the bottom */
-    }
+  .bg {
+    height: 100px; /* Reduce the height of the background */
+    top: initial; /* Remove top positioning to allow natural flow */
+    bottom: 0; /* Pin to the bottom */
+  }
 
-    h1 {
-        font-size: large; /* Adjust font size */
-    }
+  h1 {
+    font-size: large; /* Adjust font size */
+  }
 
-    .googleBtn {
-        width: 40px;
-        height: 40px;
-    }
-
+  .googleBtn {
+    width: 40px;
+    height: 40px;
+  }
 }
-
-
-

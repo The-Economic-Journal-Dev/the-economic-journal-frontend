@@ -4,4 +4,4 @@ export const instagramURL = "https://www.instagram.com/the.economicjournal/";
 export const facebookURL = "";
 export const tiktokURL = "";
 export const youtubeURL = "";
-export const linkedInURL = ""
+export const linkedInURL = "";

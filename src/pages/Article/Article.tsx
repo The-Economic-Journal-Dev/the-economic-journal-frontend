@@ -1,11 +1,11 @@
 import style from "./Article.module.css";
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Interweave } from "interweave";
 import { auth } from "../../firebase";
 
 // TypeScript interface to define the schema fields for Article
-interface IArticleData  {
+interface IArticleData {
   authorUid: string;
   title: string;
   metaTitle: string;
@@ -14,7 +14,7 @@ interface IArticleData  {
   imageUrl?: string;
   summary?: string;
   articleBody: string;
-  category: "Finance" | "Economic" | "Business" | "Entrepreneurship";
+  category: "Finance" | "Economic" | "Business" | "Entrepreneur";
   likesCount: number;
 }
 
@@ -29,63 +29,79 @@ const ArticlePage = () => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
   useEffect(() => {
-  // Fetch the article data from the API
-  const fetchArticleData = async () => {
-    try {
-      const response = await fetch(`https://api.theeconomicjournal.org/articles/${metaTitle}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const result = await response.json();
-      setArticleData(result.article);
-      setLikes(result.article.likesCount);
-      fetchUserName(result.article);
-      updateLastDate(result.article);
-    } catch (error) {
-      setError('Failed to load article');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const updateLastDate = (articleData: IArticleData) => {
-    if (articleData.lastUpdated > articleData.datePublished) {
-      setLastDate("Last Updated: " + new Date(articleData.lastUpdated).toLocaleDateString());
-    } else {
-      setLastDate("Date Published: " + new Date(articleData.datePublished).toLocaleDateString());
-    }
-  };
-
-  const fetchUserName = async (article: IArticleData) => {
-        try {
-          const response = await fetch(`https://api.theeconomicjournal.org/users/${article.authorUid}`);
-          const user = await response.json();
-          setAuthorName(user.displayName || "Unknown Author");
-        } catch (error) {
-          console.error("Error fetching user name:", error);
-          setAuthorName("Unknown Author");
+    // Fetch the article data from the API
+    const fetchArticleData = async () => {
+      try {
+        const response = await fetch(
+          `https://api.theeconomicjournal.org/articles/${metaTitle}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        const result = await response.json();
+        setArticleData(result.article);
+        setLikes(result.article.likesCount);
+        fetchUserName(result.article);
+        updateLastDate(result.article);
+      } catch (error) {
+        setError("Failed to load article");
+      } finally {
+        setLoading(false);
+      }
     };
 
-  fetchArticleData();
-}, [metaTitle]);
+    const updateLastDate = (articleData: IArticleData) => {
+      if (articleData.lastUpdated > articleData.datePublished) {
+        setLastDate(
+          "Last Updated: " +
+            new Date(articleData.lastUpdated).toLocaleDateString()
+        );
+      } else {
+        setLastDate(
+          "Date Published: " +
+            new Date(articleData.datePublished).toLocaleDateString()
+        );
+      }
+    };
+
+    const fetchUserName = async (article: IArticleData) => {
+      try {
+        const response = await fetch(
+          `https://api.theeconomicjournal.org/users/${article.authorUid}`
+        );
+        const user = await response.json();
+        setAuthorName(user.displayName || "Unknown Author");
+      } catch (error) {
+        console.error("Error fetching user name:", error);
+        setAuthorName("Unknown Author");
+      }
+    };
+
+    fetchArticleData();
+  }, [metaTitle]);
 
   const handleLikeUnlike = async () => {
     try {
-      const method = isLiked ? 'DELETE' : 'POST';
-      const response = await fetch(`https://api.theeconomicjournal.org/articles/${articleData.metaTitle}/like`, {
-        method: method
-      });
+      const method = isLiked ? "DELETE" : "POST";
+      const response = await fetch(
+        `https://api.theeconomicjournal.org/articles/${articleData.metaTitle}/like`,
+        {
+          method: method,
+        }
+      );
 
       if (!response.ok) {
-        throw new Error(`Failed to ${isLiked ? 'unlike' : 'like'} the article`);
+        throw new Error(`Failed to ${isLiked ? "unlike" : "like"} the article`);
       }
 
       const updatedArticle = await response.json();
       setLikes(updatedArticle.likesCount);
       setIsLiked(!isLiked);
     } catch (error) {
-      console.error(`Error ${isLiked ? 'unliking' : 'liking'} the article:`, error);
+      console.error(
+        `Error ${isLiked ? "unliking" : "liking"} the article:`,
+        error
+      );
       // Optionally, you can set an error state or show a notification to the user
     }
   };
@@ -112,9 +128,11 @@ const ArticlePage = () => {
             alt="" // Use article title for alt text
             className={style.MainImage}
             loading="lazy" // Lazy load images for better performance
-             referrerPolicy="no-referrer"
+            referrerPolicy="no-referrer"
           />
-          <p className={style.ImageSource}>{articleData.imageUrl? "image source": ""}</p>
+          <p className={style.ImageSource}>
+            {articleData.imageUrl ? "image source" : ""}
+          </p>
         </div>
 
         <div className={style.TextWithSidebar}>
@@ -123,11 +141,11 @@ const ArticlePage = () => {
               <p>{lastDate}</p>
               <h1>{articleData.title}</h1>
               <strong>by -{authorName}-</strong>
-              <button 
-                onClick={handleLikeUnlike} 
-                className={`${style.LikeButton} ${isLiked ? style.Liked : ''}`}
+              <button
+                onClick={handleLikeUnlike}
+                className={`${style.LikeButton} ${isLiked ? style.Liked : ""}`}
               >
-                {isLiked ? 'Unlike' : 'Like'} ({likes})
+                {isLiked ? "Unlike" : "Like"} ({likes})
               </button>
             </div>
             <p className={style.ArticleContent}>
