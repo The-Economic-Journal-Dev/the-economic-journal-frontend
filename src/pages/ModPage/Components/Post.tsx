@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import style from "./Post.module.css";
+import Converter from "./Converter";
 import { auth } from "../../../firebase";
 
 const WebsiteSelector = ({
@@ -73,22 +74,38 @@ function toTitleCase(str: String) {
   );
 }
 
+interface InputData {
+  title: string;
+  summary: string;
+  metaTitle: string;
+  articleBody: string;
+}
+
 const Post = () => {
   const [targetPage, setTargetPage] = useState("");
   const [targetPosition, setTargetPosition] = useState("");
   const [options, setOptions] = useState<string[]>([]);
   const [hasImage, setHasImage] = useState(false);
-  const [inputData, setInputData] = useState({
-    title: "",
-    summary: "",
-    metaTitle: "",
-    articleBody: "",
+  const [inputData, setInputData] = useState<InputData>(() => {
+    // Try to get the saved data from local storage
+    const savedData = localStorage.getItem('articleData');
+    return savedData ? JSON.parse(savedData) : {
+      title: "",
+      summary: "",
+      metaTitle: "",
+      articleBody: "",
+    };
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState("");
   const [posted, setPosted] = useState(false);
 
-  const handleQuillChange = (value: string) => {
+  // Save to local storage whenever inputData changes
+  useEffect(() => {
+    localStorage.setItem('articleData', JSON.stringify(inputData));
+  }, [inputData]);
+
+  const handleEditorChange = (value: string) => {
     setInputData((prevState) => ({
       ...prevState,
       articleBody: value, // Update the articleBody field
@@ -198,6 +215,7 @@ const Post = () => {
   //Handle Submit
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    console.log(`Submit`)
 
     const formData = new FormData();
     formData.append("title", inputData.title);
@@ -251,12 +269,17 @@ const Post = () => {
           onChange={handleInput}
         />
 
+        <label htmlFor="articleDocxUpload">Upload .docx Instead</label>
+        <div>
+          <Converter inputData={inputData} handleEditorChange={handleEditorChange}></Converter>
+        </div>
+
         <label htmlFor="articleBody">Content</label>
         <div className={style.quillContainer}>
           <ReactQuill
           theme="snow"
           value={inputData.articleBody}
-          onChange={handleQuillChange}
+          onChange={handleEditorChange}
           />
         </div>
         
