@@ -25,9 +25,8 @@ const SideColumn = ({category}: { category: string}) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(url);  
         const posts = (await response.json()).articles as IArticleData[];
-
         setAPIData(posts);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -35,20 +34,25 @@ const SideColumn = ({category}: { category: string}) => {
     };
 
     fetchPosts();
-  }, []);
+  }, [url]);
 
   return (
     <aside className={style.SideBar}>
       <h3>Read more articles here</h3>
+      {apiData.length > 0 ? (
         <div className={style.SideBarArticle}>
-              <img
-                src={apiData[1].imageUrl}
-                alt="Sidebar Article"
-              />
-            <p>{apiData[1].summary}</p>
+          <img
+            src={apiData[0].imageUrl || ""}
+            alt="Sidebar Article"
+          />
+          <p>{apiData[0].summary || ""}</p>
         </div>
-            {/* Add more articles similarly */}
-    </aside>)
+      ) : (
+        <p>Loading...</p>
+      )}
+      {/* Add more articles similarly */}
+    </aside>
+    )
 }
 
 const ArticlePage = () => {
