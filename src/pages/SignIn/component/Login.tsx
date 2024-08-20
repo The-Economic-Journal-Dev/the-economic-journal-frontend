@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import style from "./Login.module.css";
 import { auth, googleProvider } from "../../../firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import googleLogo from "../../../../public/google_icon.png";
 
@@ -72,7 +72,7 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <div className={style.forgotPassword}>
-        <a href="#">Forgot password?</a>
+        <a href="./passwordreset">Forgot password?</a>
       </div>
 
       {!userFilledAllInputs && (
