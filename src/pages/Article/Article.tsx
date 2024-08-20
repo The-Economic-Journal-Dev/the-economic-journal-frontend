@@ -124,12 +124,11 @@ const ArticlePage = () => {
         `https://api.theeconomicjournal.org/articles/${articleData.metaTitle}/like`,
         {
           method: method,
+          headers: {
+            Authorization: `Bearer ${(await auth.currentUser?.getIdToken())}`,
+          },
         }
       );
-
-      if (!response.ok) {
-        throw new Error(`Failed to ${isLiked ? "unlike" : "like"} the article`);
-      }
 
       const updatedArticle = await response.json();
       setLikes(updatedArticle.likesCount);
