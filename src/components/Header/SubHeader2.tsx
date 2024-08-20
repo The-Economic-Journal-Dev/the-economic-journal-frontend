@@ -1,7 +1,8 @@
 import style from "./SubHeader2.module.css"
 import houseLogo from "../../../public/house_icon.jpg";
 import { auth } from "../../firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { User } from "firebase/auth";
 
 // TypeScript interface to define the schema fields for Article
 interface IArticleData  {
@@ -60,8 +61,20 @@ const SearchButton: React.FC = () => {
 };
 
 function SubHeader2() {
-  const photoURL = auth.currentUser?.photoURL
-  const user = auth.currentUser
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
+    });
+
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className={style.SubHeader2}>
@@ -79,8 +92,8 @@ function SubHeader2() {
         </div>
       </a>
       <div className={style.authSearch}>
-        {user == null && <a href="./signin">Sign in</a>}
-        {user != null && !photoURL &&(
+        {!currentUser && <a href="./signin">Sign in</a>}
+        {currentUser && !currentUser?.photoURL &&(
           <a href="./profile">
             <img
               src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
@@ -89,10 +102,10 @@ function SubHeader2() {
           </a>
         )}
 
-        {user != null && photoURL && (
+        {currentUser && currentUser.photoURL && (
           <a href="./profile">
             <img
-              src={photoURL}
+              src={currentUser.photoURL}
               alt=""
             />
           </a>
