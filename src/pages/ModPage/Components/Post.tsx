@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import style from "./Post.module.css";
+import Converter from "./Converter";
 import { auth } from "../../../firebase";
 
 const WebsiteSelector = ({
@@ -88,7 +89,7 @@ const Post = () => {
   const [error, setError] = useState("");
   const [posted, setPosted] = useState(false);
 
-  const handleQuillChange = (value: string) => {
+  const handleEditorChange = (value: string) => {
     setInputData((prevState) => ({
       ...prevState,
       articleBody: value, // Update the articleBody field
@@ -251,12 +252,17 @@ const Post = () => {
           onChange={handleInput}
         />
 
+        <label htmlFor="articleDocxUpload">Upload .docx Instead</label>
+        <div>
+          <Converter inputData={inputData} handleEditorChange={handleEditorChange}></Converter>
+        </div>
+
         <label htmlFor="articleBody">Content</label>
         <div className={style.quillContainer}>
           <ReactQuill
           theme="snow"
           value={inputData.articleBody}
-          onChange={handleQuillChange}
+          onChange={handleEditorChange}
           />
         </div>
         
