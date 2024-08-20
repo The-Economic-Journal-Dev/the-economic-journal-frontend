@@ -224,7 +224,7 @@ const Post = () => {
     formData.append("articleBody", inputData.articleBody);
     formData.append("category", toTitleCase(targetPage));
     formData.append("position", targetPosition);
-    if (hasImage) {
+    if (true) {
       if (imageFile) {
         formData.append("image", imageFile);
         postData(formData);
@@ -284,7 +284,7 @@ const Post = () => {
         </div>
         
 
-        {hasImage && (
+        {true && (
           <>
             <label htmlFor="Image">Image</label>
             <input
