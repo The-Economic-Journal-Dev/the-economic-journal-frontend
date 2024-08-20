@@ -5,10 +5,8 @@ import OptionSelector from "./Components/OptionSelector";
 import style from "./ModPage.module.css";
 import Delete from "./Components/Delete";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { auth } from "../../firebase"
+import { auth } from "../../firebase";
 import NotFound from "../Errors/NotFound";
-
-
 
 const ModPage = () => {
   const options = ["Post", "Delete"];
@@ -17,11 +15,11 @@ const ModPage = () => {
 
   const optionPressed = (option: string) => {
     setOptionChose(option);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     const CheckPermission = async () => {
-      const idToken = await auth.currentUser?.getIdTokenResult()
+      const idToken = await auth.currentUser?.getIdTokenResult();
 
       if (!idToken) return setHasPermission(false);
 
@@ -30,15 +28,13 @@ const ModPage = () => {
       } else {
         setHasPermission(false);
       }
-    }
+    };
 
-    CheckPermission()
-  });
+    CheckPermission();
+  }, []);
 
   if (!hasPermission) {
-    return (
-      <NotFound />
-    );
+    return <NotFound />;
   }
 
   return (
@@ -49,22 +45,21 @@ const ModPage = () => {
           <meta name="robots" content="follow, noarchive, noindex" />
         </Helmet>
       </HelmetProvider>
-    
-      <OptionSelector options={options}
-          optionChose={optionChose}
-          optionPressed={optionPressed}/>
-      
-      {optionChose == "Post" && (
-          <Post />
-        )}
-      
-      {optionChose == "Delete" && (
-          <Delete />
-        )}
-    </main>
-    
-  );
-}
 
+      <div className={style.optionSelectorWrap}>
+        <OptionSelector
+          options={options}
+          optionChose={optionChose}
+          optionPressed={optionPressed}
+        />
+      </div>
+
+      <div className={style.contentWrap}>
+        {optionChose === "Post" && <Post />}
+        {optionChose === "Delete" && <Delete />}
+      </div>
+    </main>
+  );
+};
 
 export default ModPage;

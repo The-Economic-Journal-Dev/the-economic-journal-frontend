@@ -1,12 +1,58 @@
 .modForm {
   min-height: 90vh;
-  margin: 5vh 0 5vh 0;
-  width: 700px;
-  margin-inline: auto;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.postSelector {
+.optionSelectorWrap {
+  margin-bottom: 2rem;
+}
+
+.contentWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .modForm {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .contentWrap {
+    gap: 1rem;
+  }
+}
+
+/* OptionSelector Component Styles */
+.optionSelector {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.optionSelector button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.optionSelector button:hover {
+  color: #0056b3;
+}
+
+.optionSelector button.active {
+  font-weight: bold;
+  border-bottom: 2px solid #007bff;
 }
