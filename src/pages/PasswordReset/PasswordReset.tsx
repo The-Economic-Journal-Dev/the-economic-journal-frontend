@@ -28,7 +28,6 @@ const PasswordReset: React.FC = () => {
 
   return (
     <div className={style.resetPasswordContainer}>
-      <h2>Reset Password</h2>
       <input
         type="email"
         value={email}

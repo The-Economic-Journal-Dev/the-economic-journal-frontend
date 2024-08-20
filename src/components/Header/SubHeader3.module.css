@@ -32,13 +32,18 @@
 
 /* Menu Toggle Button */
 .menuToggle {
+    color: black;
+    background-color: white;
     display: none;
     font-size: 24px;
-    background: none;
     border: none;
     cursor: pointer;
-    margin: 10px 0; /* Add margin to separate from the menu */
-    align-self: flex-start; /* Align the button to the left */
+    margin: 10px 0;
+}
+
+.menuToggle :hover{
+    background-color: #E4D3BE;
+    color: white;
 }
 
 /* Dropdown Menu */
