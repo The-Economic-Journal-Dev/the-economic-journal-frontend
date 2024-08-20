@@ -26,9 +26,9 @@
     justify-content: center;
     width: 40px; /* Set a uniform size for icons */
     height: 40px;
-    border-radius: 50%; /* Circular icons for a modern look */
-    background-color: #FFFFFF; /* White background for icons */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for icons */
+    border-radius: 50%; 
+    background-color: #FFFFFF; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
     transition: transform 0.2s ease-in-out; /* Smooth hover effect */
 }
 
@@ -39,12 +39,12 @@
 .CopyrightWrap {
     background-color: #542F04;
     color: white;
-    font-size: 0.9em; /* Slightly larger text for readability */
-    padding: 1.5vh 0; /* Padding for better spacing */
+    font-size: 0.9em; 
+    padding: 0.5vh 0; 
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Subtle top border for separation */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .CopyrightWrap p {

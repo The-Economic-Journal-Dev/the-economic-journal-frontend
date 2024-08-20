@@ -17,8 +17,8 @@
 }
 
 .MainColumnTextWrap {
-  padding: 20px;
   text-align: left;
+  padding-top: 10px;
 }
 
 .MainColumnTextWrap h5 {
@@ -35,6 +35,16 @@
   font-size: 2rem;
   line-height: 1.2;
   margin-bottom: 15px;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
+  cursor: pointer; /* Change cursor to pointer to indicate interactivity */
+  transform-origin: center; /* Ensure the text shrinks from the middle */
+  width: 40%;
+}
+
+.MainColumnTextWrap h1:hover {
+  color: #9f0505; /* Change color on hover */
+  transform: scale(0.95); /* Slightly shrink the text from the center */
+  text-decoration: underline; /* Add underline on hover */
 }
 
 .MainColumnTextWrap h6 {
@@ -87,6 +97,7 @@
 @media (max-width: 768px) {
   .MainColumnTextWrap h1 {
     font-size: 1.75rem;
+    width: 100%;
   }
 
   .MainColumnTextWrap h6 {

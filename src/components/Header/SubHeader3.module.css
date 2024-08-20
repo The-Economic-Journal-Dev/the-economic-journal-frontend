@@ -29,9 +29,6 @@
     transition: color 0.3s;
 }
 
-.HeaderNav ul li a:hover {
-    color: #d35400;
-}
 
 /* Menu Toggle Button */
 .menuToggle {

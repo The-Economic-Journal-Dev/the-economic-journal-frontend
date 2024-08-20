@@ -9,8 +9,7 @@ main{
     grid-template-columns:300px 800px;
     grid-template-areas: auto;
     margin-inline: auto;
-    margin-top: 50px;
-    padding: 22vh 0 22vh 0
+    padding: 15vh 0 25vh 0
 }
 
 .page{
@@ -30,3 +29,24 @@ main{
     color: gray;
 }
 
+@media (max-width: 768px) {
+    .pageWrap {
+      grid-template-columns: 1fr;
+      padding: 20px 10%;
+    }
+  
+    .page {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      width: 100%;
+    }
+  
+    .infoContainer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .info {
+      margin-bottom: 10px;
+    }
+  }
