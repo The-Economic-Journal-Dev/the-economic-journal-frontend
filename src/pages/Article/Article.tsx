@@ -18,6 +18,39 @@ interface IArticleData  {
   likesCount: number;
 }
 
+const SideColumn = ({category}: { category: string}) => {
+  const [apiData, setAPIData] = useState<IArticleData[]>([]);
+  const url = `https://api.theeconomicjournal.org/articles?includeText=true&category=${category}`;
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch(url);
+        const posts = (await response.json()).articles as IArticleData[];
+
+        setAPIData(posts);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  return (
+    <aside className={style.SideBar}>
+      <h3>Read more articles here</h3>
+        <div className={style.SideBarArticle}>
+              <img
+                src={apiData[1].imageUrl}
+                alt="Sidebar Article"
+              />
+            <p>{apiData[1].summary}</p>
+        </div>
+            {/* Add more articles similarly */}
+    </aside>)
+}
+
 const ArticlePage = () => {
   const { metaTitle } = useParams<{ metaTitle: string }>();
   const [articleData, setArticleData] = useState<any>(null); // Adjust type as needed
@@ -135,17 +168,7 @@ const ArticlePage = () => {
             </p>
           </div>
 
-          <aside className={style.SideBar}>
-            <h3>Read more articles here</h3>
-            <div className={style.SideBarArticle}>
-              <img
-                src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
-                alt="Sidebar Article"
-              />
-              <p>Lorem ipsum dolor sit amet, consectetur</p>
-            </div>
-            {/* Add more articles similarly */}
-          </aside>
+          <SideColumn category={articleData.category}/>
         </div>
       </div>
     </div>
