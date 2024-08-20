@@ -1,11 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useQuill } from "react-quilljs";
+import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import Soft404 from "../../components/Head/soft-404";
 import Post from "./Components/Post";
 import OptionSelector from "./Components/OptionSelector";
 import style from "./ModPage.module.css";
 import Delete from "./Components/Delete";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 
 
@@ -19,11 +18,17 @@ const ModPage = () => {
 
   return (
     <main className={style.modForm}>
-      <Soft404/>
+      <HelmetProvider>
+        <Helmet>
+          <title>Modpage</title>
+          <meta name="robots" content="follow, noarchive, noindex" />
+        </Helmet>
+      </HelmetProvider>
+    
       <OptionSelector options={options}
           optionChose={optionChose}
           optionPressed={optionPressed}/>
-
+      
       {optionChose == "Post" && (
           <Post />
         )}

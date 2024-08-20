@@ -11,3 +11,8 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.quillContainer{
+    width: 1000px;
+    height: 500px;
+}

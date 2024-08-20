@@ -2,21 +2,23 @@
     flex-direction: column;
     min-height: 100vh;
 }
-.SubColumn{
-    width:27%;
+
+.SubColumn {
+    width: 27%;
     display: flex;
     flex-direction: column;
 }
-.PostAreaWrap{
+
+.PostAreaWrap {
     background-color: white;
     min-height: 80vh;
     width: 80vw;
-    padding:2% 1% 2% 1%;
+    padding: 2% 1%;
     display: flex;
     justify-content: center;
 }
 
-.PostArea{
+.PostArea {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,38 +26,38 @@
     min-height: 99%;
 }
 
-.ColumnDivider{
+.ColumnDivider {
     height: 90%;
     min-width: 1px;
     background-color: #E4D3BE;
 }
 
-.ContentSeparator{
+.ContentSeparator {
     margin-inline: auto;
     background-color: #E4D3BE;
-    width:60%;
+    width: 60%;
     height: 1px;
 }
 
-.SectionDivider{
+.SectionDivider {
     width: 65vw;
     height: 1px;
     background-color: #E4D3BE;
-    margin-inline:auto;
+    margin-inline: auto;
     margin-bottom: 1%;
 }
 
-.TrendingWrap{
-    margin-inline:auto;
-    display:flex;
+.TrendingWrap {
+    margin-inline: auto;
+    display: flex;
     align-items: center;
-    padding: 0 2% 2% 2%;
+    padding: 0 2%;
     flex-direction: column;
     height: auto;
     width: 68vw;
 }
 
-.TrendingContentWrap{
+.TrendingContentWrap {
     width: 98%;
     display: flex;
     flex-direction: row;
@@ -63,20 +65,20 @@
     justify-content: space-between;
 }
 
-.TrendingPost{
+.TrendingPost {
     width: 30%;
 }
 
-.TrendingPost img{
+.TrendingPost img {
     width: 100%;
 }
 
-.TrendingTextWrap{
+.TrendingTextWrap {
     text-align: center;
     margin-top: 5%;
 }
 
-.TrendingTextWrap h4{
+.TrendingTextWrap h4 {
     font-size: 1.8em;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
@@ -84,17 +86,17 @@
     margin-bottom: 2%;
 }
 
-.TrendingTextWrap h5{
+.TrendingTextWrap h5 {
     font-size: 0.9em;
     color: #9F0505;
     margin-bottom: 0;
 }
 
-.TrendingTextWrap h6{
+.TrendingTextWrap h6 {
     width: 100%;
     font-size: 0.8em;
     font-family: 'Times New Roman', Times, serif;
-    color:#929292;
+    color: #929292;
     line-height: 1.2;
 }
 
@@ -105,7 +107,7 @@
     margin-bottom: 2%;
 }
 
-.TrendingTitleWrap h1{
+.TrendingTitleWrap h1 {
     font-family: 'Times New Roman', Times, serif;
     font-size: 2rem;
     font-weight: 600;
@@ -113,7 +115,7 @@
     margin: 0;
 }
 
-.TrendingTitleWrap .TrendingTextDecoration{
+.TrendingTitleWrap .TrendingTextDecoration {
     position: absolute;
     z-index: -5;
     width: 45%;
@@ -122,15 +124,16 @@
 @media (max-width: 768px) {
     .PostArea {
         flex-direction: column;
+        align-items: center; /* Center align content */
     }
 
     .MainColumn, .SubColumn {
         width: 100%;
-        margin-bottom: 20px; /* Space between column */
+        margin-bottom: 20px; /* Space between columns */
     }
 
     .ColumnDivider {
-        display: none;
+        display: none; /* Hide column dividers on smaller screens */
     }
 
     .SectionDivider, .ContentSeparator {
@@ -140,6 +143,7 @@
 
     .TrendingContentWrap {
         flex-direction: column;
+        align-items: center; /* Center align content */
     }
 
     .TrendingPost {
@@ -147,7 +151,25 @@
         margin-bottom: 20px; /* Add some space between trending posts */
     }
 
-    .TrendingTitleWrap img{
+    .TrendingTitleWrap img {
         display: none;
+    }
 }
+
+@media (max-width: 480px) {
+    .TrendingTextWrap h4 {
+        font-size: 1.5em;
+    }
+
+    .TrendingTextWrap h5 {
+        font-size: 0.8em;
+    }
+
+    .TrendingTextWrap h6 {
+        font-size: 0.7em;
+    }
+
+    .SectionDivider, .ContentSeparator {
+        width: 95%;
+    }
 }
