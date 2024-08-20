@@ -14,6 +14,7 @@ import NotFound from "./pages/Errors/NotFound.tsx";
 import ArticlePage from "./pages/Article/Article";
 import Article from "./pages/Article/Article";
 import Layout from "./components/Layout/Layout.tsx";
+import PasswordReset from "./pages/PasswordReset/PasswordReset.tsx";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
     path: '*',
     element: <NotFound />,
   },
+
+  {
+    path: "passwordreset",
+    element: <PasswordReset />
+  }
     ],
   },
   
