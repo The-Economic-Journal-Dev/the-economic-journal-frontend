@@ -254,12 +254,13 @@ const Post = () => {
         />
 
         <label htmlFor="summary">Summary</label>
-        <input
-          type="text"
+        <textarea
           name="summary"
           value={inputData.summary}
           onChange={handleInput}
         />
+
+
 
         <label htmlFor="metaTitle">Meta Title</label>
         <input
@@ -275,7 +276,7 @@ const Post = () => {
         </div>
 
         <label htmlFor="articleBody">Content</label>
-        <div className={style.quillContainer}>
+        <div>
           <ReactQuill
           theme="snow"
           value={inputData.articleBody}
