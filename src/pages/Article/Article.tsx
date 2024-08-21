@@ -67,6 +67,37 @@ const ArticlePage = () => {
   const [likes, setLikes] = useState<number>(0);
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const navigate = useNavigate();
+
+  const handleLikeUnlike = async () => {
+    if (currentUser) {
+      navigate("/signin")
+    }
+
+    try {
+      const method = isLiked ? "DELETE" : "POST";
+      const response = await fetch(
+        `https://api.theeconomicjournal.org/articles/${articleData.metaTitle}/like`,
+        {
+          method: method,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to ${isLiked ? "unlike" : "like"} the article`);
+      }
+
+      const updatedArticle = await response.json();
+      setLikes(updatedArticle.likesCount);
+      setIsLiked(!isLiked);
+    } catch (error) {
+      console.error(
+        `Error ${isLiked ? "unliking" : "liking"} the article:`,
+        error
+      );
+      // Optionally, you can set an error state or show a notification to the user
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -134,37 +165,6 @@ const ArticlePage = () => {
     fetchArticleData();
   }, [metaTitle]);
 
-  const handleLikeUnlike = async () => {
-    if (currentUser) {
-      const navigate = useNavigate();
-      navigate("/signin")
-    }
-
-    try {
-      const method = isLiked ? "DELETE" : "POST";
-      const response = await fetch(
-        `https://api.theeconomicjournal.org/articles/${articleData.metaTitle}/like`,
-        {
-          method: method,
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Failed to ${isLiked ? "unlike" : "like"} the article`);
-      }
-
-      const updatedArticle = await response.json();
-      setLikes(updatedArticle.likesCount);
-      setIsLiked(!isLiked);
-    } catch (error) {
-      console.error(
-        `Error ${isLiked ? "unliking" : "liking"} the article:`,
-        error
-      );
-      // Optionally, you can set an error state or show a notification to the user
-    }
-  };
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -204,7 +204,7 @@ const ArticlePage = () => {
                 onClick={handleLikeUnlike}
                 className={`${style.LikeButton} ${isLiked ? style.Liked : ""}`}
               >
-                {isLiked ? "Unlike" : "Like"} ({likes})
+                {isLiked ? "Unlike" : "Like"} {likes}
               </button>
             </div>
             <p className={style.ArticleContent}>
