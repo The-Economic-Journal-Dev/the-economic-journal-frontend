@@ -204,7 +204,7 @@ const ArticlePage = () => {
                 onClick={handleLikeUnlike}
                 className={`${style.LikeButton} ${isLiked ? style.Liked : ""}`}
               >
-                {isLiked ? "Unlike" : "Like"} ({likes})
+                {isLiked ? "Unlike" : "Like"} {likes}
               </button>
             </div>
             <p className={style.ArticleContent}>
