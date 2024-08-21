@@ -297,13 +297,13 @@ const Post = () => {
         </div>
 
         <label htmlFor="articleBody">Content</label>
-        <div className={style.quillContainer}>
+        {/* <div className={style.quillContainer}> */}
           <ReactQuill
             theme="snow"
             value={inputData.articleBody}
             onChange={handleEditorChange}
           />
-        </div>
+        {/* </div> */}
 
         {true && (
           <>
