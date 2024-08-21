@@ -1,8 +1,10 @@
 import style from "./Article.module.css";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { redirect, useNavigate, useParams } from "react-router-dom";
 import { Interweave } from "interweave";
 import { auth } from "../../firebase";
+import { User } from "firebase/auth";
+
 
 // TypeScript interface to define the schema fields for Article
 interface IArticleData {
@@ -64,6 +66,21 @@ const ArticlePage = () => {
   const [authorName, setAuthorName] = useState<string>("");
   const [likes, setLikes] = useState<number>(0);
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
+    });
+
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
 
   useEffect(() => {
     // Fetch the article data from the API
@@ -118,6 +135,11 @@ const ArticlePage = () => {
   }, [metaTitle]);
 
   const handleLikeUnlike = async () => {
+    if (currentUser) {
+      const navigate = useNavigate();
+      navigate("/signin")
+    }
+
     try {
       const method = isLiked ? "DELETE" : "POST";
       const response = await fetch(
