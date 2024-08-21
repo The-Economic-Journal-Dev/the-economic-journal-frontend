@@ -1,12 +1,80 @@
 import style from "./SubHeader2.module.css"
 import houseLogo from "../../../public/house_icon.jpg";
 import { auth } from "../../firebase";
+import { useEffect, useState } from "react";
+import { User } from "firebase/auth";
+
+// TypeScript interface to define the schema fields for Article
+interface IArticleData  {
+  authorUid: string;
+  title: string;
+  metaTitle: string;
+  datePublished: Date;
+  lastUpdated: Date;
+  imageUrl?: string;
+  summary?: string;
+  articleBody: string;
+  category: "Finance" | "Economic" | "Business" | "Entrepreneurship";
+  likesCount: number;
+}
+
+const SearchButton: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const toggleSearchBar = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleSearch = async () => {
+    if (searchQuery.trim()) {
+      const response = await fetch(`https://api.theeconomicjournal.org/articles/search?search=${searchQuery}`);
+      const posts = (await response.json()).articles as IArticleData[];
+
+      console.log(posts)
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  return (
+    <div className={style.searchContainer}>
+      <button className={style.searchBTN} onClick={toggleSearchBar}>
+        <i className="fa-solid fa-magnifying-glass"></i>
+      </button>
+      {isExpanded && (
+        <input
+          type="text"
+          className={style.searchInput}
+          placeholder="Not available..."
+          // value={searchQuery}
+          // onChange={(e) => setSearchQuery(e.target.value)}
+          // onKeyDown={handleKeyDown}
+        />
+      )}
+    </div>
+  );
+};
 
 function SubHeader2() {
-  // NOTE: UNCOMMENT THIS WHEN YOU NEED TO
-  //ok
-  const photoURL = auth.currentUser?.photoURL
-  const user = auth.currentUser
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
+    });
+
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className={style.SubHeader2}>
@@ -24,9 +92,9 @@ function SubHeader2() {
         </div>
       </a>
       <div className={style.authSearch}>
-        {user == null && <a href="./signin">Sign in</a>}
-        {user != null && !photoURL &&(
-          <a href="./Profile">
+        {!currentUser && <a href="./signin">Sign in</a>}
+        {currentUser && !currentUser?.photoURL &&(
+          <a href="./profile">
             <img
               src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
               alt=""
@@ -34,18 +102,16 @@ function SubHeader2() {
           </a>
         )}
 
-        {user != null && photoURL && (
-          <a href="./Profile">
+        {currentUser && currentUser.photoURL && (
+          <a href="./profile">
             <img
-              src={photoURL}
+              src={currentUser.photoURL}
               alt=""
             />
           </a>
         )}
         <span className={style.separator}></span>
-        <button className={style.searchBTN}>
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </button>
+        <SearchButton />
       </div>
     </div>
   );

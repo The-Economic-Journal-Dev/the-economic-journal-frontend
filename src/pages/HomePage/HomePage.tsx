@@ -3,12 +3,12 @@ import style from "./HomePage.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import { TrendingTitleDecoration } from "./components/TrendingTitleDecoration.tsx";
-import MainColumn from "./components/MainColumn.tsx"
+import MainColumn from "./components/MainColumn.tsx";
 import { SubColumn, SubColumnWithImage } from "./components/SubColumns.tsx";
 import { auth } from "../../firebase.tsx";
 
 // TypeScript interface to define the schema fields for Article
-interface IArticleData  {
+interface IArticleData {
   authorUid: string;
   title: string;
   metaTitle: string;
@@ -46,7 +46,7 @@ function HomePage() {
       <Body>
         <div className={style.PostAreaWrap}>
           <div className={style.PostArea}>
-            <MainColumn article={apiData[0] || ""}/>
+            <MainColumn article={apiData[0] || ""} />
 
             <span className={style.ColumnDivider}></span>
 
@@ -83,6 +83,8 @@ function HomePage() {
 
       <div className={style.TrendingWrap}>
         <div className={style.TrendingTitleWrap}>
+          <TrendingTitleDecoration />
+          <h1>Trending</h1>
           <TrendingTitleDecoration />
         </div>
 
@@ -141,7 +143,6 @@ function HomePage() {
       </div>
 
       {/* <div className={style.SectionDivider}></div> */}
-
     </div>
   );
 }

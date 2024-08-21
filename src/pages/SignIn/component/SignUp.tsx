@@ -1,10 +1,13 @@
 import { useState, FormEvent } from "react";
 import style from "./SignUp.module.css";
-import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 import { auth, googleProvider } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import googleLogo from "../../../../public/google_icon.png";
-
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -17,32 +20,36 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   /**
- * Signs up a new user with email, password, and username, and updates the user's profile.
- * 
- * @param {string} email - The user's email address.
- * @param {string} password - The user's password.
- * @param {string} username - The user's username.
- * 
- * @returns {Promise<void>} A promise that resolves when the user is signed up and the profile is updated.
- * 
- * @throws {Error} If the sign-up or profile update fails.
- */
+   * Signs up a new user with email, password, and username, and updates the user's profile.
+   *
+   * @param {string} email - The user's email address.
+   * @param {string} password - The user's password.
+   * @param {string} username - The user's username.
+   *
+   * @returns {Promise<void>} A promise that resolves when the user is signed up and the profile is updated.
+   *
+   * @throws {Error} If the sign-up or profile update fails.
+   */
   const signUp = async (email: string, password: string, username: string) => {
     try {
-    // Create user with email and password
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    
-    // Extract the user object from the userCredential
-    const user = userCredential.user;
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-    // Update the user's profile with the username
-    await updateProfile(user, { displayName: username });
+      // Extract the user object from the userCredential
+      const user = userCredential.user;
 
-    console.log('User signed up and profile updated successfully');
-  } catch (error) {
-    console.error('Error signing up user:', error);
-    throw new Error('Error signing up user');
-  }
+      // Update the user's profile with the username
+      await updateProfile(user, { displayName: username });
+
+      console.log("User signed up and profile updated successfully");
+    } catch (error) {
+      console.error("Error signing up user:", error);
+      throw new Error("Error signing up user");
+    }
   };
 
   const confirmPasswordIsSimilar = () => {
@@ -81,17 +88,17 @@ const SignUp = () => {
     //Reset states to remove unecessary error messages
     setConfirmPasswordSimilar(true);
     setConfirmPasswordSimilar(true);
-    setError("")
+    setError("");
 
     hasUserFilledAllInputs();
     confirmPasswordIsSimilar();
     if (hasUserFilledAllInputs() && confirmPasswordIsSimilar()) {
       try {
         await signUp(email, password, username);
-        navigate("/home")
+        navigate("/home");
       } catch (error: any) {
-        if (error.code == "auth/email-already-in-use"){
-            setError("Email is already in use")
+        if (error.code == "auth/email-already-in-use") {
+          setError("Email is already in use");
         }
       }
     }
@@ -99,11 +106,8 @@ const SignUp = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>
-        Sign{" "}
-        <span>
-          <div>up</div>
-        </span>
+      <h1 className={style.signUpTitle}>
+        Sign<span>up</span>
       </h1>
       <div className={style.inputHeader}>Name</div>
       <input

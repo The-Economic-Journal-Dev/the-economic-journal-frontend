@@ -1,9 +1,9 @@
 import { useState, FormEvent } from "react";
 import style from "./Login.module.css";
 import { auth, googleProvider } from "../../../firebase";
-import { signInWithEmailAndPassword , signInWithPopup} from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import googleLogo from "../../../../public/google_icon.png"
+import googleLogo from "../../../../public/google_icon.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,20 +20,20 @@ const Login = () => {
   };
 
   const hasUserFilledAllInputs = () => {
-    if (email != "" && password != ""){
-      setUserFilledAllInputs(true)
-      return true
-    } else{
-      setUserFilledAllInputs(false)
+    if (email != "" && password != "") {
+      setUserFilledAllInputs(true);
+      return true;
+    } else {
+      setUserFilledAllInputs(false);
       setWrongCredentials(false);
-      return false
+      return false;
     }
   };
 
   const signUpWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate("/home")
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +52,7 @@ const Login = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <h1>
+      <h1 className={style.loginTitle}>
         Sign <span>in</span>
       </h1>
       <div className={style.inputHeader}>Email</div>
@@ -63,14 +63,6 @@ const Login = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <div className={style.inputHeader}>Name</div>
-      <input
-        type="text"
-        placeholder="Name"
-        name="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
       <div className={style.inputHeader}>Password</div>
       <input
         type="password"
@@ -80,7 +72,7 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <div className={style.forgotPassword}>
-        <a href="#">Forgot password?</a>
+        <a href="./passwordreset">Forgot password?</a>
       </div>
 
       {!userFilledAllInputs && (

@@ -1,175 +1,158 @@
 .pageWrap {
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.SubColumn {
-    width: 27%;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f5f5;
 }
 
 .PostAreaWrap {
     background-color: white;
     min-height: 80vh;
-    width: 80vw;
-    padding: 2% 1%;
-    display: flex;
-    justify-content: center;
+    width: 95%;
+    max-width: 1600px; /* Increased max-width for wider content */
+    margin: 2rem auto;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
 .PostArea {
+    display: grid;
+    grid-template-columns: 3fr 1px 1fr 1px 1fr;
+    gap: 2rem;
+}
+
+.SubColumn {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    min-width: 99%;
-    min-height: 99%;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .ColumnDivider {
-    height: 90%;
-    min-width: 1px;
-    background-color: #E4D3BE;
-}
-
-.ContentSeparator {
-    margin-inline: auto;
-    background-color: #E4D3BE;
-    width: 60%;
-    height: 1px;
+    height: 100%;
+    background-color: #e0e0e0;
 }
 
 .SectionDivider {
-    width: 65vw;
+    width: 95%;
+    max-width: 1600px; /* Match PostAreaWrap max-width */
     height: 1px;
-    background-color: #E4D3BE;
-    margin-inline: auto;
-    margin-bottom: 1%;
+    background-color: #e0e0e0;
+    margin: 3rem auto;
 }
 
+/* Trending section styles remain the same */
 .TrendingWrap {
-    margin-inline: auto;
-    display: flex;
-    align-items: center;
-    padding: 0 2%;
-    flex-direction: column;
-    height: auto;
-    width: 68vw;
-}
-
-.TrendingContentWrap {
-    width: 98%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.TrendingPost {
-    width: 30%;
-}
-
-.TrendingPost img {
-    width: 100%;
-}
-
-.TrendingTextWrap {
-    text-align: center;
-    margin-top: 5%;
-}
-
-.TrendingTextWrap h4 {
-    font-size: 1.8em;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    color: #645236;
-    margin-bottom: 2%;
-}
-
-.TrendingTextWrap h5 {
-    font-size: 0.9em;
-    color: #9F0505;
-    margin-bottom: 0;
-}
-
-.TrendingTextWrap h6 {
-    width: 100%;
-    font-size: 0.8em;
-    font-family: 'Times New Roman', Times, serif;
-    color: #929292;
-    line-height: 1.2;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
 }
 
 .TrendingTitleWrap {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2%;
+    margin-bottom: 2rem;
 }
 
 .TrendingTitleWrap h1 {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #9F0505;
-    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    position: relative;
 }
 
-.TrendingTitleWrap .TrendingTextDecoration {
+.TrendingTitleWrap h1::after {
+    content: '';
     position: absolute;
-    z-index: -5;
-    width: 45%;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: #9F0505;
 }
 
-@media (max-width: 768px) {
+.TrendingContentWrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.TrendingPost {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.TrendingPost:hover {
+    transform: translateY(-5px);
+}
+
+.TrendingPost img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.TrendingTextWrap {
+    padding: 1.5rem;
+}
+
+.TrendingTextWrap h5 {
+    font-size: 0.9rem;
+    color: #9F0505;
+    margin-bottom: 0.5rem;
+}
+
+.TrendingTextWrap h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.TrendingTextWrap h6 {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+@media (max-width: 1200px) {
     .PostArea {
-        flex-direction: column;
-        align-items: center; /* Center align content */
+        grid-template-columns: 1fr 1px 1fr;
     }
 
-    .MainColumn, .SubColumn {
-        width: 100%;
-        margin-bottom: 20px; /* Space between columns */
-    }
-
-    .ColumnDivider {
-        display: none; /* Hide column dividers on smaller screens */
-    }
-
-    .SectionDivider, .ContentSeparator {
-        width: 90%;
-        margin: 10px auto; 
-    }
-
-    .TrendingContentWrap {
-        flex-direction: column;
-        align-items: center; /* Center align content */
-    }
-
-    .TrendingPost {
-        width: 100%;
-        margin-bottom: 20px; /* Add some space between trending posts */
-    }
-
-    .TrendingTitleWrap img {
+    .SubColumn:last-child {
         display: none;
     }
 }
 
+@media (max-width: 768px) {
+    .PostArea {
+        grid-template-columns: 1fr;
+    }
+
+    .ColumnDivider {
+        display: none;
+    }
+
+    .TrendingContentWrap {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 480px) {
-    .TrendingTextWrap h4 {
-        font-size: 1.5em;
-    }
-
-    .TrendingTextWrap h5 {
-        font-size: 0.8em;
-    }
-
-    .TrendingTextWrap h6 {
-        font-size: 0.7em;
-    }
-
-    .SectionDivider, .ContentSeparator {
+    .PostAreaWrap, .TrendingWrap {
         width: 95%;
+        padding: 1rem;
+    }
+
+    .TrendingTitleWrap h1 {
+        font-size: 2rem;
     }
 }
