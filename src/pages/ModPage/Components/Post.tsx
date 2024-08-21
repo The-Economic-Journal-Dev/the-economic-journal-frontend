@@ -1,13 +1,15 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import ReactQuill from 'react-quill';
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import style from "./Post.module.css";
 import Converter from "./Converter";
 import { auth } from "../../../firebase";
 
 const WebsiteSelector = ({
+  selectedValue,
   onSelectChange,
 }: {
+  selectedValue: string;
   onSelectChange: (value: string) => void;
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -16,7 +18,7 @@ const WebsiteSelector = ({
   };
 
   return (
-    <select onChange={handleChange}>
+    <select value={selectedValue} onChange={handleChange}>
       <option value="">Select page</option>
       <option value="Finance">Finance</option>
       <option value="Economic">Economic</option>
@@ -27,9 +29,11 @@ const WebsiteSelector = ({
 };
 
 const PositionSelector = ({
+  selectedValue,
   options,
   onSelectChange,
 }: {
+  selectedValue: string;
   options: string[];
   onSelectChange: (value: string | number) => void;
 }) => {
@@ -39,7 +43,7 @@ const PositionSelector = ({
   };
 
   return (
-    <select onChange={handleSelectChange}>
+    <select value={selectedValue} onChange={handleSelectChange}>
       <option value="">Select position</option>
       {options.map((option, index) => (
         <option key={index} value={option}>
@@ -51,18 +55,29 @@ const PositionSelector = ({
 };
 
 export const PostSelector = ({
+  selectedWebsite,
+  selectedPosition,
   onWebsiteChange,
   options,
   onPositionChange,
 }: {
+  selectedWebsite: string;
+  selectedPosition: string;
   onWebsiteChange: (value: string) => void;
   options: string[];
   onPositionChange: (value: string | number) => void;
 }) => {
   return (
     <div className={style.postSelector}>
-      <WebsiteSelector onSelectChange={onWebsiteChange} />
-      <PositionSelector options={options} onSelectChange={onPositionChange} />
+      <WebsiteSelector
+        selectedValue={selectedWebsite}
+        onSelectChange={onWebsiteChange}
+      />
+      <PositionSelector
+        selectedValue={selectedPosition}
+        options={options}
+        onSelectChange={onPositionChange}
+      />
     </div>
   );
 };
@@ -82,37 +97,48 @@ interface InputData {
 }
 
 const Post = () => {
-  const [targetPage, setTargetPage] = useState("");
-  const [targetPosition, setTargetPosition] = useState("");
+  const [targetPage, setTargetPage] = useState(() => {
+    return localStorage.getItem("targetPage") || "";
+  });
+  const [targetPosition, setTargetPosition] = useState(() => {
+    return localStorage.getItem("targetPosition") || "";
+  });
   const [options, setOptions] = useState<string[]>([]);
   const [hasImage, setHasImage] = useState(false);
   const [inputData, setInputData] = useState<InputData>(() => {
-    // Try to get the saved data from local storage
-    const savedData = localStorage.getItem('articleData');
-    return savedData ? JSON.parse(savedData) : {
-      title: "",
-      summary: "",
-      metaTitle: "",
-      articleBody: "",
-    };
+    const savedData = localStorage.getItem("articleData");
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          title: "",
+          summary: "",
+          metaTitle: "",
+          articleBody: "",
+        };
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState("");
   const [posted, setPosted] = useState(false);
 
-  // Save to local storage whenever inputData changes
   useEffect(() => {
-    localStorage.setItem('articleData', JSON.stringify(inputData));
+    localStorage.setItem("articleData", JSON.stringify(inputData));
   }, [inputData]);
+
+  useEffect(() => {
+    localStorage.setItem("targetPage", targetPage);
+  }, [targetPage]);
+
+  useEffect(() => {
+    localStorage.setItem("targetPosition", targetPosition);
+  }, [targetPosition]);
 
   const handleEditorChange = (value: string) => {
     setInputData((prevState) => ({
       ...prevState,
-      articleBody: value, // Update the articleBody field
+      articleBody: value,
     }));
   };
 
-  //Dynamically changing the input boxes to match the post content
   const dynamicInputs = (pageOption: string, positionOption: string) => {
     if (
       ["Finance", "Economic", "Business", "Entrepreneur"].includes(pageOption)
@@ -125,10 +151,8 @@ const Post = () => {
 
   const handleWebsiteChange = (option: string) => {
     setTargetPage(option);
-
     setTargetPosition("");
 
-    // Update the options for the second dropdown based on the selected option
     if (option === "HomePage") {
       setOptions([
         "Main col 1",
@@ -150,18 +174,16 @@ const Post = () => {
       setOptions([]);
     }
 
-    dynamicInputs(targetPage, "");
+    dynamicInputs(option, "");
   };
 
   const handlePositionChange = (position: string | number) => {
-    //Dynamically changing the inputs based on the page and position chose
     dynamicInputs(targetPage, position.toString());
 
-    const positionIndex = options.indexOf(position.toString()); //Getting the custom index of position on the page to send to API
+    const positionIndex = options.indexOf(position.toString());
     setTargetPosition((positionIndex + 1).toString());
   };
 
-  //Collect form data
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setInputData((prevState) => ({
@@ -176,8 +198,6 @@ const Post = () => {
     }
   };
 
-  //Send data to API
-
   const postData = async (myPostData: FormData) => {
     const url = "https://api.theeconomicjournal.org/articles";
     const token = await auth.currentUser?.getIdToken();
@@ -191,7 +211,6 @@ const Post = () => {
         body: myPostData,
       });
 
-      //Log the response status and body for debugging
       const responseBody = await response.json();
       console.log(response);
 
@@ -212,10 +231,8 @@ const Post = () => {
     }
   };
 
-  //Handle Submit
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(`Submit`)
 
     const formData = new FormData();
     formData.append("title", inputData.title);
@@ -240,6 +257,8 @@ const Post = () => {
     <>
       <form onSubmit={handleSubmit} className={style.modForm}>
         <PostSelector
+          selectedWebsite={targetPage}
+          selectedPosition={targetPosition}
           onWebsiteChange={handleWebsiteChange}
           options={options}
           onPositionChange={handlePositionChange}
@@ -272,18 +291,20 @@ const Post = () => {
 
         <label htmlFor="articleDocxUpload">Upload .docx Instead</label>
         <div>
-          <Converter inputData={inputData} handleEditorChange={handleEditorChange}></Converter>
+          <Converter
+            inputData={inputData}
+            handleEditorChange={handleEditorChange}
+          ></Converter>
         </div>
 
         <label htmlFor="articleBody">Content</label>
         <div>
           <ReactQuill
-          theme="snow"
-          value={inputData.articleBody}
-          onChange={handleEditorChange}
+            theme="snow"
+            value={inputData.articleBody}
+            onChange={handleEditorChange}
           />
-        </div>
-        
+        {/* </div> */}
 
         {true && (
           <>

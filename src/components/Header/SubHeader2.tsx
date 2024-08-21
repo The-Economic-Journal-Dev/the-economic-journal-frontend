@@ -1,8 +1,8 @@
 import style from "./SubHeader2.module.css"
 import houseLogo from "../../../public/house_icon.jpg";
 import { auth } from "../../firebase";
-import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
+import { useEffect, useState } from "react";
 
 // TypeScript interface to define the schema fields for Article
 interface IArticleData  {
@@ -92,7 +92,7 @@ function SubHeader2() {
         </div>
       </a>
       <div className={style.authSearch}>
-        {!currentUser && <a href="./signin">Sign in</a>}
+        {!currentUser && <a href="/signin">Sign in</a>}
         {currentUser && !currentUser?.photoURL &&(
           <a href="./profile">
             <img
