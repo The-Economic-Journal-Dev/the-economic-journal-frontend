@@ -233,7 +233,6 @@ const Post = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(`Submit`);
 
     const formData = new FormData();
     formData.append("title", inputData.title);

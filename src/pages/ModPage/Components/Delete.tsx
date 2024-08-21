@@ -193,10 +193,12 @@ const Delete = () => {
       console.error("Failed to delete data:", error);
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit} className={style.deleteWrap}>
       <PostSelector
+        selectedWebsite={targetPage}
+        selectedPosition={targetPosition.toString()}
         onWebsiteChange={handleWebsiteChange}
         options={options}
         onPositionChange={handlePositionChange}
