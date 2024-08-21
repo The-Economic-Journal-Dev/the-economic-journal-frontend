@@ -25,13 +25,13 @@ interface IArticleData {
 function HomePage() {
   const [apiData, setAPIData] = useState<IArticleData[]>([]);
   const url = "https://api.theeconomicjournal.org/articles?includeText=true";
-
+  
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(url);
         const posts = (await response.json()).articles as IArticleData[];
-
+        
         setAPIData(posts);
       } catch (error) {
         console.error("Error fetching posts:", error);
