@@ -92,7 +92,7 @@ function SubHeader2() {
         </div>
       </a>
       <div className={style.authSearch}>
-        {!currentUser && <a href="./signin">Sign in</a>}
+        {!currentUser && <a href="/signin">Sign in</a>}
         {currentUser && !currentUser?.photoURL &&(
           <a href="./profile">
             <img
