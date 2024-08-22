@@ -7,7 +7,8 @@
 
 .PostAreaWrap {
     background-color: white;
-    min-height: 80vh;
+    min-height: 100vh; /* Ensure this wraps content initially */
+    height: auto; /* Allow it to expand based on content */
     width: 95%;
     max-width: 1600px; /* Increased max-width for wider content */
     margin: 2rem auto;
@@ -32,6 +33,7 @@
 .ColumnDivider {
     height: 100%;
     background-color: #e0e0e0;
+    max-width: 3px;
 }
 
 .SectionDivider {
@@ -127,9 +129,7 @@
         grid-template-columns: 1fr 1px 1fr;
     }
 
-    .SubColumn:last-child {
-        display: none;
-    }
+
 }
 
 @media (max-width: 768px) {
