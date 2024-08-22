@@ -5,6 +5,13 @@ import style from "./Post.module.css";
 import Converter from "./Converter";
 import { auth } from "../../../firebase";
 
+interface InputData {
+  title: string;
+  summary: string;
+  metaTitle: string;
+  articleBody: string;
+}
+
 const WebsiteSelector = ({
   selectedValue,
   onSelectChange,
@@ -82,18 +89,11 @@ export const PostSelector = ({
   );
 };
 
-function toTitleCase(str: String) {
+function toTitleCase(str: string) {
   return str.replace(
     /\w\S*/g,
     (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
   );
-}
-
-interface InputData {
-  title: string;
-  summary: string;
-  metaTitle: string;
-  articleBody: string;
 }
 
 const Post = () => {
@@ -184,7 +184,7 @@ const Post = () => {
     setTargetPosition((positionIndex + 1).toString());
   };
 
-  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = event.target;
     setInputData((prevState) => ({
       ...prevState,
@@ -203,6 +203,9 @@ const Post = () => {
     const token = await auth.currentUser?.getIdToken();
 
     try {
+      console.log(myPostData.forEach((item: any) => {
+        console.log(item)
+      }))
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -241,7 +244,7 @@ const Post = () => {
     formData.append("articleBody", inputData.articleBody);
     formData.append("category", toTitleCase(targetPage));
     formData.append("position", targetPosition);
-    if (true) {
+    if (hasImage) {
       if (imageFile) {
         formData.append("image", imageFile);
         postData(formData);
@@ -274,10 +277,13 @@ const Post = () => {
 
         <label htmlFor="summary">Summary</label>
         <textarea
-          name="summary"
-          value={inputData.summary}
-          onChange={handleInput}
+            id="summary"
+            name="summary"
+            className={style.wrappedInput}
+            onChange={handleInput}
+            value={inputData.summary}
         />
+
 
 
 
