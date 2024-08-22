@@ -1,4 +1,3 @@
-
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +51,9 @@ const Profile = () => {
 
             <div className={style.infoContainer}>
               <h6>Password:</h6>
-              <h6 className={style.info}>Password</h6>
+              <h6 className={style.info}>
+                Password <a href="./passwordreset">Reset Password</a>
+              </h6>
             </div>
             <button onClick={logOut}>Log Out</button>
           </div>

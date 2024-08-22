@@ -4,27 +4,36 @@ import { auth } from "../../firebase";
 
 function SubHeader3() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hasPermission, setHasPermission] = useState<Boolean>(false);
+  const [hasPermission, setHasPermission] = useState<boolean>(false);
+  const [authInitialized, setAuthInitialized] = useState<boolean>(false);
 
   useEffect(() => {
-    const CheckPermission = async () => {
-      const idToken = await auth.currentUser?.getIdTokenResult();
-
-      if (!idToken) return setHasPermission(false);
-
-      if (["writer", "admin"].includes(idToken.claims.role as string)) {
-        setHasPermission(true);
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const idToken = await user.getIdTokenResult();
+        if (["writer", "admin"].includes(idToken.claims.role as string)) {
+          setHasPermission(true);
+        } else {
+          setHasPermission(false);
+        }
       } else {
         setHasPermission(false);
       }
-    };
+      setAuthInitialized(true); // Set to true once auth state is checked
+    });
 
-    CheckPermission();
-  });
+    // Cleanup the listener on component unmount
+    return () => unsubscribe();
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  if (!authInitialized) {
+    // Optionally, you can return a loading state here while waiting for auth initialization
+    return null;
+  }
 
   return (
     <nav className={style.HeaderNav}>
@@ -47,12 +56,10 @@ function SubHeader3() {
         <li>
           <a href="/contact">Contact</a>
         </li>
-        {hasPermission ? (
+        {hasPermission && (
           <li>
             <a href="/modpage">Modpage</a>
           </li>
-        ) : (
-          ""
         )}
       </ul>
     </nav>
