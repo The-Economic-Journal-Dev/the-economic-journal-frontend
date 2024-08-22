@@ -98,12 +98,14 @@ function SubHeader2() {
             <img
               src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
               alt=""
+              loading="lazy" // Lazy load images for better performance
+              referrerPolicy="no-referrer"
             />
           </a>
         )}
 
         {currentUser && currentUser.photoURL && (
-          <a href="./profile">
+          <a href="/profile">
             <img
               src={currentUser.photoURL}
               alt=""
