@@ -126,23 +126,26 @@
 
 @media (max-width: 1200px) {
     .PostArea {
-        grid-template-columns: 1fr 1px 1fr;
-    }
-
-
-}
-
-@media (max-width: 768px) {
-    .PostArea {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column layout for PostArea */
     }
 
     .ColumnDivider {
-        display: none;
+        display: none; /* Hide column dividers */
     }
 
     .TrendingContentWrap {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column layout for TrendingContentWrap */
+    }
+}
+
+@media (max-width: 768px) {
+    .PostAreaWrap, .TrendingWrap {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .TrendingTitleWrap h1 {
+        font-size: 2rem;
     }
 }
 
@@ -153,6 +156,6 @@
     }
 
     .TrendingTitleWrap h1 {
-        font-size: 2rem;
+        font-size: 1.5rem; /* Adjust font size for very small screens */
     }
 }
