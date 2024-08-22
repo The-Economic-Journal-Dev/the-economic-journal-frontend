@@ -57,19 +57,21 @@ const SideColumn = ({category}: { category: string}) => {
     )
 }
 
-const ArticlePage = () => {
-  const { metaTitle } = useParams<{ metaTitle: string }>();
-  const [articleData, setArticleData] = useState<any>(null); // Adjust type as needed
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [lastDate, setLastDate] = useState<string>("");
-  const [authorName, setAuthorName] = useState<string>("");
+const LikeButton = ({ currentUser, metaTitle }: { currentUser: User | null, metaTitle: string }) => {
   const [likes, setLikes] = useState<number>(0);
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const navigate = useNavigate();
 
   const handleLikeUnlike = async () => {
+    if (!metaTitle){
+      return (<button
+      onClick={handleLikeUnlike}
+      className={style.LikeButton}
+    >
+      {"Like"} 0
+    </button>)
+    }
+
     if (currentUser) {
       navigate("/signin")
     }
@@ -77,7 +79,7 @@ const ArticlePage = () => {
     try {
       const method = isLiked ? "DELETE" : "POST";
       const response = await fetch(
-        `https://api.theeconomicjournal.org/articles/${articleData.metaTitle}/like`,
+        `https://localhost:3000/articles/${metaTitle}/like`,
         {
           method: method,
         }
@@ -99,6 +101,25 @@ const ArticlePage = () => {
     }
   };
 
+  return (
+    <button
+      onClick={handleLikeUnlike}
+      className={`${style.LikeButton} ${isLiked ? style.Liked : ""}`}
+    >
+      {isLiked ? "Unlike" : "Like"} {likes}
+    </button>
+  )
+}
+
+const ArticlePage = () => {
+  const { metaTitle } = useParams<{ metaTitle: string }>();
+  const [articleData, setArticleData] = useState<any>(null); // Adjust type as needed
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [lastDate, setLastDate] = useState<string>("");
+  const [authorName, setAuthorName] = useState<string>("");
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -118,14 +139,13 @@ const ArticlePage = () => {
     const fetchArticleData = async () => {
       try {
         const response = await fetch(
-          `https://api.theeconomicjournal.org/articles/${metaTitle}`
+          `https://locahost:3000/articles/${metaTitle}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const result = await response.json();
         setArticleData(result.article);
-        setLikes(result.article.likesCount);
         fetchUserName(result.article);
         updateLastDate(result.article);
       } catch (error) {
@@ -200,12 +220,7 @@ const ArticlePage = () => {
               <p>{lastDate}</p>
               <h1>{articleData.title}</h1>
               <strong>by -{authorName}-</strong>
-              <button
-                onClick={handleLikeUnlike}
-                className={`${style.LikeButton} ${isLiked ? style.Liked : ""}`}
-              >
-                {isLiked ? "Unlike" : "Like"} {likes}
-              </button>
+              <LikeButton currentUser={currentUser} metaTitle={metaTitle!}/>
             </div>
             <p className={style.ArticleContent}>
               <Interweave content={articleData.articleBody} />
