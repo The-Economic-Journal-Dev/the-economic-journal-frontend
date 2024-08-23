@@ -1,7 +1,7 @@
 .SubColumnImage {
   width: 100%;
   height: 100%;
-  max-height: 200px;
+  max-height: 250px;
   max-width: 400px;
   object-fit: cover;
   object-position: center;
@@ -9,15 +9,16 @@
 }
 
 .SubColumnTextWrap {
-  margin: 1% 0;
+  margin: 20px 20px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5; /* Limits text to 5 lines */
   overflow: hidden; /* Hides text overflow */
   text-overflow: ellipsis; /* Adds ellipsis if text overflows */
-  width: 100%; /* Ensure full width */
-  max-width: 400px;
-  height: 400px;
+  width: auto; /* Ensure full width */
+  max-width: 300px;
+  min-width: 200px;
+  height: 490px;
 }
 
 .SubColumnTextWrap h4,
@@ -28,7 +29,7 @@
 }
 
 .SubColumnTextWrap h4 {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   color: #645236;
@@ -52,7 +53,7 @@
 }
 
 .SubColumnTextWrap h6 {
-  font-size: 15px;
+  font-size: 20px;
   font-family: 'Times New Roman', Times, serif;
   color: #929292;
   line-height: 1.2;
@@ -116,7 +117,43 @@
   height: 50px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1550px) {
+  .SubColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust gap between items for small screens */
+  }
+
+  .SubColumnImage {
+    max-height: 700px; /* Adjust image height for small screens */
+    max-width:1200px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
+
+  .SubColumnTextWrap{
+    height: 990px;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .SubColumnTextWrap h6 {
+    font-size: 25px;
+    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
+  }
+
+  .SubColumnTextWrap h4 {
+    font-size: 50px;
+    margin-bottom: 0%;
+  }
+
+  .SkeletonSummary {
+    height: 30px; /* Adjust skeleton summary height for small screens */
+  }
+}
+
+@media (max-width: 1362px) {
   .SubColumn {
     display: flex;
     flex-direction: column;
@@ -125,14 +162,51 @@
 
   .SubColumnImage {
     max-height: 600px; /* Adjust image height for small screens */
-    max-width: 100%;
+    max-width:800px;
+    width: 100%;
     height: 100%;
-    margin: 0px;
+    margin: auto;
   }
 
   .SubColumnTextWrap{
-    height: 950px;
-    max-width: 100%;
+    height: 990px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .SubColumnTextWrap h6 {
+    font-size: 25px;
+    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
+  }
+
+  .SubColumnTextWrap h4 {
+    font-size: 50px;
+    margin-bottom: 0%;
+  }
+
+  .SkeletonSummary {
+    height: 30px; /* Adjust skeleton summary height for small screens */
+  }
+}
+
+@media (max-width: 1200px) {
+  .SubColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust gap between items for small screens */
+  }
+
+  .SubColumnImage {
+    max-height: 450px; /* Adjust image height for small screens */
+    max-width: 900px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .SubColumnTextWrap{
+    height: 780px;
+    max-width: 900px;;
+    margin: auto;
   }
 
   .SubColumnTextWrap h6 {
@@ -158,27 +232,61 @@
   }
 
   .SubColumnImage {
-    max-height: 500px; /* Adjust image height for small screens */
-    max-width: 100%;
+    max-height: 450px; /* Adjust image height for small screens */
+    max-width: 700px;
+    width: 100%;
     height: 100%;
-    margin: 0px;
   }
 
   .SubColumnTextWrap{
-    height: 830px;
-    max-width: 100%;
+    height: 750px;
+    max-width: 700px;;
+    margin: auto;
   }
 
   .SubColumnTextWrap h6 {
-    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
     font-size: 25px;
+    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
   }
 
   .SubColumnTextWrap h4 {
-    -webkit-line-clamp: 2; /* Adjust text lines for small screens */
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 0%;
-    
+  }
+
+  .SkeletonSummary {
+    height: 30px; /* Adjust skeleton summary height for small screens */
+  }
+}
+
+@media (max-width: 800px) {
+  .SubColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust gap between items for small screens */
+  }
+
+  .SubColumnImage {
+    max-height: 500px; /* Adjust image height for small screens */
+    max-width: 650px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .SubColumnTextWrap{
+    height: 800px;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .SubColumnTextWrap h6 {
+    font-size: 25px;
+    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
+  }
+
+  .SubColumnTextWrap h4 {
+    font-size: 50px;
+    margin-bottom: 0%;
   }
 
   .SkeletonSummary {
@@ -194,24 +302,25 @@
   }
 
   .SubColumnImage {
-    max-height: 400px; /* Adjust image height for small screens */
-    max-width: 100%;
+    max-height: 500px; /* Adjust image height for small screens */
+    max-width: 650px;
+    width: 100%;
     height: 100%;
-    margin: 0px;
   }
 
   .SubColumnTextWrap{
-    height: 720px;
-    max-width: 100%;
+    height: 800px;
+    max-width: 600px;
+    margin: auto;
   }
 
   .SubColumnTextWrap h6 {
-    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
     font-size: 25px;
+    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
   }
 
   .SubColumnTextWrap h4 {
-    font-size: 35px;
+    font-size: 50px;
     margin-bottom: 0%;
   }
 
@@ -228,24 +337,25 @@
   }
 
   .SubColumnImage {
-    max-height: 300px; /* Adjust image height for small screens */
-    max-width: 100%;
+    max-height: 350px; /* Adjust image height for small screens */
+    max-width: 600px;
+    width: 100%;
     height: 100%;
-    margin: 0px;
   }
 
   .SubColumnTextWrap{
-    height: 580px;
-    max-width: 100%;
+    height: 700px;
+    max-width: 500px;
+    margin: auto;
   }
 
   .SubColumnTextWrap h6 {
+    font-size: 25px;
     -webkit-line-clamp: 7; /* Adjust text lines for small screens */
-    font-size: 22px;
   }
 
   .SubColumnTextWrap h4 {
-    font-size: 30px;
+    font-size: 50px;
     margin-bottom: 0%;
   }
 
@@ -263,24 +373,25 @@
   }
 
   .SubColumnImage {
-    max-height: 300px; /* Adjust image height for small screens */
-    max-width: 100%;
+    max-height: 250px; /* Adjust image height for small screens */
+    max-width: 430px;
+    width: 100%;
     height: 100%;
-    margin: 0px;
   }
 
   .SubColumnTextWrap{
     height: 550px;
-    max-width: 100%;
+    max-width: 430px;
+    margin: auto;
   }
 
   .SubColumnTextWrap h6 {
+    font-size: 25px;
     -webkit-line-clamp: 7; /* Adjust text lines for small screens */
-    font-size: 20px;
   }
 
   .SubColumnTextWrap h4 {
-    font-size: 27px;
+    font-size: 50px;
     margin-bottom: 0%;
   }
 
@@ -298,23 +409,24 @@
 
   .SubColumnImage {
     max-height: 250px; /* Adjust image height for small screens */
-    max-width: 100%;
+    max-width: 350px;
+    width: 100%;
     height: 100%;
-    margin: 0px;
   }
 
   .SubColumnTextWrap{
-    height: 500px;
-    max-width: 100%;
+    height: 530px;
+    max-width: 350px;
+    margin: auto;
   }
 
   .SubColumnTextWrap h6 {
-    -webkit-line-clamp: 8; /* Adjust text lines for small screens */
-    font-size: 18px;
+    font-size: 25px;
+    -webkit-line-clamp: 7; /* Adjust text lines for small screens */
   }
 
   .SubColumnTextWrap h4 {
-    font-size: 22px;
+    font-size: 50px;
     margin-bottom: 0%;
   }
 

@@ -26,19 +26,21 @@
   font-weight: 600;
   font-size: 0.9rem;
   margin-bottom: 10px;
+  margin: 20px 20px;
 }
 
 .MainColumnTextWrap h1 {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
   font-weight: bold;
   color: #333;
-  font-size: 2rem;
+  font-size: 50px2rem;
   line-height: 1.2;
   margin-bottom: 15px;
   transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
   cursor: pointer; /* Change cursor to pointer to indicate interactivity */
   transform-origin: center; /* Ensure the text shrinks from the middle */
   width: 40%;
+  margin: 20px 20px;
 }
 
 .MainColumnTextWrap h1:hover {
@@ -50,9 +52,10 @@
 .MainColumnTextWrap h6 {
   font-family: 'Arial', sans-serif;
   color: #555;
-  font-size: 1rem;
+  font-size: 25px;
   line-height: 1.5;
   font-weight: normal;
+  margin: 20px 20px;
 }
 
 /* Skeleton Loading Screen Styles */
@@ -93,15 +96,97 @@
   height: 100px;
 }
 
+@media (max-width: 1362px) {
+  .MainColumnTextWrap h1 {
+    font-size: 50px;
+    width: 100%;
+  }
+
+  .MainColumn {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin:0;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden; /* Ensures no overflow outside the container */
+    max-height: 950px; /* Ensures the MainColumn never exceeds the height of its container */
+    max-width: 1200px;
+
+  }
+  
+  .MainColumn img {
+    width: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    background-color: #f0f0f0; /* Light grey background for missing images */
+    overflow: hidden; /* Ensures no overflow outside the image container */
+  }
+  
+
+  .MainColumnTextWrap h6 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .MainColumnTextWrap h1 {
+    font-size: 50px;
+    width: 100%;
+  }
+
+  .MainColumn {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin: 0;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden; /* Ensures no overflow outside the container */
+    max-height: 900px; /* Ensures the MainColumn never exceeds the height of its container */
+  }
+  
+  .MainColumn img {
+    width: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    background-color: #f0f0f0; /* Light grey background for missing images */
+    overflow: hidden; /* Ensures no overflow outside the image container */
+  }
+  
+
+  .MainColumnTextWrap h6 {
+    font-size: 20px;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .MainColumn {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin: 0;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden; /* Ensures no overflow outside the container */
+    max-height: 1000px; /* Ensures the MainColumn never exceeds the height of its container */
+  }
+  
+  .MainColumn img {
+    width: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    background-color: #f0f0f0; /* Light grey background for missing images */
+    overflow: hidden; /* Ensures no overflow outside the image container */
+  }
   .MainColumnTextWrap h1 {
-    font-size: 1.75rem;
+    font-size: 3rem;
     width: 100%;
   }
 
   .MainColumnTextWrap h6 {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -116,10 +201,10 @@
   }
 
   .MainColumnTextWrap h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .MainColumnTextWrap h6 {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
