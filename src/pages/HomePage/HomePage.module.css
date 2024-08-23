@@ -20,16 +20,20 @@
 .PostArea {
     display: grid;
     grid-template-columns: 3fr 1px 1fr 1px 1fr;
-    gap: 2rem;
-}
 
+    overflow: hidden;
+    
+  }
+
+/* SubColumn styling to ensure equal sizing */
 .SubColumn {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
 }
 
+/* Divider between columns */
 .ColumnDivider {
     height: 100%;
     background-color: #e0e0e0;
@@ -124,6 +128,20 @@
     line-height: 1.4;
 }
 
+@media (max-width: 1550px) {
+    .PostArea {
+        grid-template-columns: 1fr; /* Single column layout for PostArea */
+    }
+
+    .ColumnDivider {
+        display: none; /* Hide column dividers */
+    }
+
+    .TrendingContentWrap {
+        grid-template-columns: 1fr; /* Single column layout for TrendingContentWrap */
+    }
+}
+
 @media (max-width: 1200px) {
     .PostArea {
         grid-template-columns: 1fr; /* Single column layout for PostArea */
@@ -139,8 +157,19 @@
 }
 
 @media (max-width: 768px) {
+    .PostArea {
+        grid-template-columns: 1fr; /* Single column layout for PostArea */
+    }
+
+    .ColumnDivider {
+        display: none; /* Hide column dividers */
+    }
+
+    .TrendingContentWrap {
+        grid-template-columns: 1fr; /* Single column layout for TrendingContentWrap */
+    }
     .PostAreaWrap, .TrendingWrap {
-        width: 95%;
+        width: 100%;
         padding: 1rem;
     }
 
