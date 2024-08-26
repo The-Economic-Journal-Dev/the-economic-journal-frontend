@@ -12,6 +12,10 @@ main {
   padding: 15vh 0 25vh 0;
 }
 
+.logOutButton, .logOutButton:hover, .logOutButton.focus, .logOutButton.active{
+  background-color:#9F050A;
+}
+
 .page {
   grid-column-start: 2;
   grid-column-end: 3;
