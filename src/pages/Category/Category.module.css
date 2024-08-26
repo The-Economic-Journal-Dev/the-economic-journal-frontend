@@ -8,6 +8,10 @@
     padding: 3vh 0 0 15vw;
 }
 
+.SubPostContent .h6{
+    max-width: 1px;
+}
+
 @media (max-width: 768px) {
     .PageTitle {
         padding: 3vh 0 0 5vw; 

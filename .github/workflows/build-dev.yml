@@ -1,9 +1,9 @@
-name: Deploy to CF Pages in Production
+name: Deploy to CF Pages in Development
 
 on:
   push:
     branches:
-      - prod  # Adjust this to your source branch
+      - main  # Adjust this to your source branch
 
 jobs:
   build-and-deploy:
@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: The-Economic-Journal-Dev/the-economic-journal-frontend  # Replace with your repo name
-        ref: prod
+        ref: main
 
     - name: Install dependencies
       run: npm install
@@ -28,10 +28,11 @@ jobs:
         repository: The-Economic-Journal-Dev/cf-pages
         token: ${{ secrets.PAT }}
         path: cf-pages
-
+        ref: preview
+        
     - name: Install tree
       run: sudo apt-get install -y tree
-
+      
     - name: Copy files to deployment repository
       run: |
         mkdir -p cf-pages/dist
@@ -44,6 +45,7 @@ jobs:
         cd cf-pages
         echo "Current git status:"
         git status
+
     - name: Display cf-pages directory structure
       run: tree -L 3 cf-pages
 
