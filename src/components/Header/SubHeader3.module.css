@@ -29,7 +29,6 @@
     transition: color 0.3s;
 }
 
-
 /* Menu Toggle Button */
 .menuToggle {
     color: black;
@@ -39,11 +38,18 @@
     border: none;
     cursor: pointer;
     margin: 10px 0;
+    align-self: flex-start; /* Align the button to the left */
+    padding: 5px;
 }
 
-.menuToggle :hover{
-    background-color: #E4D3BE;
-    color: white;
+/* Remove red color on click */
+.menuToggle{
+    background-color: white;
+    color: black; /* Ensure the color stays black when clicked */
+}
+
+.menuToggle:hover{
+    background-color:  #E4D3BE;
 }
 
 /* Dropdown Menu */

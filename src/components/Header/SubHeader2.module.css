@@ -13,6 +13,10 @@
     align-items: center;
 }
 
+.SubHeader2 .separator {
+    margin: 0 10px; /* Reduced separator margin */
+}
+
 .logo{
     display: flex;
     align-items: center;
@@ -50,16 +54,17 @@
 .authSearch a {
     text-decoration: none;
     color: #333;
-    font-size: 20px;
-    margin-right: 10px;
+    font-size: 18px; /* Reduced font size */
+    margin-right: 5px; /* Reduced margin */
     position: relative;
 }
 
-.authSearch a img{
-    height: 35px;
-    width: 35px;
+.authSearch a img {
+    height: 30px; /* Reduced image size */
+    width: 30px; /* Reduced image size */
     border-radius: 50%;
 }
+
 
 .SubHeader2 .separator {
     display: inline-block;
@@ -75,30 +80,54 @@
     font-size: 20px;
     cursor: pointer;
 }
+  
+  .searchContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .searchInput {
+    position: absolute;
+    top: 100%;
+    right: 0; /* Align to the right side of the container */
+    width: 150px;
+    opacity: 1;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background-color: white; /* Ensure it's visible against any background */
+    z-index: 1000; /* Ensure it stays above other elements */
+  }
+  
+  .searchContainer .searchInput {
+    width: 150px;
+    opacity: 1;
+    border: 1px solid #ccc;
+    z-index: 1; /* Ensure the input appears above other elements */
+  }
+  
 
-.searchContainer {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
+  @media (max-width: 600px) {
+    .searchInput {
+        width: 140px;
+        right: 0;
+    }
 
-.searchInput {
-  width: 0;
-  opacity: 0;
-  transition: all 0.3s ease;
-  border: none;
-  padding: 0.5rem;
-  margin-left: 0.5rem;
-  border-radius: 4px;
-}
+    .authSearch a {
+        font-size: 16px; /* Further reduced font size on mobile */
+    }
 
-.searchContainer .searchInput {
-  width: 150px;
-  opacity: 1;
-  border: 1px solid #ccc;
-}
+    .authSearch a img {
+        height: 28px; /* Further reduced image size on mobile */
+        width: 28px;
+    }
 
-@media (max-width: 600px){
+    .SubHeader2 .separator {
+        margin: 0 8px; /* Further reduced separator margin on mobile */
+    }
+
    .logo img{
     display: none;
    }
@@ -107,3 +136,40 @@
     display: none;
    }
 }
+@media (max-width: 400px) {
+    .SubHeader2 {
+      padding-inline: 3vw; /* Reduce padding to give more space */
+    }
+  
+    .logo h1 {
+      font-size: 4vh; /* Reduce font size */
+    }
+  
+    .logo div {
+      font-size: 1.5vh; /* Reduce font size for the text under 'THE' */
+      margin-left: 2%; /* Reduce margin to minimize spacing */
+    }
+  
+    .authSearch a {
+      font-size: 16px; /* Reduce font size for 'Sign in' */
+      margin-right: 5px; /* Reduce margin to give more space */
+    }
+  
+    .authSearch a img {
+      height: 30px; /* Reduce image size */
+      width: 30px; /* Keep image size proportional */
+    }
+  
+    .SubHeader2 .separator {
+      margin: 0 10px; /* Reduce spacing between elements */
+    }
+    
+    .searchBTN {
+      font-size: 18px; /* Slightly smaller icon */
+    }
+  
+    .searchInput {
+      width: 140px; /* Slightly reduce the width of the search input */
+    }
+  }
+  
