@@ -2,20 +2,6 @@ import { Link } from "react-router-dom";
 import style from "./MainColumn.module.css"
 import { useState, useEffect } from "react";
 
-interface IArticleData {
-  authorUid: string;
-  title: string;
-  metaTitle: string;
-  datePublished: Date;
-  lastUpdated: Date;
-  imageUrl?: string;
-  summary?: string;
-  articleBody: string;
-  category: "Finance" | "Economic" | "Business" | "Entrepreneurship";
-  likesCount: number;
-  articleText?: string;
-}
-
 function cropText(input: string): string {
   const maxLength = 256;
   if (input.length > maxLength) {

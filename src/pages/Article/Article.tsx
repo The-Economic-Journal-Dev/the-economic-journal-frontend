@@ -1,24 +1,9 @@
 import style from "./Article.module.css";
 import React, { useEffect, useState } from "react";
-import { redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Interweave } from "interweave";
 import { auth } from "../../firebase";
 import { User } from "firebase/auth";
-
-
-// TypeScript interface to define the schema fields for Article
-interface IArticleData {
-  authorUid: string;
-  title: string;
-  metaTitle: string;
-  datePublished: Date;
-  lastUpdated: Date;
-  imageUrl?: string;
-  summary?: string;
-  articleBody: string;
-  category: "Finance" | "Economic" | "Business" | "Entrepreneur";
-  likesCount: number;
-}
 
 const SideColumn = ({category}: { category: string}) => {
   const [apiData, setAPIData] = useState<IArticleData[]>([]);
@@ -115,7 +100,7 @@ const LikeButton = ({ currentUser, metaTitle }: { currentUser: User | null, meta
 
 const ArticlePage = () => {
   const { metaTitle } = useParams<{ metaTitle: string }>();
-  const [articleData, setArticleData] = useState<any>(null); // Adjust type as needed
+  const [articleData, setArticleData] = useState<IArticleData>(); // Adjust type as needed
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [lastDate, setLastDate] = useState<string>("");
@@ -144,7 +129,7 @@ const ArticlePage = () => {
           `https://api.theeconomicjournal.org/articles/${metaTitle}`
         );
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          setError("Network response was not ok")
         }
         const result = await response.json();
         setArticleData(result.article);
@@ -191,7 +176,7 @@ const ArticlePage = () => {
     return <p>Loading...</p>;
   }
 
-  if (error) {
+  if (error || !articleData) {
     return <p>{error}</p>;
   }
 

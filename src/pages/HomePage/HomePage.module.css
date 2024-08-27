@@ -13,7 +13,7 @@
     max-width: 1600px; /* Increased max-width for wider content */
     margin: 2rem auto;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
@@ -22,10 +22,10 @@
     grid-template-columns: 3fr 1px 1fr 1px 1fr;
 
     overflow: hidden;
-    
-  }
 
-/* SubColumn styling to ensure equal sizing */
+}
+
+/* SubColumnBox styling to ensure equal sizing */
 .SubColumn {
     display: flex;
     flex-direction: column;
@@ -91,7 +91,7 @@
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
@@ -168,6 +168,7 @@
     .TrendingContentWrap {
         grid-template-columns: 1fr; /* Single column layout for TrendingContentWrap */
     }
+
     .PostAreaWrap, .TrendingWrap {
         width: 100%;
         padding: 1rem;
