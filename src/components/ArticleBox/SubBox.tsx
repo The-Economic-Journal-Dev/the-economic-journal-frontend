@@ -9,21 +9,6 @@ type SubBoxProps = {
   article: IArticleData;
 };
 
-// TypeScript interface to define the schema fields for Article
-interface IArticleData {
-  authorUid: string;
-  title: string;
-  metaTitle: string;
-  datePublished: Date;
-  lastUpdated: Date;
-  articleText: string;
-  imageUrl?: string;
-  summary?: string;
-  articleBody: string;
-  category: "Finance" | "Economic" | "Business" | "Entrepreneur";
-  likesCount: number;
-}
-
 function cropText(input: string) {
   if (!input) return undefined;
 
@@ -41,7 +26,7 @@ function cropText(input: string) {
  * @param {boolean} props.isLoading - Indicates whether to show loading skeletons or actual content.
  * @returns {JSX.Element} The SubBox component.
  */
-function SubBox({ isLoading, article }: SubBoxProps) {
+function SubBox({ isLoading, article }: SubBoxProps): JSX.Element {
   const [authorName, setAuthorName] = useState<string>("");
 
   useEffect(() => {

@@ -6,21 +6,6 @@ type MainBoxProps = {
   article: IArticleData;
 };
 
-// TypeScript interface to define the schema fields for Article
-interface IArticleData {
-  authorUid: string;
-  title: string;
-  metaTitle: string;
-  datePublished: Date;
-  lastUpdated: Date;
-  articleText: string;
-  imageUrl?: string;
-  summary?: string;
-  articleBody: string;
-  category: "Finance" | "Economic" | "Business" | "Entrepreneur";
-  likesCount: number;
-}
-
 function cropText(input: string) {
   if (!input) return undefined;
 

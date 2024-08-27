@@ -4,20 +4,6 @@ import { auth } from "../../firebase";
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 
-// TypeScript interface to define the schema fields for Article
-interface IArticleData  {
-  authorUid: string;
-  title: string;
-  metaTitle: string;
-  datePublished: Date;
-  lastUpdated: Date;
-  imageUrl?: string;
-  summary?: string;
-  articleBody: string;
-  category: "Finance" | "Economic" | "Business" | "Entrepreneurship";
-  likesCount: number;
-}
-
 const SearchButton: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
