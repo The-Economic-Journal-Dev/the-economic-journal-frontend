@@ -55,7 +55,7 @@ const Profile = () => {
                 Password <a href="./passwordreset">Reset Password</a>
               </h6>
             </div>
-            <button onClick={logOut}>Log Out</button>
+            <button className={style.logOutButton} onClick={logOut}>Log Out</button>
           </div>
         )}
       </section>

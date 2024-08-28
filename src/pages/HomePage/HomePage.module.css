@@ -13,7 +13,7 @@
     max-width: 1600px; /* Increased max-width for wider content */
     margin: 2rem auto;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
@@ -22,10 +22,10 @@
     grid-template-columns: 3fr 1px 1fr 1px 1fr;
 
     overflow: hidden;
-    
-  }
 
-/* SubColumn styling to ensure equal sizing */
+}
+
+/* SubColumnBox styling to ensure equal sizing */
 .SubColumn {
     display: flex;
     flex-direction: column;
@@ -91,7 +91,7 @@
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
@@ -126,6 +126,56 @@
     font-size: 0.9rem;
     color: #666;
     line-height: 1.4;
+}
+
+.Skeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.SkeletonImage {
+    width: 100%;
+    height: 150px;
+    max-width: 200px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.SkeletonTextWrap {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.SkeletonDate,
+.SkeletonTitle,
+.SkeletonSummary {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.SkeletonDate {
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.SkeletonTitle {
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.SkeletonSummary {
+    height: 50px;
 }
 
 @media (max-width: 1550px) {
@@ -168,6 +218,7 @@
     .TrendingContentWrap {
         grid-template-columns: 1fr; /* Single column layout for TrendingContentWrap */
     }
+
     .PostAreaWrap, .TrendingWrap {
         width: 100%;
         padding: 1rem;
@@ -188,3 +239,4 @@
         font-size: 1.5rem; /* Adjust font size for very small screens */
     }
 }
+

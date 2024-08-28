@@ -1,150 +1,149 @@
 import Body from "../../components/Body/Body.tsx";
 import style from "./HomePage.module.css";
-import { useEffect } from "react";
-import { useState } from "react";
-import { TrendingTitleDecoration } from "./components/TrendingTitleDecoration.tsx";
+import {useEffect, useState} from "react";
+import {TrendingTitleDecoration} from "./components/TrendingTitleDecoration.tsx";
 import MainColumn from "./components/MainColumn.tsx";
-import { SubColumn, SubColumnWithImage } from "./components/SubColumns.tsx";
-import { auth } from "../../firebase.tsx";
+import {SubColumnBox} from "./components/SubColumns.tsx";
+import {Link} from "react-router-dom";
 
-// TypeScript interface to define the schema fields for Article
-interface IArticleData {
-  authorUid: string;
-  title: string;
-  metaTitle: string;
-  datePublished: Date;
-  lastUpdated: Date;
-  imageUrl?: string;
-  summary?: string;
-  articleBody: string;
-  category: "Finance" | "Economic" | "Business" | "Entrepreneurship";
-  likesCount: number;
-  articleText?: string;
+function TrendingPost({article}: { article: IArticleData | null }) {
+    const [lastDate, setLastDate] = useState<string>("");
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (article) {
+            const updateLastDate = () => {
+                if (
+                    new Date(article.lastUpdated).getTime() >
+                    new Date(article.datePublished).getTime() + 40000
+                ) {
+                    setLastDate(
+                        "Last Updated: " +
+                        new Date(article.lastUpdated).toLocaleDateString()
+                    );
+                } else {
+                    setLastDate(
+                        "Date Published: " +
+                        new Date(article.datePublished).toLocaleDateString()
+                    );
+                }
+            };
+
+            updateLastDate();
+            setIsLoading(false);
+        }
+    }, [article]);
+
+    return (
+        <Link to={article?.metaTitle ? `/articles/${article.metaTitle}` : "./"} className={style.TrendingPost}>
+            {isLoading ? (
+                <div className={style.Skeleton}>
+                    <div className={style.SkeletonImage}/>
+                    <div className={style.SkeletonTextWrap}>
+                        <div className={style.SkeletonDate}/>
+                        <div className={style.SkeletonTitle}/>
+                        <div className={style.SkeletonSummary}/>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <img src={article?.imageUrl} alt=""
+                         loading="lazy" referrerPolicy="no-referrer"/>
+
+                    <div className={style.TrendingTextWrap}>
+                        <h5>{lastDate}</h5>
+                        <h4>{article?.title}</h4>
+                        <h6>
+                            {article ? article.summary : (article!.articleText.slice(0, 320) + "..." || "No Body")}
+                        </h6>
+                    </div>
+                </>
+            )}
+        </Link>
+    )
 }
 
 function HomePage() {
-  const [apiData, setAPIData] = useState<IArticleData[]>([]);
-  const url = "https://api.theeconomicjournal.org/articles?includeText=true";
-  
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(url);
-        const posts = (await response.json()).articles as IArticleData[];
-        
-        setAPIData((posts as any));
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
+    const [fetchedArticles, setFetchedArticles] = useState<IArticleData[]>([]);
+    const [trendingArticles, setTrendingArticles] = useState<IArticleData[]>([]);
+    const url = "https://api.theeconomicjournal.org/articles?includeText=true&includeTrending=true";
 
-    fetchPosts();
-  }, []);
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch(url);
+                const data = await response.json()
 
-  return (
-    <div className={style.pageWrap}>
-      <Body>
-        <div className={style.PostAreaWrap}>
-          <div className={style.PostArea}>
-            <MainColumn article={apiData[0] || ""} />
+                if (!data.success) throw new Error("Error fetching posts");
 
-            <span className={style.ColumnDivider}></span>
+                const articles = data.articles as IArticleData[];
+                const trending = data.trending as IArticleData[];
 
-            <div className={style.SubColumn}>
-              <SubColumnWithImage article={apiData[1] || ""} />
+                setFetchedArticles(articles);
+                setTrendingArticles(trending)
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            }
+        };
 
-              {/* <div className={style.ContentSeparator}></div> */}
+        fetchPosts().then(() => console.log("Articles fetched"));
+    }, []);
 
-              <SubColumn article={apiData[2] || ""} />
+    return (
+        <div className={style.pageWrap}>
+            <Body>
+                <div className={style.PostAreaWrap}>
+                    <div className={style.PostArea}>
+                        <MainColumn article={fetchedArticles[0] || ""}/>
 
-              {/* <div className={style.ContentSeparator}></div> */}
+                        <span className={style.ColumnDivider}></span>
 
-              <SubColumn article={apiData[3] || ""} />
+                        <div className={style.SubColumn}>
+                            <SubColumnBox article={fetchedArticles[1] || ""}/>
+
+                            {/* <div className={style.ContentSeparator}></div> */}
+
+                            <SubColumnBox article={fetchedArticles[2] || ""}/>
+
+                            {/* <div className={style.ContentSeparator}></div> */}
+
+                            <SubColumnBox article={fetchedArticles[3] || ""}/>
+                        </div>
+
+                        <span className={style.ColumnDivider}></span>
+
+                        <div className={style.SubColumn}>
+                            <SubColumnBox article={fetchedArticles[4] || ""}/>
+
+                            {/* <div className={style.ContentSeparator}></div> */}
+
+                            <SubColumnBox article={fetchedArticles[5] || ""}/>
+
+                            {/* <div className={style.ContentSeparator}></div> */}
+
+                            <SubColumnBox article={fetchedArticles[6] || ""}/>
+                        </div>
+                    </div>
+                </div>
+            </Body>
+
+            <div className={style.SectionDivider}></div>
+
+            <div className={style.TrendingWrap}>
+                <div className={style.TrendingTitleWrap}>
+                    <TrendingTitleDecoration/>
+                    <h1>Trending</h1>
+                    <TrendingTitleDecoration/>
+                </div>
+
+                <div className={style.TrendingContentWrap}>
+                    <TrendingPost article={trendingArticles[0] || ""}/>
+                    <TrendingPost article={trendingArticles[1] || ""}/>
+                    <TrendingPost article={trendingArticles[2] || ""}/>
+                </div>
             </div>
-
-            <span className={style.ColumnDivider}></span>
-
-            <div className={style.SubColumn}>
-              <SubColumn article={apiData[4] || ""} />
-
-              {/* <div className={style.ContentSeparator}></div> */}
-
-              <SubColumn article={apiData[5] || ""} />
-
-              {/* <div className={style.ContentSeparator}></div> */}
-
-              <SubColumnWithImage article={apiData[6] || ""} />
-            </div>
-          </div>
         </div>
-      </Body>
-
-      <div className={style.SectionDivider}></div>
-
-      <div className={style.TrendingWrap}>
-        <div className={style.TrendingTitleWrap}>
-          <TrendingTitleDecoration />
-          <h1>Trending</h1>
-          <TrendingTitleDecoration />
-        </div>
-
-        <div className={style.TrendingContentWrap}>
-          <div className={style.TrendingPost}>
-            <img
-              src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
-              alt=""
-            />
-
-            <div className={style.TrendingTextWrap}>
-              <h5>f/e/b/e/i/p</h5>
-              <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-              <h6>
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Tincidunt nunc pulvinar sapien et ligula ullamcorper
-                malesuada.
-              </h6>
-            </div>
-          </div>
-
-          <div className={style.TrendingPost}>
-            <img
-              src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
-              alt=""
-            />
-
-            <div className={style.TrendingTextWrap}>
-              <h5>f/e/b/e/i/p</h5>
-              <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-              <h6>
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Tincidunt nunc pulvinar sapien et ligula ullamcorper
-                malesuada.
-              </h6>
-            </div>
-          </div>
-
-          <div className={style.TrendingPost}>
-            <img
-              src="https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
-              alt=""
-            />
-
-            <div className={style.TrendingTextWrap}>
-              <h5>f/e/b/e/i/p</h5>
-              <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-              <h6>
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Tincidunt nunc pulvinar sapien et ligula ullamcorper
-                malesuada.
-              </h6>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* <div className={style.SectionDivider}></div> */}
-    </div>
-  );
+    );
 }
 
 export default HomePage;
