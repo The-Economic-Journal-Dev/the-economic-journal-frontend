@@ -128,6 +128,56 @@
     line-height: 1.4;
 }
 
+.Skeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.SkeletonImage {
+    width: 100%;
+    height: 150px;
+    max-width: 200px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.SkeletonTextWrap {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.SkeletonDate,
+.SkeletonTitle,
+.SkeletonSummary {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.SkeletonDate {
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.SkeletonTitle {
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.SkeletonSummary {
+    height: 50px;
+}
+
 @media (max-width: 1550px) {
     .PostArea {
         grid-template-columns: 1fr; /* Single column layout for PostArea */
@@ -189,3 +239,4 @@
         font-size: 1.5rem; /* Adjust font size for very small screens */
     }
 }
+
