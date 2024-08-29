@@ -7,7 +7,7 @@ import {User} from "firebase/auth";
 
 const SideColumn = ({category}: { category: string }) => {
     const [apiData, setAPIData] = useState<IArticleData[]>([]);
-    const url = `https://api.theeconomicjournal.org/articles?includeText=true&category=${category}`;
+    const url = `https://api.theeconomicjournal.org/articles?includeHTML=true&category=${category}`;
 
     useEffect(() => {
         const fetchPosts = async () => {
