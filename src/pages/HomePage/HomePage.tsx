@@ -74,7 +74,7 @@ function HomePage() {
                 const response = await fetch(url);
                 const data = await response.json()
 
-                if (!data.success) throw new Error("Error fetching posts");
+                if (!data.success) console.error("Error fetching posts");
 
                 const articles = data.articles as IArticleData[];
                 const trending = data.trending as IArticleData[];
