@@ -25,6 +25,17 @@
   text-align: center;
 }
 
+.TrendingTextWrap h6{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Limits text to 5 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Ensure text wraps */
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Break long words */
+}
+
 @media (max-width: 768px) {
   .middleLine {
     width: 60%; /* Increase the width slightly for smaller screens */
