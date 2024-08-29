@@ -73,7 +73,7 @@ function SubBox({isLoading, article}: SubBoxProps): JSX.Element {
                         <h6>
                             {(article.summary
                                     ? cropText(article.summary)
-                                    : cropText(article.articleText)) ||
+                                    : cropText(article.articleBody.replace(/(<([^>]+)>)/gi, ""))) ||
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere egestas dui fermentum lobortis. Donec id consectetur odio, non consectetur lorem. Etiam nec ante sodales arcu vestibulum blandit. Suspendisse leo diam, cursus eu leo a, imperdiet congue ipsum. Quisque fermentum felis mauris, semper lacinia ipsum fringilla pellentesque. Aliquam lacinia fermentum dui rutrum semper. Maecenas id nulla sapien."}
                         </h6>
                         <div className={style.SubPostActionBar}>

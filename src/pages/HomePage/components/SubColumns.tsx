@@ -61,7 +61,7 @@ function SubColumnBox({article}: { article: IArticleData | null }): JSX.Element 
                         <h5>{lastDate || "YYYY/MM/DD"}</h5>
                         <h4>{article?.title || "No Title"}</h4>
                         <h6>
-                            {article ? article.summary : cropText(article!.articleText || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
+                            {article ? article.summary : cropText(article!.articleBody.replace(/(<([^>]+)>)/gi, "") || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}
                         </h6>
                     </div>
                 </>

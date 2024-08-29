@@ -164,7 +164,7 @@ const Post = () => {
         formData.append("metaTitle", inputData.metaTitle);
         formData.append("articleBody", inputData.articleBody);
         formData.append("category", toTitleCase(targetPage));
-        formData.append("position", "0");
+        formData.append("position", "1");
         if (hasImage) {
             if (imageFile) {
                 formData.append("image", imageFile);

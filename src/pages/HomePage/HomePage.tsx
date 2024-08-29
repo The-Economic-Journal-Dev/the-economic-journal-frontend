@@ -54,7 +54,7 @@ function TrendingPost({article}: { article: IArticleData | null }) {
                         <h5>{lastDate}</h5>
                         <h4>{article?.title}</h4>
                         <h6>
-                            {article ? article.summary : (article!.articleText.slice(0, 320) + "..." || "No Body")}
+                            {article ? article.summary : (article!.articleBody.replace(/(<([^>]+)>)/gi, "").slice(0, 320) + "..." || "No Body")}
                         </h6>
                     </div>
                 </>
@@ -74,7 +74,7 @@ function HomePage() {
                 const response = await fetch(url);
                 const data = await response.json()
 
-                if (!data.success) throw new Error("Error fetching posts");
+                if (!data.success) console.error("Error fetching posts");
 
                 const articles = data.articles as IArticleData[];
                 const trending = data.trending as IArticleData[];

@@ -70,7 +70,7 @@ function MainColumn({article}: { article: IArticleData | null }) {
                             {article
                                 ? article.summary
                                 : cropText(
-                                    article!.articleText ||
+                                    article!.articleBody.replace(/(<([^>]+)>)/gi, "") ||
                                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                 )}
                         </h6>
