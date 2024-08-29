@@ -65,12 +65,12 @@ function MainColumn({article}: { article: IArticleData | null }) {
                     />
                     <div className={style.MainColumnTextWrap}>
                         <h5>{lastDate || "YYYY/MM/DD"}</h5>
-                        <h1>{article?.title || "No Title"}</h1>
+                        <h2>{article?.title || "No Title"}</h2>
                         <h6>
                             {article
                                 ? article.summary
                                 : cropText(
-                                    article!.articleText ||
+                                    article!.articleBody.replace(/(<([^>]+)>)/gi, "") ||
                                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                 )}
                         </h6>

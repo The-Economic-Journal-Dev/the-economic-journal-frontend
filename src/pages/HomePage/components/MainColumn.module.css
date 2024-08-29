@@ -10,10 +10,11 @@
 }
 
 .MainColumn img {
+  max-height: 70vh;
+  height: 100%;
   width: 100%;
-  height: 65vh; /* Fixed height for consistency */
-  object-fit: cover; /* Ensures the image covers the container without distortion */
-  background-color: #f0f0f0; /* Light grey background for missing images */
+  object-fit: fill;
+  object-position: center; /* This centers the image */
 }
 
 .MainColumnTextWrap {
@@ -24,23 +25,29 @@
 .MainColumnTextWrap h5 {
   color: #9f0505;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   margin-bottom: 10px;
   margin: 20px 20px;
 }
 
-.MainColumnTextWrap h1 {
+.MainColumnTextWrap h2 {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
-  font-weight: bold;
   color: #333;
-  font-size: 50px2rem;
+  font-size: 2.5rem;
   line-height: 1.2;
   margin-bottom: 15px;
   transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
   cursor: pointer; /* Change cursor to pointer to indicate interactivity */
   transform-origin: center; /* Ensure the text shrinks from the middle */
-  width: 40%;
   margin: 20px 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Limits text to 5 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* Ensure text wraps */
+  word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Break long words */
 }
 
 .MainColumnTextWrap h1:hover {
@@ -52,10 +59,18 @@
 .MainColumnTextWrap h6 {
   font-family: 'Arial', sans-serif;
   color: #555;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 1.5;
   font-weight: normal;
   margin: 20px 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 14; /* Limits text to 5 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* Ensure text wraps */
+  word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Break long words */
 }
 
 /* Skeleton Loading Screen Styles */
@@ -96,43 +111,15 @@
   height: 100px;
 }
 
-@media (max-width: 1362px) {
-  .MainColumnTextWrap h1 {
-    font-size: 50px;
-    width: 100%;
-  }
 
-  .MainColumn {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    margin:0;
-    text-decoration: none;
-    color: inherit;
-    overflow: hidden; /* Ensures no overflow outside the container */
-    max-height: 950px; /* Ensures the MainColumn never exceeds the height of its container */
-    max-width: 1200px;
 
-  }
-  
-  .MainColumn img {
-    width: 100%;
-    object-fit: cover; /* Ensures the image covers the container without distortion */
-    background-color: #f0f0f0; /* Light grey background for missing images */
-    overflow: hidden; /* Ensures no overflow outside the image container */
-  }
-  
 
-  .MainColumnTextWrap h6 {
-    font-size: 20px;
-  }
-}
 
 @media (max-width: 1200px) {
-  .MainColumnTextWrap h1 {
-    font-size: 50px;
-    width: 100%;
+  .MainColumnTextWrap h2 {
+    font-size: 2.5rem;
+    -webkit-line-clamp: 4; /* Limits text to 5 lines */
+    width: 90%;
   }
 
   .MainColumn {
@@ -149,7 +136,7 @@
   
   .MainColumn img {
     width: 100%;
-    object-fit: cover; /* Ensures the image covers the container without distortion */
+    object-fit: fill; /* Ensures the image covers the container without distortion */
     background-color: #f0f0f0; /* Light grey background for missing images */
     overflow: hidden; /* Ensures no overflow outside the image container */
   }
@@ -157,6 +144,7 @@
 
   .MainColumnTextWrap h6 {
     font-size: 20px;
+    -webkit-line-clamp: 7; /* Limits text to 5 lines */
   }
 }
 
@@ -180,9 +168,9 @@
     background-color: #f0f0f0; /* Light grey background for missing images */
     overflow: hidden; /* Ensures no overflow outside the image container */
   }
-  .MainColumnTextWrap h1 {
-    font-size: 3rem;
-    width: 100%;
+  .MainColumnTextWrap h2 {
+    font-size: 2.2rem;
+    width: 90%;
   }
 
   .MainColumnTextWrap h6 {
@@ -194,14 +182,13 @@
   .MainColumn img,
   .SkeletonImage {
     height: 250px;
+    object-fit: fill;
+    object-position: center; /* This centers the image */
   }
 
-  .MainColumnTextWrap {
-    padding: 15px;
-  }
-
-  .MainColumnTextWrap h1 {
-    font-size: 2rem;
+  .MainColumnTextWrap h2 {
+    font-size: 1.5rem;
+    -webkit-line-clamp: 5; /* Limits text to 5 lines */
   }
 
   .MainColumnTextWrap h6 {
