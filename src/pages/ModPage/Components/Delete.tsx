@@ -1,6 +1,6 @@
 import {auth} from "../../../firebase";
 import {PostSelector} from "./Post";
-import {FormEvent, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import style from "./Delete.module.css";
 
 function toTitleCase(str: string) {
@@ -27,12 +27,16 @@ const CurrentArticleInfo = ({targetArticle}: {
 
 const Delete = () => {
     const [targetPage, setTargetPage] = useState("");
-    const [targetPosition, setTargetPosition] = useState(0);
-    const [options, setOptions] = useState<string[]>([]);
     const [targetArticle, setTargetArticle] = useState<IArticleData>();
     const [displayData, setDisplayData] = useState<IArticleData[]>();
     const [displayPopUp, setDisplayPopUp] = useState(false);
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        if (error) {
+            setTimeout(() => setError(""), 3000)
+        }
+    }, [error]);
 
     const getMetaData = async (
         currentTargetPage: string
@@ -65,41 +69,12 @@ const Delete = () => {
 
     const handleWebsiteChange = async (currentTargetPage: string) => {
         setTargetPage(currentTargetPage);
+        setTargetArticle(undefined);
         setError("");
 
-        if (currentTargetPage === "HomePage") {
-            setOptions([
-                "Main col 1",
-                "Main col 2 row 1",
-                "Main col 2 row 2",
-                "Main col 2 row 3",
-                "Main col 3 row 1",
-                "Main col 3 row 2",
-                "Main col 3 row 3",
-                "Trending 1",
-                "Trending 2",
-                "Trending 3",
-            ]);
-        } else if (
-            ["Finance", "Economic", "Business", "Entrepreneur"].includes(
-                currentTargetPage
-            )
-        ) {
-            setOptions(["Main", "Sub1", "Sub2", "Sub3", "Sub4"]);
-        } else {
-            setOptions([]);
-        }
-
-        console.log(currentTargetPage, targetPosition, "d");
-
+        console.log(currentTargetPage);
 
         await getMetaData(currentTargetPage); // Index of target position
-    };
-
-    const handlePositionChange = (position: number | string) => {
-        const positionIndex = options.indexOf(position.toString());
-        setTargetPosition(positionIndex + 1);
-        setError("");
     };
 
     const deleteData = async () => {
@@ -134,9 +109,7 @@ const Delete = () => {
 
     const confirmDelete = () => {
         if (!targetPage) {
-            setError("Missing page");
-        } else if (!targetPosition) {
-            setError("Missing position");
+            setError("Missing category");
         } else {
             setError("");
             setDisplayPopUp(true); // Show confirmation popup
@@ -147,6 +120,7 @@ const Delete = () => {
         e.preventDefault();
         try {
             await deleteData();
+            setTargetArticle(undefined);
         } catch (error) {
             console.error("Failed to delete data:", error);
         }
@@ -156,10 +130,7 @@ const Delete = () => {
         <form onSubmit={handleSubmit} className={style.deleteWrap}>
             <PostSelector
                 selectedWebsite={targetPage}
-                selectedPosition={targetPosition.toString()}
                 onWebsiteChange={handleWebsiteChange}
-                options={options}
-                onPositionChange={handlePositionChange}
             />
 
             {targetArticle && targetArticle.imageUrl && (
