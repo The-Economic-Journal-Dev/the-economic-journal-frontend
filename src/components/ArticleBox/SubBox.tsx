@@ -52,7 +52,7 @@ function SubBox({isLoading, article}: SubBoxProps): JSX.Element {
             className={style.SubPostWrap}
         >
             <div className={style.SubPostContent}>
-                {isLoading ? (
+                {isLoading || !article ? (
                     <>
                         <div className={`${style.skeleton} ${style.skeletonH2}`}/>
                         <div className={`${style.skeleton} ${style.skeletonAuthor}`}/>

@@ -21,13 +21,10 @@ const CategoryPage = ({category}: { category: string }) => {
                 const response = await fetch(
                     `https://api.theeconomicjournal.org/articles?category=${toTitleCase(
                         category
-                    )}`
+                    )}&includeHTML=true`
                 );
-                if (!response.ok) {
-                    setError("Network response was not ok");
-                }
-                const result = await response.json();
 
+                const result = await response.json();
                 setArticleData(result.articles);
             } catch (error) {
                 setError("Failed to load article");
@@ -44,15 +41,15 @@ const CategoryPage = ({category}: { category: string }) => {
     return (
         <div>
             <div className={style.PageTitle}>{toTitleCase(category)}</div>
-            <MainBox isLoading={loading} article={articleData[0] || {}}/>
+            <MainBox isLoading={loading} article={articleData[0] || ""}/>
 
-            <SubBox isLoading={loading} article={articleData[1] || {}}/>
+            <SubBox isLoading={loading} article={articleData[1] || ""}/>
 
-            <SubBox isLoading={loading} article={articleData[2] || {}}/>
+            <SubBox isLoading={loading} article={articleData[2] || ""}/>
 
-            <SubBox isLoading={loading} article={articleData[3] || {}}/>
+            <SubBox isLoading={loading} article={articleData[3] || ""}/>
 
-            <SubBox isLoading={loading} article={articleData[4] || {}}/>
+            <SubBox isLoading={loading} article={articleData[4] || ""}/>
         </div>
     );
 };
