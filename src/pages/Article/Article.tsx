@@ -1,6 +1,6 @@
 import style from "./Article.module.css";
 import React, {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {Interweave} from "interweave";
 import {auth} from "../../firebase";
 import {User} from "firebase/auth";
@@ -27,7 +27,7 @@ const SideColumn = ({category}: { category: string }) => {
         <aside className={style.SideBar}>
             <h3>Read more articles here</h3>
             {apiData.length > 0 ? (
-                <div className={style.SideBarArticle}>
+                <Link to={`/articles/${apiData[0].metaTitle}`} className={style.SideBarArticle}>
                     <img
                         src={apiData[0].imageUrl || ""}
                         alt="Sidebar Article"
@@ -35,7 +35,7 @@ const SideColumn = ({category}: { category: string }) => {
                         referrerPolicy="no-referrer"
                     />
                     <p>{apiData[0].summary || ""}</p>
-                </div>
+                </Link>
             ) : (
                 <p>Loading...</p>
             )}
@@ -44,8 +44,12 @@ const SideColumn = ({category}: { category: string }) => {
     )
 }
 
-const LikeButton = ({currentUser, metaTitle}: { currentUser: User | null, metaTitle: string }) => {
-    const [likes, setLikes] = useState<number>(0);
+const LikeButton = ({currentUser, metaTitle, currentLikes}: {
+    currentUser: User | null,
+    metaTitle: string,
+    currentLikes: number
+}) => {
+    const [likes, setLikes] = useState<number>(currentLikes);
     const [isLiked, setIsLiked] = useState<boolean>(false);
     const navigate = useNavigate();
 
@@ -186,18 +190,21 @@ const ArticlePage = () => {
                     <p className={style.Name}></p>
                 </div>
                 <h1 className={style.Title}>{articleData.title}</h1>
-                <div className={style.ImageContainer}>
-                    (articleData.imageUrl && <img
-                    src={articleData.imageUrl}
-                    alt={articleData.title + "'s Image"} // Use article title for alt text
-                    className={style.MainImage}
-                    loading="lazy" // Lazy load images for better performance
-                    referrerPolicy="no-referrer"
-                />)
-                    <p className={style.ImageSource}>
-                        {articleData.imageUrl ? "image source" : ""}
-                    </p>
-                </div>
+
+                {articleData.imageUrl && (
+                    <div className={style.ImageContainer}>
+                        <img
+                            src={articleData.imageUrl}
+                            alt={`${articleData.title}'s Image`}
+                            className={style.MainImage}
+                            loading="lazy"
+                            referrerPolicy="no-referrer"
+                        />
+                        <p className={style.ImageSource}>
+                            {/*{articleData.imageUrl ? "image source" : ""}*/}
+                        </p>
+                    </div>
+                )}
 
                 <div className={style.TextWithSidebar}>
                     <div className={style.MainText}>
@@ -205,7 +212,8 @@ const ArticlePage = () => {
                             <p>{lastDate}</p>
                             <h1>{articleData.title}</h1>
                             <strong>by -{authorName}-</strong>
-                            <LikeButton currentUser={currentUser} metaTitle={metaTitle!}/>
+                            <LikeButton currentUser={currentUser} metaTitle={metaTitle!}
+                                        currentLikes={articleData.likesCount}/>
                         </div>
                         <p className={style.ArticleContent}>
                             <Interweave content={articleData.articleBody}/>

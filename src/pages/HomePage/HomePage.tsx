@@ -54,7 +54,7 @@ function TrendingPost({article}: { article: IArticleData | null }) {
                         <h5>{lastDate}</h5>
                         <h4>{article?.title}</h4>
                         <h6>
-                            {article ? article.summary : (article!.articleText.slice(0, 320) + "..." || "No Body")}
+                            {article ? article.summary : (article!.articleBody.replace(/(<([^>]+)>)/gi, "").slice(0, 320) + "..." || "No Body")}
                         </h6>
                     </div>
                 </>
