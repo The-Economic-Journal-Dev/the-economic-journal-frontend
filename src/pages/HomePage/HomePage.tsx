@@ -66,7 +66,7 @@ function TrendingPost({article}: { article: IArticleData | null }) {
 function HomePage() {
     const [fetchedArticles, setFetchedArticles] = useState<IArticleData[]>([]);
     const [trendingArticles, setTrendingArticles] = useState<IArticleData[]>([]);
-    const url = "https://api.theeconomicjournal.org/articles?includeText=true&includeTrending=true";
+    const url = "https://api.theeconomicjournal.org/articles?includeHTML=true&includeTrending=true";
 
     useEffect(() => {
         const fetchPosts = async () => {
