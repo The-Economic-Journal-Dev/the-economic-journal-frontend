@@ -167,6 +167,7 @@ const Post = () => {
         formData.append("position", "1");
         if (hasImage) {
             if (imageFile) {
+                console.log("Image detected")
                 formData.append("image", imageFile);
                 postData(formData);
             } else {
