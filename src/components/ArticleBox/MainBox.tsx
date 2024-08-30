@@ -25,7 +25,7 @@ function MainBox({isLoading, article}: MainBoxProps) {
             <div className={style.MainContentWrap}>
                 <div className={style.MainContentBGRectangle}/>
                 <div className={style.MainContent}>
-                    {isLoading ? (
+                    {isLoading || !article ? (
                         <div className={`${style.skeleton} ${style.skeletonImg}`}/>
                     ) : (
                         <img
