@@ -31,12 +31,10 @@
 }
 
 .MainContentImage {
-  width: 100%; /* Ensures the image fits the width of its container */
-  height: auto; /* Maintains aspect ratio */
-  max-height: 645px; /* Optional: Sets a max height to prevent excessive scaling */
-  object-fit: cover; /* Ensures the image covers the container without stretching */
-  object-position: center;
-  margin: 0 auto; /* Centers the image horizontally */
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    object-position: center; /* This centers the image */
 }
 
 .MainContent h1 {
@@ -48,10 +46,7 @@
 }
 
 .MainContent h6 {
-    width: 115%;
-    transform: translate(calc(-15% / 2));
-    padding: 0;
-    margin: 0;
+    width: 100%;
     font-family: 'Times New Roman', Times, serif;
     color: #929292;
     font-size: 1.22rem;

@@ -17,7 +17,7 @@
   text-overflow: ellipsis; /* Adds ellipsis if text overflows */
   width: auto; /* Ensure full width */
   min-width: 200px;
-  height: 557px;
+  height: 580px;
 }
 
 .SubColumnTextWrap h4,
@@ -28,13 +28,13 @@
 }
 
 .SubColumnTextWrap h4 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: 'Georgia', 'Times New Roman', Times, serif;
   color: #645236;
   margin-bottom: 2%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* Limits text to 5 lines */
+  -webkit-line-clamp: 4; /* Limits text to 5 lines */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal; /* Ensure text wraps */
