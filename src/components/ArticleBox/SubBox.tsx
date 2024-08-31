@@ -96,13 +96,12 @@ function SubBox({isLoading, article}: SubBoxProps): JSX.Element {
                     </>
                 )}
             </div>
-            {isLoading ? (
+            {isLoading || !article ? (
                 <div className={`${style.skeleton} ${style.skeletonImg}`}/>
             ) : (
                 <img
                     src={
-                        article.imageUrl ||
-                        "https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png"
+                        article.imageUrl
                     }
                     alt=""
                     width="320"
