@@ -165,17 +165,13 @@ const Post = () => {
         formData.append("articleBody", inputData.articleBody);
         formData.append("category", toTitleCase(targetPage));
         formData.append("position", "1");
-        if (hasImage) {
-            if (imageFile) {
-                console.log("Image detected")
-                formData.append("image", imageFile);
-                postData(formData);
-            } else {
-                setError("No Image selected");
-            }
+        if (imageFile) {
+            console.log("Image detected")
+            formData.append("image", imageFile);
         } else {
-            postData(formData);
+            setError("No Image selected");
         }
+        postData(formData);
     };
 
     return (
