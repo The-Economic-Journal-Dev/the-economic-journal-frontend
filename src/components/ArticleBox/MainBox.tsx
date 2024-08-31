@@ -19,7 +19,7 @@ function cropText(input: string) {
 function MainBox({isLoading, article}: MainBoxProps) {
     return (
         <Link
-            to={article.metaTitle ? `/articles/${article.metaTitle}` : "./"}
+            to={article ? `/articles/${article.metaTitle}` : "#"}
             className={style.MainContentLink}
         >
             <div className={style.MainContentWrap}>
@@ -43,7 +43,7 @@ function MainBox({isLoading, article}: MainBoxProps) {
                     )}
 
                     <div className={style.MainContentTextWrap}>
-                        {isLoading ? (
+                        {isLoading || !article ? (
                             <>
                                 <div className={`${style.skeleton} ${style.skeletonH1}`}/>
                                 <div className={`${style.skeleton} ${style.skeletonH6}`}/>

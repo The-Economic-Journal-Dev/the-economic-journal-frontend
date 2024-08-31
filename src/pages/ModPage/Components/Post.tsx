@@ -208,6 +208,7 @@ const Post = () => {
                 <input
                     type="text"
                     name="metaTitle"
+                    placeholder="Summarise your title in just a few words"
                     value={inputData.metaTitle}
                     onChange={handleInput}
                 />
