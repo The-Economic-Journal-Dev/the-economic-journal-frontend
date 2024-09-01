@@ -1,7 +1,7 @@
 import style from "./Article.module.css";
-import React, {useEffect, useState} from "react";
+import React, {HTMLAttributeReferrerPolicy, useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {Interweave} from "interweave";
+import {Interweave, Node} from 'interweave';
 import {auth} from "../../firebase";
 import {User} from "firebase/auth";
 
@@ -182,6 +182,20 @@ const ArticlePage = () => {
         return <p>{error}</p>;
     }
 
+    const transform = (node: HTMLElement, children: Node[]): React.ReactNode => {
+        if (node.tagName.toLowerCase() === 'img') {
+            const referrerPolicy = node.getAttribute('referrerpolicy') as HTMLAttributeReferrerPolicy;
+            return (
+                <img
+                    src={node.getAttribute('src') || ''}
+                    alt={node.getAttribute('alt') || ''}
+                    referrerPolicy={referrerPolicy || 'no-referrer'}
+                    className={style.ArticleImage}
+                />
+            );
+        }
+    };
+
     return (
         <div>
             <div className={style.MainContentWrap}>
@@ -216,7 +230,7 @@ const ArticlePage = () => {
                                         currentLikes={articleData.likesCount}/>
                         </div>
                         <p className={style.ArticleContent}>
-                            <Interweave content={articleData.articleBody}/>
+                            <Interweave content={articleData.articleBody} transform={transform}/>
                         </p>
                     </div>
 
