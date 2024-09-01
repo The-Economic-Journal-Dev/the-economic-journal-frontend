@@ -1,0 +1,27 @@
+/* LoadingBar.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.barContainer {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.bar {
+    height: 20px;
+    background-color: #4caf50;
+    transition: width 0.3s ease-in-out;
+}

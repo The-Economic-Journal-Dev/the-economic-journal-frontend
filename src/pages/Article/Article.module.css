@@ -1,170 +1,174 @@
 /* Global Styles */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 /* Main Content Wrap */
 .MainContentWrap {
-  padding: 40px;
-  background-color: #fdf5e6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    padding: 40px;
+    background-color: #fdf5e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Meta Data */
 .MetaData {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  color: #7f8c8d;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #7f8c8d;
 }
 
 .MetaData .Section {
-  font-size: 14px;
-  margin-right: 10px;
+    font-size: 14px;
+    margin-right: 10px;
 }
 
 .MetaData .Name {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 /* Title */
 .Title {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #2c3e50;
-  font-size: 60px;
-  max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 60px;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Main Image Container */
 .ImageContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-  width: 70%; /* Set width percentage to control scaling */
-  max-width: 1200px; /* Set a max-width to control the size on large screens */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 70%; /* Set width percentage to control scaling */
+    max-width: 1200px; /* Set a max-width to control the size on large screens */
 }
 
 /* Main Image */
 .MainImage {
-  width: 100%; /* Set to 100% of the container by default */
-  height: auto; /* Maintain aspect ratio */
+    width: 100%; /* Set to 100% of the container by default */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /* Text with Sidebar Layout */
 .TextWithSidebar {
-  display: flex;
-  justify-content: space-between; /* Space between items */
-  width: 70%; /* Match the width of the image container */
-  max-width: 1200px; /* Ensure it doesn't exceed the image container's max-width */
+    display: flex;
+    justify-content: space-between; /* Space between items */
+    width: 70%; /* Match the width of the image container */
+    max-width: 1200px; /* Ensure it doesn't exceed the image container's max-width */
 }
 
 .MainText {
-  flex: 3; /* 3/4th of the available width */
-  margin-right: 20px; /* Space between text and sidebar */
+    flex: 3; /* 3/4th of the available width */
+    margin-right: 20px; /* Space between text and sidebar */
 }
 
 .SideBar {
-  flex: 1; /* 1/4th of the available width */
+    flex: 1; /* 1/4th of the available width */
 }
 
 
 /* Article Information */
 .ArticleInfo {
-  font-size: 14px;
-  color: #2c3e50;
-  margin-bottom: 20px;
-  justify-content: end;
+    font-size: 14px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    justify-content: end;
 }
 
 .ArticleInfo h4 {
-  font-size: 18px;
-  margin: 10px 0;
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .ArticleContent {
-  font-size: 16px;
-  color: #2c3e50;
-  line-height: 1.5;
+    font-size: 16px;
+    color: #2c3e50;
+    line-height: 1.5;
 }
 
 /* Sidebar */
 .SideBar h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #2c3e50;
 }
 
 .SideBarArticle {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .SideBarArticle img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 .SideBarArticle p {
-  font-size: 14px;
-  color: #2c3e50;
-  margin: 0;
+    font-size: 14px;
+    color: #2c3e50;
+    margin: 0;
 }
 
 .LikeButton {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 .LikeButton:hover {
-  background-color: #45a049;
+    background-color: #45a049;
+}
+
+.ArticleImage {
+    /*TODO: LEASE PUT STYLE FOR THE IMAGE HERE*/
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .TextWithSidebar {
-    flex-direction: column;
-    width: 100%;
-  }
+    .TextWithSidebar {
+        flex-direction: column;
+        width: 100%;
+    }
 
-  .MainText {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
+    .MainText {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
 
-  .Title {
-    font-size: 40px; /* Adjust font size for smaller screens */
-  }
+    .Title {
+        font-size: 40px; /* Adjust font size for smaller screens */
+    }
 
-  .MainImage{
-    width: 100%;
-    height: auto;
-  }
+    .MainImage {
+        width: 100%;
+        height: auto;
+    }
 
-  .ImageContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-    width:100%;
-  }
-  
+    .ImageContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
 }
