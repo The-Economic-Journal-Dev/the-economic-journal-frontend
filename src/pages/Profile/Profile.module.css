@@ -6,27 +6,31 @@ main {
 .pageWrap {
   position: relative;
   display: grid;
-  grid-template-columns: 300px 800px;
+  grid-template-columns: 300px 800px; /* Original layout preserved for PC */
   grid-template-areas: auto;
   margin-inline: auto;
   padding: 15vh 0 25vh 0;
 }
 
-.logOutButton, .logOutButton:hover, .logOutButton.focus, .logOutButton.active{
-  background-color:#9F050A;
+.logOutButton, .logOutButton:hover, .logOutButton:focus, .logOutButton:active {
+  background-color: #9F050A;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
 
 .page {
   grid-column-start: 2;
   grid-column-end: 3;
-  width: calc(100% - 200px);
+  width: calc(100% - 200px); /* Original layout preserved for PC */
   display: flex;
   flex-direction: column;
 }
 
 .infoContainer {
   border-top: 2px solid #e4d3be;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
 }
 
 .info {
@@ -40,24 +44,61 @@ main {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+/* Adjustments for tablet screens */
+@media (max-width: 1024px) {
   .pageWrap {
-    grid-template-columns: 1fr;
-    padding: 20px 10%;
+    grid-template-columns: 1fr 2fr; /* Two-column layout for tablets */
+    padding: 15vh 5vw 25vh 5vw;
+    width: 90%; /* Adjust width for better fit */
   }
 
   .page {
-    grid-column-start: 1;
+    grid-column-start: 2;
     grid-column-end: 3;
-    width: 100%;
+    width: 100%; /* Full width on smaller screens */
   }
 
-  .infoContainer {
+  .info {
     flex-direction: column;
     align-items: flex-start;
   }
 
+  .logOutButton {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+}
+
+/* Single column layout for phones */
+@media (max-width: 480px) {
+  .pageWrap {
+    padding: 8vh 5vw 15vh 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content on smaller screens */
+  }
+
+  .page {
+    width: 100%; /* Ensure full width */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .infoContainer {
+    width: 100%;
+  }
+
   .info {
-    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .logOutButton {
+    width: 100%;
+    padding: 6px 0;
+    text-align: center;
   }
 }

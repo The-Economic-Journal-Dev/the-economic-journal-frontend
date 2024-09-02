@@ -10,7 +10,6 @@
     min-height: 100vh; /* Ensure this wraps content initially */
     height: auto; /* Allow it to expand based on content */
     width: 95%;
-    max-width: 1600px; /* Increased max-width for wider content */
     margin: 2rem auto;
     padding: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -120,12 +119,28 @@
     font-weight: 600;
     color: #333;
     margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Limits text to 5 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Ensure text wraps */
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Break long words */
 }
 
 .TrendingTextWrap h6 {
     font-size: 0.9rem;
     color: #666;
     line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Limits text to 5 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Ensure text wraps */
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Break long words */
 }
 
 .Skeleton {
@@ -178,19 +193,7 @@
     height: 50px;
 }
 
-@media (max-width: 1550px) {
-    .PostArea {
-        grid-template-columns: 1fr; /* Single column layout for PostArea */
-    }
 
-    .ColumnDivider {
-        display: none; /* Hide column dividers */
-    }
-
-    .TrendingContentWrap {
-        grid-template-columns: 1fr; /* Single column layout for TrendingContentWrap */
-    }
-}
 
 @media (max-width: 1200px) {
     .PostArea {
