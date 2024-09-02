@@ -10,6 +10,13 @@
 .description {
     font-size: 16px;
     margin-bottom: 8px;
+    color: #32c93e;
+}
+
+.errorDescription {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #d01a1a;
 }
 
 .barContainer {
@@ -23,5 +30,11 @@
 .bar {
     height: 20px;
     background-color: #4caf50;
+    transition: width 0.3s ease-in-out;
+}
+
+.errorBar {
+    height: 20px;
+    background-color: #af1313;
     transition: width 0.3s ease-in-out;
 }
