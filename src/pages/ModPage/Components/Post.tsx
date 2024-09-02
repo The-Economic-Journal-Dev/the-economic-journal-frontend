@@ -335,7 +335,7 @@ const Post = () => {
             SetLoadingDescription(`Appending Additional Data...`)
 
             if (!imageFile) {
-                throw new Error("No Image");
+                throw new Error("No Banner Image");
             }
 
             const imageUrl = await uploadToBucketFromFile(imageFile);
@@ -456,11 +456,11 @@ const Post = () => {
                     ></input>
                 </>
 
-                {error != "" && <h5 style={{color: "red"}}>{error}</h5>}
                 {posted && <h5 style={{color: "green"}}>Posted Successfully</h5>}
 
                 {/*TODO: Setup failed display for the loading bar when error*/}
-                {isUploading && <LoadingBar percentage={percentageCompleted} description={loadingDescription}/>}
+                {isUploading && <LoadingBar percentage={percentageCompleted} description={loadingDescription}
+                                            errorDescription={error}/>}
 
                 <button type="submit">Post</button>
             </form>
