@@ -1,19 +1,19 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import * as mammoth from "mammoth";
 
 interface InputData {
-  title: string;
-  summary: string;
-  metaTitle: string;
-  articleBody: string;
+    title: string;
+    summary: string;
+    metaTitle: string;
+    articleBody: string;
 }
 
 interface ConverterProps {
-  inputData: InputData;
-  handleEditorChange: (value: string) => void;
+    inputData: InputData;
+    handleEditorChange: (value: string) => void;
 }
 
-const Converter: React.FC<ConverterProps> = ({ inputData, handleEditorChange }) => {
+const Converter: React.FC<ConverterProps> = ({inputData, handleEditorChange}) => {
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState("");
 
@@ -25,16 +25,14 @@ const Converter: React.FC<ConverterProps> = ({ inputData, handleEditorChange }) 
 
     const handleImageError = () => {
         setError("No Images Allowed. Ignoring images...");
-        setTimeout(() => { setError("")}, 2000)
+        setTimeout(() => {
+            setError("")
+        }, 2000)
     }
 
     const options = {
-                ignoreEmptyParagraphs: true,
-                convertImage: mammoth.images.imgElement(function(image) {
-                    handleImageError()
-                    return Promise.resolve({ src: "data:" });
-                })
-            };
+        ignoreEmptyParagraphs: true,
+    };
 
     const handleAppend = async (event: React.MouseEvent<HTMLButtonElement>) => {
         // Prevent default behavior
@@ -47,7 +45,7 @@ const Converter: React.FC<ConverterProps> = ({ inputData, handleEditorChange }) 
 
         try {
             const arrayBuffer = await file.arrayBuffer();
-            const result = await mammoth.convertToHtml({ arrayBuffer }, options)
+            const result = await mammoth.convertToHtml({arrayBuffer}, options)
 
             console.log("Conversion result:", result.value);
             // Update the articleBody with the converted HTML
@@ -57,7 +55,7 @@ const Converter: React.FC<ConverterProps> = ({ inputData, handleEditorChange }) 
             alert("An error occurred during conversion.");
         }
     };
-    
+
     const handleOverwrite = async (event: React.MouseEvent<HTMLButtonElement>) => {
         // Prevent default behavior
         event.preventDefault();
@@ -69,7 +67,7 @@ const Converter: React.FC<ConverterProps> = ({ inputData, handleEditorChange }) 
 
         try {
             const arrayBuffer = await file.arrayBuffer();
-            const result = await mammoth.convertToHtml({ arrayBuffer }, options);
+            const result = await mammoth.convertToHtml({arrayBuffer}, options);
             // Update the articleBody with the converted HTML
             handleEditorChange(result.value);
         } catch (error) {
@@ -88,7 +86,7 @@ const Converter: React.FC<ConverterProps> = ({ inputData, handleEditorChange }) 
             <button onClick={handleAppend}>Append</button>
             <button onClick={handleOverwrite}>Overwrite</button>
 
-            {error? <p>{error}</p>: <></>}
+            {error ? <p>{error}</p> : <></>}
         </div>
     );
 }
