@@ -113,7 +113,11 @@
 
 
 
-
+@media (max-width:1500px) {
+  .MainColumn img{
+    max-height: 500px;
+  }
+}
 
 @media (max-width: 1200px) {
   .MainColumnTextWrap h2 {
