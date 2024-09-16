@@ -10,9 +10,9 @@ import {ImageDrop} from 'quill-image-drop-module'
 import ImageResize from 'quill-resize-image';
 import axios from "axios";
 import LoadingBar from "./LoadingBar.tsx";
+import Article from "../../Article/Article.tsx";
 
 Quill.register('modules/imageResize', ImageResize)
-
 Quill.register('modules/imageDrop', ImageDrop)
 
 interface InputData {
@@ -20,6 +20,7 @@ interface InputData {
     summary: string;
     metaTitle: string;
     articleBody: string;
+    authorName: string;
 }
 
 const WebsiteSelector = ({
@@ -73,6 +74,15 @@ const Post = () => {
     const [isUploading, SetIsUploading] = useState<boolean>(false)
     const [percentageCompleted, SetPercentageCompleted] = useState<number>(0)
     const [loadingDescription, SetLoadingDescription] = useState<string>("Appending initial data...")
+    const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+
+    const handlePreview = (): void => {
+        setIsPreviewVisible(true); // Show the preview overlay
+    };
+
+    const handleClosePreview = (): void => {
+        setIsPreviewVisible(false); // Close the preview overlay
+    };
 
     const [targetPage, setTargetPage] = useState(() => {
         return localStorage.getItem("targetPage") || "";
@@ -87,6 +97,7 @@ const Post = () => {
                 summary: "",
                 metaTitle: "",
                 articleBody: "",
+                authorName: ""
             };
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -148,8 +159,6 @@ const Post = () => {
             console.log("Response:", responseBody);
 
             if (responseBody.success) {
-                SetPercentageCompleted(100)
-                SetLoadingDescription("Article Posted!")
                 setPosted(true);
                 setError("");
             }
@@ -283,14 +292,17 @@ const Post = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        SetPercentageCompleted(0)
         SetIsUploading(true)
 
         const formData = new FormData();
         formData.append("title", inputData.title);
         formData.append("summary", inputData.summary);
         formData.append("metaTitle", inputData.metaTitle);
+        formData.append("authorName", inputData.authorName);
 
         SetPercentageCompleted(10)
+        SetLoadingDescription(`Appending Initial Data...`)
         // Intercept and process the articleBody to handle Base64 images
         const parser = new DOMParser();
         const doc = parser.parseFromString(inputData.articleBody, "text/html");
@@ -351,7 +363,11 @@ const Post = () => {
             }
             SetPercentageCompleted(90)
             SetLoadingDescription(`Uploaded Banner Image...`)
+            console.log(modifiedArticleBody)
+
             await postData(formData);
+            SetPercentageCompleted(100)
+            SetLoadingDescription("Article Posted!")
         } catch (error) {
             console.error(error);
             setError((error as Error).message || "An error occurred");
@@ -367,6 +383,20 @@ const Post = () => {
         }
     };
 
+    const previewArticle: IArticleData = {
+        articleBody: inputData.articleBody,
+        authorUid: "",
+        category: targetPage,
+        datePublished: new Date(),
+        imageUrl: "",
+        lastUpdated: new Date(),
+        likesCount: 0,
+        metaTitle: inputData.metaTitle,
+        position: 0,
+        summary: inputData.summary,
+        title: inputData.title
+
+    }
 
     const modules = {
         toolbar: {
@@ -380,9 +410,6 @@ const Post = () => {
                 ['clean'],
                 [{'align': []}],
             ],
-            /*            'handlers': {
-                            image: imageHandler
-                        }*/
         },
         clipboard: {
             matchVisual: false,
@@ -429,6 +456,15 @@ const Post = () => {
                     onChange={handleInput}
                 />
 
+                <label htmlFor="authorname">Author Name</label>
+                <input
+                    type="text"
+                    name="authorName"
+                    placeholder="Name of the author (leave blank if current user)"
+                    value={inputData.authorName}
+                    onChange={handleInput}
+                />
+
                 <label htmlFor="articleDocxUpload">Upload .docx Instead</label>
                 <div>
                     <Converter
@@ -458,12 +494,30 @@ const Post = () => {
 
                 {posted && <h5 style={{color: "green"}}>Posted Successfully</h5>}
 
-                {/*TODO: Setup failed display for the loading bar when error*/}
                 {isUploading && <LoadingBar percentage={percentageCompleted} description={loadingDescription}
                                             errorDescription={error}/>}
 
+                <div>
+                    {/* Button to trigger the preview */}
+                    <button type="button" onClick={handlePreview}>
+                        Preview Post
+                    </button>
+                </div>
+
                 <button type="submit">Post</button>
             </form>
+
+            {/* Conditional Rendering of Preview Overlay */}
+            {isPreviewVisible && (
+                <div className={style.previewOverlay}>
+                    <div className={style.previewContent}>
+                        <button onClick={handleClosePreview} className={style.closeButton}>
+                            Close Preview
+                        </button>
+                        <Article previewArticle={previewArticle}/>
+                    </div>
+                </div>
+            )}
         </>
     );
 };
