@@ -7,8 +7,8 @@ interface IArticleData {
     imageUrl: string;
     summary?: string;
     articleBody: string;
-    category: "Finance" | "Economic" | "Business" | "Entrepreneurship";
+    category: string;
     likesCount: number;
-    articleText: string;
     position: number;
+    authorName?: string;
 }
