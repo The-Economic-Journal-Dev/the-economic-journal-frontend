@@ -102,7 +102,7 @@ const LikeButton = ({currentUser, metaTitle, currentLikes}: {
     )
 }
 
-const ArticlePage = () => {
+const ArticlePage: React.FC<{ previewArticle?: IArticleData }> = ({previewArticle}) => {
     const {metaTitle} = useParams<{ metaTitle: string }>();
     const [articleData, setArticleData] = useState<IArticleData>(); // Adjust type as needed
     const [loading, setLoading] = useState<boolean>(true);
@@ -171,7 +171,21 @@ const ArticlePage = () => {
             }
         };
 
-        fetchArticleData();
+        if (!previewArticle) {
+            fetchArticleData();
+        } else {
+            setArticleData(previewArticle);
+            setLastDate(
+                "Last Updated: " +
+                new Date().toLocaleDateString()
+            );
+            if (articleData?.authorName) {
+                setAuthorName(articleData.authorName)
+            } else if (auth.currentUser?.displayName) {
+                setAuthorName(auth.currentUser.displayName);
+            }
+            setLoading(false)
+        }
     }, [metaTitle]);
 
     if (loading) {
@@ -182,13 +196,38 @@ const ArticlePage = () => {
         return <p>{error}</p>;
     }
 
+    /**
+     * Converts a CSS style string into a generic style object.
+     * @param styleString - The inline style string to convert.
+     * @returns A style object that can be used in a React component.
+     */
+    const parseStyleString = (styleString: string): Record<string, string> => {
+        return styleString.split(';').reduce((styleObject, styleProperty) => {
+            const [property, value] = styleProperty.split(':').map(part => part.trim());
+            if (property && value) {
+                styleObject[property] = value;
+            }
+            return styleObject;
+        }, {} as Record<string, string>);
+    };
+
+    /**
+     * Transforms an HTML node into a React node, specifically handling 'img' tags.
+     * @param node - The HTML node to transform.
+     * @param children - The child nodes of the HTML node.
+     * @returns A React node that represents the transformed HTML node.
+     */
     const transform = (node: HTMLElement, children: Node[]): React.ReactNode => {
         if (node.tagName.toLowerCase() === 'img') {
             const referrerPolicy = node.getAttribute('referrerpolicy') as HTMLAttributeReferrerPolicy;
+            const styleString = node.getAttribute('style') || '';
+            const styleObject = parseStyleString(styleString);
+
             return (
                 <img
                     src={node.getAttribute('src') || ''}
                     alt={node.getAttribute('alt') || ''}
+                    style={styleObject}
                     referrerPolicy={referrerPolicy || 'no-referrer'}
                     className={style.ArticleImage}
                 />
