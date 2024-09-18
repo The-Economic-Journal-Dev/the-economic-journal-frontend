@@ -1,34 +1,27 @@
-/* Global Styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
 /* Main Content Wrap */
 .MainContentWrap {
-    padding: 40px;
-    background-color: #fdf5e6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 40px;
+  background-color: #fdf5e6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Meta Data */
 .MetaData {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    color: #7f8c8d;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #7f8c8d;
 }
 
 .MetaData .Section {
-    font-size: 14px;
-    margin-right: 10px;
+  font-size: 14px;
+  margin-right: 10px;
 }
 
 .MetaData .Name {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /* Title */
@@ -44,102 +37,110 @@ body {
 
 /* Main Image Container */
 .ImageContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-    width: 70%; /* Set width percentage to control scaling */
-    max-width: 1200px; /* Set a max-width to control the size on large screens */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%; /* Set width percentage to control scaling */
+  max-width: 1200px; /* Set a max-width to control the size on large screens */
 }
 
 /* Main Image */
 .MainImage {
-    width: 100%; /* Set to 100% of the container by default */
-    height: auto; /* Maintain aspect ratio */
+  width: 100%; /* Set to 100% of the container by default */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure it fits within the text box */
+  max-height: 80vh;
 }
 
 /* Text with Sidebar Layout */
 .TextWithSidebar {
-    display: flex;
-    justify-content: space-between; /* Space between items */
-    width: 70%; /* Match the width of the image container */
-    max-width: 1200px; /* Ensure it doesn't exceed the image container's max-width */
+  display: flex;
+  justify-content: space-between; /* Space between items */
+  width: 70%; /* Match the width of the image container */
+  max-width: 1000px; /* Ensure it doesn't exceed a certain width */
+  margin: 0 auto; /* Center the content */
 }
 
 .MainText {
-    flex: 3; /* 3/4th of the available width */
-    margin-right: 20px; /* Space between text and sidebar */
+  flex: 2.5; /* Reduce the width to 2.5/4th of the available space */
+  margin-right: 20px; /* Space between text and sidebar */
+  max-width: 75%; /* Restrict the text width */
 }
 
 .SideBar {
-    flex: 1; /* 1/4th of the available width */
+  flex: 1.5; /* Increase the width to 1.5/4th of the available space */
+  max-width: 25%; /* Restrict the sidebar width */
 }
-
 
 /* Article Information */
 .ArticleInfo {
-    font-size: 14px;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    justify-content: end;
+  font-size: 14px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  justify-content: end;
 }
 
 .ArticleInfo h4 {
-    font-size: 18px;
-    margin: 10px 0;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
 .ArticleContent {
-    font-size: 16px;
-    color: #2c3e50;
-    line-height: 1.5;
+  font-size: 16px;
+  color: #2c3e50;
+  line-height: 1.5;
 }
 
 /* Sidebar */
 .SideBar h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #2c3e50;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #2c3e50;
 }
 
 .SideBarArticle {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .SideBarArticle img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .SideBarArticle p {
-    font-size: 14px;
-    color: #2c3e50;
-    margin: 0;
+  font-size: 14px;
+  color: #2c3e50;
+  margin: 0;
 }
 
 .LikeButton {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .LikeButton:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 .ArticleImage {
-    /*TODO: LEASE PUT STYLE FOR THE IMAGE HERE*/
+  max-height: 70vh;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  object-position: center; /* This centers the image */
 }
 
 /* Responsive Design */
@@ -219,5 +220,70 @@ body {
         margin-bottom: 10px;
         width: 100%;
     }
+  .TextWithSidebar {
+      flex-direction: column;
+      width: 100%;
+  }
 
+  .MainText {
+      margin-right: 0;
+      margin-bottom: 20px;
+      max-width: 100%; /* Make the main text column occupy full width */
+  }
+
+  .SideBar {
+      max-width: 100%; /* Make the sidebar occupy full width */
+  }
+
+  .Title {
+      font-size: 40px; /* Adjust font size for smaller screens */
+  }
+
+  .MainImage {
+      width: 100%;
+      height: auto;
+  }
+
+  .ImageContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .TextWithSidebar {
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .MainText {
+      margin-right: 0;
+
+      max-width: 100%; /* Make the main text column occupy full width */
+  }
+
+  .SideBar {
+      max-width: 100%; /* Make the sidebar occupy full width */
+  }
+
+  .Title {
+      font-size: 1.7rem; /* Adjust font size for smaller screens */
+      max-width: 100%;
+  }
+
+  .MainImage {
+      width: 100%;
+      height: auto;
+  }
+
+  .ImageContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 100%;
+  }
 }
